@@ -98,7 +98,7 @@
                     , "legendiconscale": "1.5"
                     , "legendshadow": "0"
                     , "legendborderalpha": "0"
-                    , "legendposition": "right"
+                    , "legendposition": "up"
                     , "canvasborderalpha": "50"
                     , "numvdivlines": "5"
                     , "vdivlinealpha": "20"
@@ -135,14 +135,42 @@
                     , "legendiconscale": "1.5"
                     , "legendshadow": "0"
                     , "legendborderalpha": "0"
-                    , "legendposition": "right"
                     , "canvasborderalpha": "50"
                     , "numvdivlines": "5"
                     , "vdivlinealpha": "20"
                     , "showborder": "0"
-                    , "paletteColors": "##46b8da,#993f6c,#cc0000"
-                }
+                    , "showtooltip": "1"
+                    , "paletteColors": "#46b8da,#993f6c,#cc0000"
+                    , labelDisplay: "wrap"
+                    , "showLabelsAtCenter": "1"
+                    , "baseFontSize": "12"
+                    , baseFontColor: "#fff"
+                    , "numberSuffix": "$"
+                    , "plotToolText": "$label"
+                    , showToolTipShadow: "1"
+                    , "toolTipBorderColor": "#FFFFFF"
+                    , "plottooltext": "<div class='tooltip-custom'>$label</div>"
+                    , "showLegend": "1"
+                    , "outCnvBaseFontColor": "#8D8D8D"
+                , }
                 , "data": []
+                , "styles": {
+                    "definition": [
+                        {
+                            "name": "myToolTipFont"
+                            , "type": "font"
+                            , "font": "Arial"
+                            , "size": "12"
+                            , "color": "FF5904"
+      }
+    ]
+                    , "application": [
+                        {
+                            "toobject": "ToolTip"
+                            , "styles": "myToolTipFont"
+      }
+    ]
+                }
             }
         };
         this.areaChartConfig = function () {
@@ -206,40 +234,80 @@
             }
         }
     }).controller('rootCtrl', function ($scope, dataService) {
+        /***************creating pyramid chart start*********************/
+        $scope.pyCharts = dataService.funnelChartConfig();
+        $scope.pyFlag = false;
+        $scope.pyramidColors = ["#9BAEBC", "# E65065", "#CB145B"];
+        var promise = dataService.getData("https://raw.githubusercontent.com/mahesh-pal/mahesh-pal.github.io/master/pyChart.json").then(function (response) {
+            $scope.pyCharts.chart.caption = response.data.pyramid1.meta.title
+            var sum = 0;
+            var funnelData = response.data.pyramid1.data.categories;
+            var arrData = []
+            for (var index = 0; index < funnelData.length; index++) {
+                var obj = funnelData[index];
+                arrData.push({
+                    label: obj.label + '{BR} ' + obj.value
+                    , value: obj.value
+                    , color: $scope.pyramidColors[index % $scope.pyramidColors.length]
+                });
+            }
+            $scope.pyCharts.data = arrData;
+            $scope.pyFlag = true;
+        });
+        /*******************pyramisd chart end***************************/
+        //*****************page 1 first row top right table start*****************
+        dataService.getData("https://raw.githubusercontent.com/mahesh-pal/mahesh-pal.github.io/master/bigTable.json").then(function (response) {
+            var table = response.data.table1;
+            $scope.columns_1 = table.columns;
+            $scope.data_1 = table.rows;
+        });
+        //************************table end********************
+        //************************line chart start*****************
+        $scope.flag = false;
+        $scope.line_chart = dataService.lineChartConfig();
+        $scope.line_chart.chart.caption = "caption for graph";
+        $scope.line_chart.chart.subcaption = "subcaption for graph";
+        dataService.getData("https://raw.githubusercontent.com/mahesh-pal/mahesh-pal.github.io/master/line-graph.json").then(function (response) {
+                var category = [];
+                var dataSet = []
+                var resArr = response.data.categories;
+                var linecolors = ["#C00035", "#DE5762", "#9CAFC4"]
+                for (var index = 0; index < resArr.length; index++) {
+                    var dataSetObj = {}
+                    var obj = resArr[index];
+                    category.push({
+                        label: obj.label
+                    });
+                    dataSetObj.seriesname = obj.seriesname;
+                    dataSetObj.color = linecolors[index % linecolors.length];
+                    dataSetObj.anchorbordercolor = linecolors[index % linecolors.length];
+                    dataSetObj.anchorbgcolor = linecolors[index % linecolors.length];
+                    dataSetObj.data = obj.data;
+                    dataSet.push(dataSetObj);
+                }
+                $scope.line_chart.dataset = dataSet;
+                $scope.line_chart.categories[0].category = category;
+                $scope.flag = true;
+                //console.log($scope.line_chart)
+            })
+            //****************line chart end*******************
+            //**********circular graph start****************
         function circularGraphWithoutCaption(response) {
             var circulargraphData = response.data.Circular_Graph1;
             var graphFormatedData = [];
+            var colors = ["#CD0A59", "#E84F63", "#D3D3D3"]
             for (var i = 0; i < circulargraphData.length; i++) {
                 var obj = circulargraphData[i];
                 graphFormatedData.push({
                     "label": obj.label
                     , "value": obj.count
-                    , "color": obj.color
+                    , "color": colors[i % colors.length]
                 })
             }
             return graphFormatedData;
         }
-        ////############### page 1 1st row Circular###############
-        var graphConfig = dataService.circularGraphObject();
-        $scope.firstChart = graphConfig;
-        $scope.firstGraph = function () {
-            var promise = dataService.getData("https://raw.githubusercontent.com/mahesh-pal/mahesh-pal.github.io/master/circular-graph.json").then(function (response) {
-                var graphFormatedData = circularGraphWithoutCaption(response);
-                graphConfig.data = graphFormatedData;
-                $scope.firstChart = graphConfig;
-            });
-        }
-        $scope.firstGraph();
-        //********************************************Second row charts**********************************
-        var graphConfig = dataService.circularGraphObject();
-        $scope.firstChart_1 = graphConfig;
-        var promise = dataService.getData("https://raw.githubusercontent.com/mahesh-pal/mahesh-pal.github.io/master/circular-graph.json").then(function (response) {
-            var graphFormatedData = circularGraphWithoutCaption(response);
-            graphConfig.data = graphFormatedData;
-            graphConfig.chart.caption = "Circular_Graph1";
-            $scope.firstChart_1 = graphConfig;
-        });
-        //*****************************circular groaph with caption**************************************
+        //**********circular graph end****************
+        //*****************************circular groaph start**************************************
         var graphConfig = dataService.circularGraphObject();
         $scope.firstChart_2 = graphConfig;
         var promise = dataService.getData("https://raw.githubusercontent.com/mahesh-pal/mahesh-pal.github.io/master/circular-graph.json").then(function (response) {
@@ -258,141 +326,12 @@
             $scope.firstChart_3 = graphConfig;
         });
         //************************************** page 3 tables
-        $scope.alltables = [];
-        var promise = dataService.getData("https://raw.githubusercontent.com/mahesh-pal/mahesh-pal.github.io/master/tables.json").then(function (response) {
-            var tableData = response.data;
-            for (var tab in tableData) {
-                if (tableData.hasOwnProperty(tab)) {
-                    $scope.alltables.push({
-                        name: tab
-                        , rows: tableData[tab].rows
-                    });
-                }
-            }
+        var promise = dataService.getData("https://raw.githubusercontent.com/mahesh-pal/mahesh-pal.github.io/master/bottom-table.json").then(function (response) {
+            var alltables = response.data;
+            $scope.bottomTable1 = alltables.table_bottom_1;
+            $scope.bottomTable2 = alltables.table_bottom_2;
+            $scope.bottomTable3 = alltables.table_bottom_3;
             //console.log($scope.alltables);
         });
-        //***********
-        $scope.alltables2 = [];
-        var promise = dataService.getData("https://raw.githubusercontent.com/mahesh-pal/mahesh-pal.github.io/master/table2.json").then(function (response) {
-            var tableData = response.data;
-            for (var tab in tableData) {
-                if (tableData.hasOwnProperty(tab)) {
-                    $scope.alltables2.push({
-                        name: tab
-                        , rows: tableData[tab].rows
-                    , });
-                }
-            }
-            //console.log($scope.alltables);
-        });
-        //***************************************
-        $scope.areaGraphs = [];
-        var promise = dataService.getData("https://raw.githubusercontent.com/mahesh-pal/mahesh-pal.github.io/master/area-graph.json").then(function (response) {
-            var areaGraphData = response.data;
-            for (var tab in areaGraphData) {
-                if (areaGraphData.hasOwnProperty(tab)) {
-                    var gData = [];
-                    var arr = areaGraphData[tab];
-                    for (var index = 0; index < arr.length; index++) {
-                        gData.push({
-                            label: arr[index].X
-                            , value: arr[index].Y
-                            , "anchoralpha": "100"
-                            , "anchorradius": "7"
-                            , "color": "008ee4"
-                        , })
-                    }
-                    var arData = dataService.areaChartConfig();
-                    arData.data = gData;
-                    $scope.areaGraphs.push({
-                        name: tab
-                        , data: arData
-                    })
-                }
-            }
-        });
-        //*********************line chart***********************
-        $scope.flag = false;
-        $scope.line_chart = dataService.lineChartConfig();
-        $scope.line_chart.chart.caption = "caption for graph";
-        $scope.line_chart.chart.subcaption = "subcaption for graph";
-        dataService.getData("https://raw.githubusercontent.com/mahesh-pal/mahesh-pal.github.io/master/line-graph.json").then(function (response) {
-                var category = [];
-                var dataSet = []
-                var resArr = response.data.categories;
-                for (var index = 0; index < resArr.length; index++) {
-                    var dataSetObj = {}
-                    var obj = resArr[index];
-                    category.push({
-                        label: obj.label
-                    });
-                    dataSetObj.seriesname = obj.seriesname;
-                    dataSetObj.color = obj.color;
-                    dataSetObj.anchorbordercolor = obj.anchorbordercolor
-                    dataSetObj.anchorbgcolor = obj.anchorbgcolor;
-                    dataSetObj.data = obj.data;
-                    dataSet.push(dataSetObj);
-                }
-                $scope.line_chart.dataset = dataSet;
-                $scope.line_chart.categories[0].category = category;
-                $scope.flag = true;
-                //console.log($scope.line_chart)
-            })
-            //**************************************funnel chart
-        $scope.funnelCharts = dataService.funnelChartConfig();
-        $scope.fusionFlag = false;
-        var promise = dataService.getData("https://raw.githubusercontent.com/mahesh-pal/mahesh-pal.github.io/master/circular-graph.json").then(function (response) {
-            $scope.funnelCharts.chart.caption = "Circular_Graph1"
-            var sum = 0;
-            var funnelData = response.data.Circular_Graph1;
-            var arrData = []
-            for (var index = 0; index < funnelData.length; index++) {
-                var obj = funnelData[index];
-                arrData.push({
-                    label: obj.label
-                    , value: obj.count
-                });
-                sum += obj.count;
-            }
-            arrData.push({
-                label: "placeholder for total value"
-                , value: sum
-            });
-            $scope.funnelCharts.data = arrData;
-            console.log($scope.funnelCharts);
-            $scope.fusionFlag = true;
-            //***************
-        });
-        //******* pyramid chart
-        $scope.pyCharts = dataService.funnelChartConfig();
-        $scope.pyFlag = false;
-        var promise = dataService.getData("https://raw.githubusercontent.com/mahesh-pal/mahesh-pal.github.io/master/circular-graph.json").then(function (response) {
-            $scope.funnelCharts.chart.caption = "Circular_Graph1"
-            var sum = 0;
-            var funnelData = response.data.Circular_Graph1;
-            var arrData = []
-            for (var index = 0; index < funnelData.length; index++) {
-                var obj = funnelData[index];
-                arrData.push({
-                    label: obj.label
-                    , value: obj.count
-                });
-            }
-            $scope.pyCharts.data = arrData;
-            $scope.pyFlag = true;
-        });
-        //************page 7 big tables
-        $scope.allBigTables = []
-        dataService.getData("https://raw.githubusercontent.com/mahesh-pal/mahesh-pal.github.io/master/bigTable.json").then(function (response) {
-            var keyArray = Object.keys(response.data);
-            keyArray.forEach(function (item) {
-                $scope.allBigTables.push(response.data[item]);
-            })
-        });
-        //##################page 6  single table beside pyrramid
-        $scope.tableRows = []
-        dataService.getData("https://raw.githubusercontent.com/mahesh-pal/mahesh-pal.github.io/master/singleTable.json").then(function (response) {
-            $scope.tableRows = response.data.Table1.rows;
-        })
     })
 })();
