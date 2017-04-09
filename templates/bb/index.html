@@ -429,6 +429,9 @@ tbody tr td {
             dataService.getData("https://raw.githubusercontent.com/arita37/bipage/master/static/gg/custom_js_css/custom_json/index.json").then(dataSuccessFull);
 
             function dataSuccessFull(response) {
+                // complete json for the page
+                var allData = response.data;
+                // formating data for circular graph
                 function circularGraphWithoutCaption(response) {
                     var circulargraphData = response;
                     var graphFormatedData = [];
@@ -443,10 +446,10 @@ tbody tr td {
                     }
                     return graphFormatedData;
                 }
-                // complete json for the page
-                var allData = response.data;
-                //****************extracting pyramid chart data***************
-                var pyramidData = allData.pyramid1;
+                
+               
+               function createPyramidData(){
+                   var pyramidData = allData.pyramid1;
                 $scope.pyCharts.chart.caption = pyramidData.meta.title
                 var funnelData = pyramidData.data.categories;
                 var arrData = []
@@ -461,12 +464,16 @@ tbody tr td {
                 //**************pyramid chart******************
                 $scope.pyCharts.data = arrData;
                 $scope.pyFlag = true;
+                   
+               }
                 
+                function createTopRightTable(){
                 var tableData = response.data.table_small_right1;
                 $scope.columns_1 = tableData.columns;
                 $scope.data_1 = tableData.rows;
-                //*******************line chart***************
-                $scope.line_chart.chart.caption = "caption for graph";
+                }
+                function createLineChart(){
+                     $scope.line_chart.chart.caption = "caption for graph";
                 $scope.line_chart.chart.subcaption = "subcaption for graph";
                 $scope.line_flag = true;
                 $scope.line_chart.categories[0].category = [];
@@ -484,22 +491,35 @@ tbody tr td {
                         item.color = line_colors[index % line_colors.length];
                         $scope.line_chart.dataset[index] = item;
                     })
-                    //************* bottom tables********
-                var alltables = response.data;
+                }
+                function createBottomTables(){
+                    var alltables = response.data;
                 $scope.bottomTable1 = alltables.table_bottom_1;
                 $scope.bottomTable2 = alltables.table_bottom_2;
                 $scope.bottomTable3 = alltables.table_bottom_3;
-                //*************** left circular graph
+                
+                
+                }
+                function createLeftCircularGraph(){
                 var graphConfigLeftCircular = {};
                 var graphFormatedData_1 = circularGraphWithoutCaption(response.data.Circular_Graph_left);
                 $scope.firstChart_2.data = graphFormatedData_1;
                 $scope.firstChart_2.chart.caption = "Circular_Graph1";
                 $scope.left_circular = true;
-                //*************************************right circular grpah***************
-                var graphFormatedData_2 = circularGraphWithoutCaption(response.data.Circular_Graph_right);
+                }
+                function createRightCircularGraph(){
+                    var graphFormatedData_2 = circularGraphWithoutCaption(response.data.Circular_Graph_right);
                 $scope.firstChart_3.data = graphFormatedData_2;
                 $scope.firstChart_3.chart.caption = "Circular_Graph1";
                 $scope.rightCircular = true;
+                }
+                createPyramidData();
+                createTopRightTable();
+                createLineChart();
+                createBottomTables();
+                createLeftCircularGraph();
+                createRightCircularGraph();
+
             }
         }
         $scope.createGraph();
