@@ -7,7 +7,7 @@
     <script src="../../static/gg/custom_js_css/jquery-3.2.1.js"></script>
     <script src="../../static/gg/custom_js_css/jquery-ui.js"></script>
     <script src="../../static/gg/custom_js_css/dbca6ceb2a.js"></script>
-    <script type="text/javascript" src="../../static/gg/custom_js_css/angular.js"></script>
+    <script type="text/javascript" src="../../static/gg/custom_js_css/angular/angular.js"></script>
     <!--    fusion chart library-->
     <script type="text/javascript" src="../../static/gg/fusioncharts/js/fusioncharts.js"></script>
     <script type="text/javascript" src="../../static/gg/fusioncharts/wrappers/angularjs/angular-fusioncharts.min.js"></script>
@@ -18,13 +18,13 @@
     <script type="text/javascript" src="../../static/gg/tabulator/tabulator.js"></script>
     <link rel="stylesheet" href="../../static/gg/custom_js_css/bootstrap.min.css">
     <!--    Js and styles common to all js pages-->
-    <link rel="stylesheet" href="../../static/gg/custom_js_css/styles.css">
-    <script src="../../static/gg/custom_js_css/main.js"></script>
-    <script src="../../static/gg/custom_js_css/app.js"></script>
+    <link rel="stylesheet" href="../../static/gg/custom_js_css/appcss/styles.css">
+    <script src="../../static/gg/custom_js_css/appcustome_js/main.js"></script>
 </head>
 
 <body>
     <div class="container" ng-app="chartsApp" ng-controller="rootCtrl">
+        <button class="btn btn-primary" ng-click="reloadGraph()">reload</button>
         <div class="row">
             <div class="col-xs-5" ng-if="pyFlag">
                 <div fusioncharts width="100%" height="400" type="pyramid" dataSource="{{pyCharts}}" x></div>
@@ -61,16 +61,16 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12" ng-if="flag">
+            <div class="col-xs-12" ng-if="line_flag">
                 <div fusioncharts width="100%" height="400" type="msline" dataSource="{{line_chart}}"></div>
             </div>
         </div>
         <div class=" hr"></div>
         <div class="row">
-            <div class="col-xs-6" ng-if="flag">
+            <div class="col-xs-6" ng-if="left_circular">
                 <div fusioncharts width="100%" height="300" type="doughnut2d" dataSource="{{firstChart_2}}"> </div>
             </div>
-            <div class="col-xs-6" ng-if="flag">
+            <div class="col-xs-6" ng-if="rightCircular">
                 <div fusioncharts width="100%" height="300" type="doughnut2d" dataSource="{{firstChart_3}}"> </div>
             </div>
         </div>
