@@ -8,17 +8,14 @@
     <script src="../../static/gg/custom_js_css/jquery-ui.js"></script>
     <script src="../../static/gg/custom_js_css/dbca6ceb2a.js"></script>
     <script type="text/javascript" src="../../static/gg/custom_js_css/angular/angular.js"></script>
-
     <!--    fusion chart library-->
     <script type="text/javascript" src="../../static/gg/fusioncharts/js/fusioncharts.js"></script>
     <script type="text/javascript" src="../../static/gg/fusioncharts/wrappers/angularjs/angular-fusioncharts.min.js"></script>
     <script src="../../static/gg/custom_js_css/ui-grid.min.js"></script>
     <link rel="stylesheet" href="../../static/gg/custom_js_css/ui-grid.min.css">
-
-    <!-- Tabulator -->
+    <!-- Latest compiled and minified CSS -->
     <link href="../../static/gg/custom_js_css/tabulator.min.css" rel="stylesheet">
     <script type="text/javascript" src="../../static/gg/tabulator/tabulator.js"></script>
-
     <link rel="stylesheet" href="../../static/gg/custom_js_css/bootstrap.min.css">
     <!--    Js and styles common to all js pages-->
    
@@ -121,8 +118,6 @@ tbody tr td {
             </div>
         </div>
         <div class=" hr"></div>
-
-        <!---    Bottom :    Circular Graph---->
         <div class="row">
             <div class="col-xs-6" ng-if="left_circular">
                 <div fusioncharts width="100%" height="300" type="doughnut2d" dataSource="{{firstChart_2}}"> </div>
@@ -131,8 +126,6 @@ tbody tr td {
                 <div fusioncharts width="100%" height="300" type="doughnut2d" dataSource="{{firstChart_3}}"> </div>
             </div>
         </div>
-
-         <!---    Bottom :   Tables ---->
         <div class="row">
             <div class="row">
                 <div class="col-xs-4">
@@ -178,11 +171,9 @@ tbody tr td {
         </div>
     </div>
 </body>
-
-
 <script>
     
-    // Initiliation Graphs, Tables
+    
     angular.module("chartsApp", ['ng-fusioncharts', 'ui.grid']).directive("convertTable", function () {
         return {
             link: function (scope, element, attrs) {
@@ -193,16 +184,30 @@ tbody tr td {
                 $(element).tabulator({
                     fitColumns: true
                     , columns: [{
-                            title: "id", field: "id", align: "right", sorter: "number" },
-                      {     title: "brand" , field: "name"
+                            title: "id"
+                            , field: "id"
+                            , align: "right"
+                            , sorter: "number"
                     }, {
-                            title: "percentage"  , field: "pct"  , align: "center" , formatter: "progress"
+                            title: "brand"
+                            , field: "name"
                     }, {
-                            title: "percentage"  , field: "pct"   , align: "center"  , formatter: scope.pctFormat
+                            title: "percentage"
+                            , field: "pct"
+                            , align: "center"
+                            , formatter: "progress"
                     }, {
-                            title: "count" , field: "count"
-                    }  , {
-                            title: "nb"  , field: "count"
+                            title: "percentage"
+                            , field: "pct"
+                            , align: "center"
+                            , formatter: scope.pctFormat
+                    }, {
+                            title: "count"
+                            , field: "count"
+                    }
+                        , {
+                            title: "nb"
+                            , field: "count"
                         }]
                 , })
                 $(element).tabulator("setData", attrs.convertTable);
@@ -218,16 +223,26 @@ tbody tr td {
                 $(element).tabulator({
                     fitColumns: true
                     , columns: [{
-                            title: "brand"  , field: "name"
+                            title: "brand"
+                            , field: "name"
                     }, {
-                            title: "percentage" , field: "pct"  , align: "center" , formatter: "progress"
+                            title: "percentage"
+                            , field: "pct"
+                            , align: "center"
+                            , formatter: "progress"
                     }, {
-                            title: "percentage"  , field: "pct" , align: "center" , formatter: scope.pctFormat
+                            title: "percentage"
+                            , field: "pct"
+                            , align: "center"
+                            , formatter: scope.pctFormat
                     }, {
-                            title: "count"  , field: "count"
-                    }, {
-                            title: "nb" , field: "count"
-                     }]
+                            title: "count"
+                            , field: "count"
+                    }
+                        , {
+                            title: "nb"
+                            , field: "count"
+                        }]
                 , })
                 $(element).tabulator("setData", attrs.convertTable2);
             }
@@ -242,24 +257,12 @@ tbody tr td {
             return {
                 "chart": {
                     "caption": "Daily Visits"
-                    , "linethickness": "1"
-                    , "showvalues": "0"
-                    , "formatnumberscale": "0"
-                    , "anchorradius": "2"
-                    , "divlinecolor": "666666"
-                    , "divlinealpha": "30"
-                    , "divlineisdashed": "1"
-                    , "labelstep": "2"
-                    , "bgcolor": "FFFFFF"
-                    , "showalternatehgridcolor": "0"
-                    , "labelpadding": "10"
-                    , "canvasborderthickness": "1"
-                    , "legendiconscale": "1.5"
-                    , "legendshadow": "0"
-                    , "legendborderalpha": "0"
-                    , "canvasborderalpha": "50"
-                    , "numvdivlines": "5"
-                    , "vdivlinealpha": "20"
+                    , "linethickness": "1" , "showvalues": "0", "formatnumberscale": "0"
+                    , "anchorradius": "2" , "divlinecolor": "666666" , "divlinealpha": "30"
+                    , "divlineisdashed": "1" , "labelstep": "2"  , "bgcolor": "FFFFFF"
+                    , "showalternatehgridcolor": "0" , "labelpadding": "10" , "canvasborderthickness": "1"
+                    , "legendiconscale": "1.5"  , "legendshadow": "0", "legendborderalpha": "0"
+                    , "canvasborderalpha": "50"  , "numvdivlines": "5" , "vdivlinealpha": "20"
                     , "showborder": "0"
                 }
                 , "categories": [
@@ -275,39 +278,17 @@ tbody tr td {
             return {
                 "chart": {
                     "caption": ""
-                    , "subcaption": ""
-                    , "linethickness": "1"
-                    , "showvalues": "0"
-                    , "formatnumberscale": "0"
-                    , "anchorradius": "2"
-                    , "divlinecolor": "666666"
-                    , "divlinealpha": "30"
-                    , "divlineisdashed": "1"
-                    , "labelstep": "2"
-                    , "bgcolor": "FFFFFF"
-                    , "showalternatehgridcolor": "0"
-                    , "labelpadding": "10"
-                    , "canvasborderthickness": "1"
-                    , "legendiconscale": "1.5"
-                    , "legendshadow": "0"
-                    , "legendborderalpha": "0"
-                    , "canvasborderalpha": "50"
-                    , "numvdivlines": "5"
-                    , "vdivlinealpha": "20"
-                    , "showborder": "0"
-                    , "showtooltip": "1"
-                    , "paletteColors": "#46b8da,#993f6c,#cc0000"
-                    , labelDisplay: "wrap"
-                    , "showLabelsAtCenter": "1"
-                    , "baseFontSize": "12"
-                    , baseFontColor: "#fff"
-                    , "numberSuffix": "$"
-                    , "plotToolText": "$label"
-                    , showToolTipShadow: "1"
-                    , "toolTipBorderColor": "#FFFFFF"
-                    , "plottooltext": "<div class='tooltip-custom'>$label</div>"
-                    , "showLegend": "1"
-                    , "outCnvBaseFontColor": "#8D8D8D"
+                    , "subcaption": "" , "linethickness": "1"  , "showvalues": "0"
+                    , "formatnumberscale": "0" , "anchorradius": "2"  , "divlinecolor": "666666"
+                    , "divlinealpha": "30" , "divlineisdashed": "1"  , "labelstep": "2"
+                    , "bgcolor": "FFFFFF" , "showalternatehgridcolor": "0" , "labelpadding": "10" , "canvasborderthickness": "1"
+                    , "legendiconscale": "1.5" , "legendshadow": "0"  , "legendborderalpha": "0"
+                    , "canvasborderalpha": "50", "numvdivlines": "5"  , "vdivlinealpha": "20"
+                    , "showborder": "0"  , "showtooltip": "1" , "paletteColors": "#46b8da,#993f6c,#cc0000"
+                    , labelDisplay: "wrap" , "showLabelsAtCenter": "1", "baseFontSize": "12"
+                    , baseFontColor: "#fff" , "numberSuffix": "$" , "plotToolText": "$label" , showToolTipShadow: "1"
+                    , "toolTipBorderColor": "#FFFFFF", "plottooltext": "<div class='tooltip-custom'>$label</div>"
+                    , "showLegend": "1" , "outCnvBaseFontColor": "#8D8D8D"
                 , }
                 , "data": []
                 , "styles": {
@@ -351,6 +332,10 @@ tbody tr td {
                 , "data": []
             }
         }
+
+
+
+
         this.circularGraphObject = function () {
             //############### c ircular graph config###############
             return {
@@ -410,13 +395,13 @@ tbody tr td {
         $scope.reloadGraph = function () {
             $scope.createGraph();
         }
+
+
+
         $scope.createGraph = function () {
-            dataService.getData("https://raw.githubusercontent.com/arita37/bipage/master/static/gg/custom_js_css/custom_json/index.json").then(dataSuccessFull);
+            dataService.getData("../../static/gg/custom_js_css/custom_json/index.json").then(dataSuccessFull);
 
             function dataSuccessFull(response) {
-                // complete json for the page
-                var allData = response.data;
-                // formating data for circular graph
                 function circularGraphWithoutCaption(response) {
                     var circulargraphData = response;
                     var graphFormatedData = [];
@@ -431,10 +416,10 @@ tbody tr td {
                     }
                     return graphFormatedData;
                 }
-                
-               
-               function createPyramidData(){
-                   var pyramidData = allData.pyramid1;
+                // complete json for the page
+                var allData = response.data;
+                //****************extracting pyramid chart data***************
+                var pyramidData = allData.pyramid1;
                 $scope.pyCharts.chart.caption = pyramidData.meta.title
                 var funnelData = pyramidData.data.categories;
                 var arrData = []
@@ -449,16 +434,12 @@ tbody tr td {
                 //**************pyramid chart******************
                 $scope.pyCharts.data = arrData;
                 $scope.pyFlag = true;
-                   
-               }
                 
-                function createTopRightTable(){
                 var tableData = response.data.table_small_right1;
                 $scope.columns_1 = tableData.columns;
                 $scope.data_1 = tableData.rows;
-                }
-                function createLineChart(){
-                     $scope.line_chart.chart.caption = "caption for graph";
+                //*******************line chart***************
+                $scope.line_chart.chart.caption = "caption for graph";
                 $scope.line_chart.chart.subcaption = "subcaption for graph";
                 $scope.line_flag = true;
                 $scope.line_chart.categories[0].category = [];
@@ -476,35 +457,22 @@ tbody tr td {
                         item.color = line_colors[index % line_colors.length];
                         $scope.line_chart.dataset[index] = item;
                     })
-                }
-                function createBottomTables(){
-                    var alltables = response.data;
+                    //************* bottom tables********
+                var alltables = response.data;
                 $scope.bottomTable1 = alltables.table_bottom_1;
                 $scope.bottomTable2 = alltables.table_bottom_2;
                 $scope.bottomTable3 = alltables.table_bottom_3;
-                
-                
-                }
-                function createLeftCircularGraph(){
+                //*************** left circular graph
                 var graphConfigLeftCircular = {};
                 var graphFormatedData_1 = circularGraphWithoutCaption(response.data.Circular_Graph_left);
                 $scope.firstChart_2.data = graphFormatedData_1;
                 $scope.firstChart_2.chart.caption = "Circular_Graph1";
                 $scope.left_circular = true;
-                }
-                function createRightCircularGraph(){
-                    var graphFormatedData_2 = circularGraphWithoutCaption(response.data.Circular_Graph_right);
+                //*************************************right circular grpah***************
+                var graphFormatedData_2 = circularGraphWithoutCaption(response.data.Circular_Graph_right);
                 $scope.firstChart_3.data = graphFormatedData_2;
                 $scope.firstChart_3.chart.caption = "Circular_Graph1";
                 $scope.rightCircular = true;
-                }
-                createPyramidData();
-                createTopRightTable();
-                createLineChart();
-                createBottomTables();
-                createLeftCircularGraph();
-                createRightCircularGraph();
-
             }
         }
         $scope.createGraph();
