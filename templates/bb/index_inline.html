@@ -399,7 +399,9 @@ tbody tr td {
 
 
         $scope.createGraph = function () {
-            dataService.getData("../../static/gg/custom_js_css/custom_json/index.json").then(dataSuccessFull);
+            url= "../../static/gg/custom_js_css/custom_json/index.json"
+            // url=
+            dataService.getData().then(dataSuccessFull);
 
             function dataSuccessFull(response) {
                 function circularGraphWithoutCaption(response) {
