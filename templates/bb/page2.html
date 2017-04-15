@@ -1,0 +1,263 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>A061_bunseki3.html</title>
+    <!-- load library--->
+    <script src="../../static/gg/custom_js_css/jquery-3.2.1.js"></script>
+    <script src="../../static/gg/custom_js_css/jquery-ui.js"></script>
+    <script src="../../static/gg/custom_js_css/dbca6ceb2a.js"></script>
+    <script type="text/javascript" src="../../static/gg/custom_js_css/angular/angular.js"></script>
+     <script type="text/javascript" src="../../static/gg/custom_js_css/angular/ui-bootstrap-tpls-2.5.0.min.js"></script>
+
+    <!--    fusion chart library-->
+    <script type="text/javascript" src="../../static/gg/fusioncharts/js/fusioncharts.js"></script>
+    <script type="text/javascript" src="../../static/gg/fusioncharts/wrappers/angularjs/angular-fusioncharts.min.js"></script>
+    <script src="../../static/gg/custom_js_css/ui-grid.min.js"></script>
+    <link rel="stylesheet" href="../../static/gg/custom_js_css/ui-grid.min.css">
+
+    <!-- Tabulator -->
+    <link href="../../static/gg/custom_js_css/tabulator.min.css" rel="stylesheet">
+    <script type="text/javascript" src="../../static/gg/tabulator/tabulator.js"></script>
+
+    <link rel="stylesheet" href="../../static/gg/custom_js_css/bootstrap.min.css">
+  <style>
+      *{
+          box-sizing:border-box;
+      }
+      .box{
+            border-radius: 4px;
+            border: 3px solid #E6E6E6;
+      }
+      .box-container{
+          padding:10px;
+      }
+      .value {
+    font-size: 25px;
+    text-align: right;
+    padding: 10px;
+          color:#CB6674;
+}
+      .title {
+      padding: 5px;
+    /* color: #868686; */
+}
+    
+      .glyphicon{
+          font-size: 20px;
+      }
+      .mg-bot{
+          margin-bottom: 20px;
+      }
+    
+    </style>
+    <script>
+    var topBoxColor=["#CB6674","#3362BB","#CB6674"]
+    function areaChart(){
+        return {
+                "chart": {
+                    "caption": ""
+                    , "subcaption": ""
+                    , "plotgradientcolor": ""
+                    , "bgcolor": "FFFFFF"
+                    , "showalternatehgridcolor": "0"
+                    , "showplotborder": "0"
+                    , "showvalues": "0"
+                    , "labeldisplay": "WRAP"
+                    , "divlinecolor": "CCCCCC"
+                    , "showcanvasborder": "0"
+                    , "canvasborderalpha": "0"
+                    , "palettecolors": "990000"
+                    , "yaxisvaluespadding": "10"
+                    , "showborder": "0"
+                }
+                , "data": []
+            }
+    }
+    </script>
+</head>
+
+<body>
+    <div class="container" ng-app="app" ng-controller="rootCtrl">
+    <div class="row">
+        <div class="col-xs-4 box-container" ng-repeat="data in firstGraph">
+            <div class="box">
+                <div class="title">
+            {{data.title}}
+                </div>
+                <div class="value">
+                {{data.value}}<span ng-style="set_color($index)" class="glyphicon glyphicon glyphicon-arrow-{{data.image}}" aria-hidden="true"></span>
+                </div>
+            
+            </div>
+        
+        </div>
+        
+        
+        </div>
+         <uib-tabset active="active" ng-if="tabGraphflag">
+   
+    <uib-tab index="1"  heading="tab1 graph">
+    
+        <div class="row mg-bot" ng-repeat="graph in tab1Graphs" >
+        <div class="col-xs-12" >
+<label>{{graph.title}}</label>
+            <div fusioncharts width="100%" height="300" type="area2d" dataSource="{{graph.graph}}"> </div>
+            
+            </div>
+        
+        </div>
+             </uib-tab>
+              <uib-tab index="2"  heading="tab2 graph">
+    
+        <div class="row mg-bot" ng-repeat="graph in tab2Graphs">
+        <div class="col-xs-12" >
+<label>{{graph.title}}</label>
+            <div fusioncharts width="100%" height="300" type="area2d" dataSource="{{graph.graph}}"> </div>
+            
+            </div>
+        
+        </div>
+             </uib-tab>
+             <uib-tab index="3"  heading="tab3 graph">
+    
+        <div class="row mg-bot" ng-repeat="graph in tab3Graphs">
+        <div class="col-xs-12" >
+<label>{{graph.title}}</label>
+            <div fusioncharts width="100%" height="300" type="area2d" dataSource="{{graph.graph}}"> </div>
+            
+            </div>
+        
+        </div>
+             </uib-tab>
+        </uib-tabset>
+    </div>
+    
+</body>
+
+
+<script>
+    
+    // Initiliation Graphs, Tables
+    angular.module("app", ['ng-fusioncharts', 'ui.grid','ui.bootstrap']).controller("rootCtrl",function($scope,$http){
+       
+        $http.get("https://raw.githubusercontent.com/arita37/bipage/master/static/gg/custom_json/area-graph.json").then(function(res){
+           $scope.middleGraphTab1=res.data.graph_middle_tab1;
+            //----------------daily graph -tab1-----------------------
+            $scope.tab1Daily=$scope.middleGraphTab1.daily_graph.data;
+            $scope.tab1DailyGraph=areaChart();
+            for(var index=0;index< $scope.tab1Daily.categories[0].data.length;index++){
+                $scope.tab1DailyGraph.data.push({
+                    label:$scope.tab1Daily.xaxis.data[index].value,
+                    value:$scope.tab1Daily.categories[0].data[index].value
+                })
+            }
+            
+            //---------------weekly graph -tab1-------------
+            $scope.tab1Weekly=$scope.middleGraphTab1.weekly_graph.data;
+            $scope.tab1WeeklyGraph=areaChart();
+            for(var index=0;index< $scope.tab1Weekly.categories[0].data.length;index++){
+                $scope.tab1WeeklyGraph.data.push({
+                    label:$scope.tab1Weekly.xaxis.data[index].value,
+                    value:$scope.tab1Weekly.categories[0].data[index].value
+                })
+            }
+            //--------------monthly graph -tab1-------------------
+            $scope.tab1monthly=$scope.middleGraphTab1.monthly_graph.data;
+            $scope.tab1MonthlyGraph=areaChart();
+            for(var index=0;index< $scope.tab1monthly.categories[0].data.length;index++){
+                $scope.tab1MonthlyGraph.data.push({
+                    label:$scope.tab1monthly.xaxis.data[index].value,
+                    value:$scope.tab1monthly.categories[0].data[index].value
+                })
+            }
+            $scope.tab1Graphs=[]
+            $scope.tab1Graphs.push({title:"daily graph","graph": $scope.tab1DailyGraph});
+             $scope.tab1Graphs.push({title:"weekly graph",graph: $scope.tab1WeeklyGraph});
+            $scope.tab1Graphs.push( {title:"monthly graph",graph:$scope.tab1MonthlyGraph});
+            
+            
+            
+            //------------------Tab2 graph---------------
+             //----------------daily graph -tab2-----------------------
+             $scope.middleGraphTab2=res.data.graph_middle_tab2;
+            $scope.tab2Daily=$scope.middleGraphTab2.daily_graph.data;
+            $scope.tab2DailyGraph=areaChart();
+            for(var index=0;index< $scope.tab2Daily.categories[0].data.length;index++){
+                $scope.tab2DailyGraph.data.push({
+                    label:$scope.tab2Daily.xaxis.data[index].value,
+                    value:$scope.tab2Daily.categories[0].data[index].value
+                })
+            }
+            
+            //---------------weekly graph -tab2-------------
+            $scope.tab2Weekly=$scope.middleGraphTab2.weekly_graph.data;
+            $scope.tab2WeeklyGraph=areaChart();
+            for(var index=0;index< $scope.tab2Weekly.categories[0].data.length;index++){
+                $scope.tab2WeeklyGraph.data.push({
+                    label:$scope.tab2Weekly.xaxis.data[index].value,
+                    value:$scope.tab2Weekly.categories[0].data[index].value
+                })
+            }
+            //--------------monthly graph -tab2-------------------
+            $scope.tab2monthly=$scope.middleGraphTab2.monthly_graph.data;
+            $scope.tab2MonthlyGraph=areaChart();
+            for(var index=0;index< $scope.tab2monthly.categories[0].data.length;index++){
+                $scope.tab2MonthlyGraph.data.push({
+                    label:$scope.tab2monthly.xaxis.data[index].value,
+                    value:$scope.tab2monthly.categories[0].data[index].value
+                })
+            }
+            $scope.tab2Graphs=[]
+            $scope.tab2Graphs.push({title:"daily graph",graph: $scope.tab2DailyGraph});
+             $scope.tab2Graphs.push({title:"weekly graph",graph: $scope.tab2WeeklyGraph});
+            $scope.tab2Graphs.push({title:"monthly graph",graph: $scope.tab2MonthlyGraph});
+            //---------------Tab3 graph-------
+            //----------------daily graph -tab3-----------------------
+             $scope.middleGraphTab3=res.data.graph_middle_tab3;
+            $scope.tab3Daily=$scope.middleGraphTab3.daily_graph.data;
+            $scope.tab3DailyGraph=areaChart();
+            for(var index=0;index< $scope.tab3Daily.categories[0].data.length;index++){
+                $scope.tab3DailyGraph.data.push({
+                    label:$scope.tab3Daily.xaxis.data[index].value,
+                    value:$scope.tab3Daily.categories[0].data[index].value
+                })
+            }
+            
+            //---------------weekly graph -tab2-------------
+            $scope.tab3Weekly=$scope.middleGraphTab3.weekly_graph.data;
+            $scope.tab3WeeklyGraph=areaChart();
+            for(var index=0;index< $scope.tab3Weekly.categories[0].data.length;index++){
+                $scope.tab3WeeklyGraph.data.push({
+                    label:$scope.tab3Weekly.xaxis.data[index].value,
+                    value:$scope.tab3Weekly.categories[0].data[index].value
+                })
+            }
+            //--------------monthly graph -tab2-------------------
+            $scope.tab3monthly=$scope.middleGraphTab3.monthly_graph.data;
+            $scope.tab3MonthlyGraph=areaChart();
+            for(var index=0;index< $scope.tab3monthly.categories[0].data.length;index++){
+                $scope.tab3MonthlyGraph.data.push({
+                    label:$scope.tab3monthly.xaxis.data[index].value,
+                    value:$scope.tab3monthly.categories[0].data[index].value
+                })
+            }
+            $scope.tab3Graphs=[]
+            $scope.tab3Graphs.push( {title:"daily graph","graph":$scope.tab3DailyGraph});
+             $scope.tab3Graphs.push({title:"weekly graph","graph": $scope.tab3WeeklyGraph});
+            $scope.tab3Graphs.push( {title:"monthly graph","graph":$scope.tab3MonthlyGraph});
+            $scope.tabGraphflag=true;
+        })
+        $http.get("https://raw.githubusercontent.com/arita37/bipage/master/static/gg/custom_json/page2.json").then(function(res){
+            $scope.topBoxColor=topBoxColor;
+            $scope.firstGraph=res.data.value_top.data;
+            $scope.set_color=function(index){
+                console.log(index)
+                return {
+                    color:$scope.topBoxColor[index%$scope.topBoxColor.length]
+                }
+            }
+        })
+    })
+    </script>
+</html>
