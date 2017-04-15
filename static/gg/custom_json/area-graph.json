@@ -1,37 +1,218 @@
 {
-	"Graph1": [{
-		"X": "2017/05/02",
-		"Y": "250",
-		"label": "mylabel-1"
-	}, {
-		"X": "2017/06/03",
-		"Y": "200",
-		"label": "mylabel-2"
-	},{
-		"X": "2017/07/04",
-		"Y": "100",
-		"label": "mylabel-3"
-	},{
-		"X": "2017/08/05",
-		"Y": "150",
-		"label": "mylabel-4"
-	}],
-	"Graph2": [{
-		"X": "2017/05/02",
-		"Y": "250",
-		"label": "mylabel-1"
-	}, {
-		"X": "2017/06/02",
-		"Y": "200",
-		"label": "mylabel-2"
-	},{
-		"X": "17/07",
-		"Y": "100",
-		"label": "mylabel-3"
-	},{
-		"X": "2017/08/02",
-		"Y": "150",
-		"label": "mylabel-4"
-	}]
+	"graph_middle_tab1": {
+		"daily_graph": {
+			"meta": {
+				"json_type": "graph_area",
+				"title": "Daily Graph"
+			},
+			"data": {
+				"xaxis": {
+					"label": "X labe1-1",
+					"seriesname": "X category-1",
+					"color": "1D8BD1",
+					"anchorbordercolor": "1D8BD1",
+					"anchorbgcolor": "1D8BD1",
+					"data": [{
+							"value": "2016/01/15"
+						}, {
+							"value": "2016/02/15"
+						}, {
+							"value": "2016/03/15"
+						}, {
+							"value": "2016/04/15"
+						},
+						{
+							"value": "2016/05/15"
+						}, {
+							"value": "2016/06/15"
+						}, {
+							"value": "2016/07/15"
+						}, {
+							"value": "2016/08/15"
+						}
+					]
+				},
+				"categories": [{
+					"label": "labe1-1",
+					"seriesname": "category-1",
+					"color": "8293A6",
+					"anchorbordercolor": "8293A6",
+					"anchorbgcolor": "8293A6",
+					"data": [{
+							"value": "1000",
+							"label": "label 1"
+						}, {
+							"value": "2000",
+							"label": "label 2"
+						}, {
+							"value": "3000",
+							"label": "label 3"
+						}, {
+							"value": "4000",
+							"label": "label 4"
+						},
+						{
+							"value": "5000",
+							"label": "label 4"
+						}, {
+							"value": "6000",
+							"label": "label 4"
+						}, {
+							"value": "7000",
+							"label": "label 4"
+						}, {
+							"value": "8000",
+							"label": "label 4"
+						}
+					]
+				}]
 
+			}
+		},
+		"monthly_graph": {
+			"meta": {
+				"json_type": "graph_area",
+				"title": "Daily Graph"
+			},
+			"data": {
+				"xaxis": {
+					"label": "X labe1-1",
+					"seriesname": "X category-1",
+					"color": "1D8BD1",
+					"anchorbordercolor": "1D8BD1",
+					"anchorbgcolor": "1D8BD1",
+					"data": [{
+							"value": "2016/01/15"
+						}, {
+							"value": "2016/02/15"
+						}, {
+							"value": "2016/03/15"
+						}, {
+							"value": "2016/04/15"
+						},
+						{
+							"value": "2016/05/15"
+						}, {
+							"value": "2016/06/15"
+						}, {
+							"value": "2016/07/15"
+						}, {
+							"value": "2016/08/15"
+						}
+					]
+				},
+				"categories": [{
+					"label": "labe1-1",
+					"seriesname": "category-1",
+					"color": "8293A6",
+					"anchorbordercolor": "8293A6",
+					"anchorbgcolor": "8293A6",
+					"data": [{
+							"value": "1000",
+							"label": "label 1"
+						}, {
+							"value": "2000",
+							"label": "label 2"
+						}, {
+							"value": "3000",
+							"label": "label 3"
+						}, {
+							"value": "4000",
+							"label": "label 4"
+						},
+						{
+							"value": "5000",
+							"label": "label 4"
+						}, {
+							"value": "6000",
+							"label": "label 4"
+						}, {
+							"value": "7000",
+							"label": "label 4"
+						}, {
+							"value": "8000",
+							"label": "label 4"
+						}
+					]
+				}]
+
+			}
+		},
+		"weekly_graph": {
+			"meta": {
+				"json_type": "graph_area",
+				"title": "Daily Graph"
+			},
+			"data": {
+				"xaxis": {
+					"label": "X labe1-1",
+					"seriesname": "X category-1",
+					"color": "1D8BD1",
+					"anchorbordercolor": "1D8BD1",
+					"anchorbgcolor": "1D8BD1",
+					"data": [{
+							"value": "2016/01/15"
+						}, {
+							"value": "2016/02/15"
+						}, {
+							"value": "2016/03/15"
+						}, {
+							"value": "2016/04/15"
+						},
+						{
+							"value": "2016/05/15"
+						}, {
+							"value": "2016/06/15"
+						}, {
+							"value": "2016/07/15"
+						}, {
+							"value": "2016/08/15"
+						}
+					]
+				},
+				"categories": [{
+					"label": "labe1-1",
+					"seriesname": "category-1",
+					"color": "8293A6",
+					"anchorbordercolor": "8293A6",
+					"anchorbgcolor": "8293A6",
+					"data": [{
+							"value": "1000",
+							"label": "label 1"
+						}, {
+							"value": "2000",
+							"label": "label 2"
+						}, {
+							"value": "3000",
+							"label": "label 3"
+						}, {
+							"value": "4000",
+							"label": "label 4"
+						},
+						{
+							"value": "5000",
+							"label": "label 4"
+						}, {
+							"value": "6000",
+							"label": "label 4"
+						}, {
+							"value": "7000",
+							"label": "label 4"
+						}, {
+							"value": "8000",
+							"label": "label 4"
+						}
+					]
+				}]
+
+			}
+		}
+
+
+
+
+
+
+
+	}
 }
