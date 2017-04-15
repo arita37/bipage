@@ -75,6 +75,142 @@ tbody tr td {
     margin-right: 0
 }
     </style>
+    <script>
+        //______________-circular graph colors______
+        var circularGraphColors=["#CD0A59", "#E84F63", "#D3D3D3"];
+        //------------------line graph colors___________
+        var lineGraphColors=["#C72C5E", "#DE3E58", "#A1B1C3"]
+        //______________pyramid graph colors-------
+         pyramidGraphColors=["#9BAEBC", "# E65065", "#CB145B"];
+    var lineChartOptions={
+                "chart": {
+                    "caption": "Daily Visits"
+                    , "linethickness": "1"
+                    , "showvalues": "0"
+                    , "formatnumberscale": "0"
+                    , "anchorradius": "2"
+                    , "divlinecolor": "666666"
+                    , "divlinealpha": "30"
+                    , "divlineisdashed": "1"
+                    , "labelstep": "2"
+                    , "bgcolor": "FFFFFF"
+                    , "showalternatehgridcolor": "0"
+                    , "labelpadding": "10"
+                    , "canvasborderthickness": "1"
+                    , "legendiconscale": "1.5"
+                    , "legendshadow": "0"
+                    , "legendborderalpha": "0"
+                    , "canvasborderalpha": "50"
+                    , "numvdivlines": "5"
+                    , "vdivlinealpha": "20"
+                    , "showborder": "0"
+                }
+                , "categories": [
+                    {
+                        "category": []
+        }
+    ]
+                , "dataset": []
+            }
+    
+    
+    //____________________-pyramidChartOptions________
+    var pyramidChartOptions = {
+               "chart": {
+                    "caption": ""
+                    , "subcaption": ""
+                    , "linethickness": "1"
+                    , "showvalues": "0"
+                    , "formatnumberscale": "0"
+                    , "anchorradius": "2"
+                    , "divlinecolor": "666666"
+                    , "divlinealpha": "30"
+                    , "divlineisdashed": "1"
+                    , "labelstep": "2"
+                    , "bgcolor": "FFFFFF"
+                    , "showalternatehgridcolor": "0"
+                    , "labelpadding": "10"
+                    , "canvasborderthickness": "1"
+                    , "legendiconscale": "1.5"
+                    , "legendshadow": "0"
+                    , "legendborderalpha": "0"
+                    , "canvasborderalpha": "50"
+                    , "numvdivlines": "5"
+                    , "vdivlinealpha": "20"
+                    , "showborder": "0"
+                    , "showtooltip": "1"
+                    , "paletteColors": "#46b8da,#993f6c,#cc0000"
+                    , labelDisplay: "wrap"
+                    , "showLabelsAtCenter": "1"
+                    , "baseFontSize": "12"
+                    , baseFontColor: "#fff"
+                    , "numberSuffix": "$"
+                    , "plotToolText": "$label"
+                    , showToolTipShadow: "1"
+                    , "toolTipBorderColor": "#FFFFFF"
+                    , "plottooltext": "<div class='tooltip-custom'>$label</div>"
+                    , "showLegend": "1"
+                    , "outCnvBaseFontColor": "#8D8D8D"
+                , }
+                , "data": []
+                , "styles": {
+                    "definition": [
+                        {
+                            "name": "myToolTipFont"
+                            , "type": "font"
+                            , "font": "Arial"
+                            , "size": "12"
+                            , "color": "FF5904"
+      }
+    ]
+                    , "application": [
+                        {
+                            "toobject": "ToolTip"
+                            , "styles": "myToolTipFont"
+      }
+    ]
+                }
+            }
+        
+        //___________________________ circular chart options
+    var circularChartOptions={
+                "chart": {
+                    "enableSmartLabels": "1"
+                    , "chartTopMargin": "0"
+                    , "chartRightMargin": "0"
+                    , "chartBottomMargin": "0"
+                    , "caption": ""
+                    , "subCaption": ""
+                    , "numberPrefix": ""
+                    , "bgColor": "#ffffff"
+                    , "showBorder": "0"
+                    , "use3DLighting": "0"
+                    , "showShadow": "0"
+                    , "enableSmartLabels": "0"
+                    , "startingAngle": "310"
+                    , "showLabels": "0"
+                    , "showValues": "1"
+                    , "showPercentValues": "1"
+                    , "showLegend": "1"
+                    , "legendShadow": "0"
+                    , "legendPosition": "right"
+                    , "legendBorderAlpha": "0"
+                    , "defaultCenterLabel": ""
+                    , "centerLabel": ""
+                    , "centerLabelBold": "0"
+                    , "showTooltip": "1"
+                    , "decimals": "0"
+                    , "captionFontSize": "14"
+                    , "subcaptionFontSize": "14"
+                    , "subcaptionFontBold": "0"
+                    , "useDataPlotColorForLabels": "1"
+                    , "legendlabel": "ddd"
+                }
+                , "data": undefined
+            }
+    
+    
+    </script>
 </head>
 
 <body>
@@ -239,95 +375,11 @@ tbody tr td {
         }
         this.lineChartConfig = function () {
             //############### line chart config################
-            return {
-                "chart": {
-                    "caption": "Daily Visits"
-                    , "linethickness": "1"
-                    , "showvalues": "0"
-                    , "formatnumberscale": "0"
-                    , "anchorradius": "2"
-                    , "divlinecolor": "666666"
-                    , "divlinealpha": "30"
-                    , "divlineisdashed": "1"
-                    , "labelstep": "2"
-                    , "bgcolor": "FFFFFF"
-                    , "showalternatehgridcolor": "0"
-                    , "labelpadding": "10"
-                    , "canvasborderthickness": "1"
-                    , "legendiconscale": "1.5"
-                    , "legendshadow": "0"
-                    , "legendborderalpha": "0"
-                    , "canvasborderalpha": "50"
-                    , "numvdivlines": "5"
-                    , "vdivlinealpha": "20"
-                    , "showborder": "0"
-                }
-                , "categories": [
-                    {
-                        "category": []
-        }
-    ]
-                , "dataset": []
-            }
+            return lineChartOptions;
         }
         this.funnelChartConfig = function () {
             ////############### pyramid chart config#################
-            return {
-                "chart": {
-                    "caption": ""
-                    , "subcaption": ""
-                    , "linethickness": "1"
-                    , "showvalues": "0"
-                    , "formatnumberscale": "0"
-                    , "anchorradius": "2"
-                    , "divlinecolor": "666666"
-                    , "divlinealpha": "30"
-                    , "divlineisdashed": "1"
-                    , "labelstep": "2"
-                    , "bgcolor": "FFFFFF"
-                    , "showalternatehgridcolor": "0"
-                    , "labelpadding": "10"
-                    , "canvasborderthickness": "1"
-                    , "legendiconscale": "1.5"
-                    , "legendshadow": "0"
-                    , "legendborderalpha": "0"
-                    , "canvasborderalpha": "50"
-                    , "numvdivlines": "5"
-                    , "vdivlinealpha": "20"
-                    , "showborder": "0"
-                    , "showtooltip": "1"
-                    , "paletteColors": "#46b8da,#993f6c,#cc0000"
-                    , labelDisplay: "wrap"
-                    , "showLabelsAtCenter": "1"
-                    , "baseFontSize": "12"
-                    , baseFontColor: "#fff"
-                    , "numberSuffix": "$"
-                    , "plotToolText": "$label"
-                    , showToolTipShadow: "1"
-                    , "toolTipBorderColor": "#FFFFFF"
-                    , "plottooltext": "<div class='tooltip-custom'>$label</div>"
-                    , "showLegend": "1"
-                    , "outCnvBaseFontColor": "#8D8D8D"
-                , }
-                , "data": []
-                , "styles": {
-                    "definition": [
-                        {
-                            "name": "myToolTipFont"
-                            , "type": "font"
-                            , "font": "Arial"
-                            , "size": "12"
-                            , "color": "FF5904"
-      }
-    ]
-                    , "application": [
-                        {
-                            "toobject": "ToolTip"
-                            , "styles": "myToolTipFont"
-      }
-    ]
-                }
-            }
+            return pyramidChartOptions;
         };
         this.areaChartConfig = function () {
             //############### area chart config###############
@@ -353,48 +405,14 @@ tbody tr td {
         }
         this.circularGraphObject = function () {
             //############### c ircular graph config###############
-            return {
-                "chart": {
-                    "enableSmartLabels": "1"
-                    , "chartTopMargin": "0"
-                    , "chartRightMargin": "0"
-                    , "chartBottomMargin": "0"
-                    , "caption": ""
-                    , "subCaption": ""
-                    , "numberPrefix": ""
-                    , "bgColor": "#ffffff"
-                    , "showBorder": "0"
-                    , "use3DLighting": "0"
-                    , "showShadow": "0"
-                    , "enableSmartLabels": "0"
-                    , "startingAngle": "310"
-                    , "showLabels": "0"
-                    , "showValues": "1"
-                    , "showPercentValues": "1"
-                    , "showLegend": "1"
-                    , "legendShadow": "0"
-                    , "legendPosition": "right"
-                    , "legendBorderAlpha": "0"
-                    , "defaultCenterLabel": ""
-                    , "centerLabel": ""
-                    , "centerLabelBold": "0"
-                    , "showTooltip": "1"
-                    , "decimals": "0"
-                    , "captionFontSize": "14"
-                    , "subcaptionFontSize": "14"
-                    , "subcaptionFontBold": "0"
-                    , "useDataPlotColorForLabels": "1"
-                    , "legendlabel": "ddd"
-                }
-                , "data": undefined
-            }
+            return circularChartOptions;
         }
     }).controller('rootCtrl', function ($scope, dataService) {
        
        //config variable for pyramid chart 
         $scope.pyCharts = dataService.funnelChartConfig();
         $scope.pyFlag = false;
-        $scope.pyramidColors = ["#9BAEBC", "# E65065", "#CB145B"];
+        $scope.pyramidColors =pyramidGraphColors;
         
         // config variable for line chart
         
@@ -420,7 +438,7 @@ tbody tr td {
                 function circularGraphWithoutCaption(response) {
                     var circulargraphData = response;
                     var graphFormatedData = [];
-                    var colors = ["#CD0A59", "#E84F63", "#D3D3D3"]
+                    var colors = circularGraphColors;
                     for (var i = 0; i < circulargraphData.length; i++) {
                         var obj = circulargraphData[i];
                         graphFormatedData.push({
@@ -470,7 +488,7 @@ tbody tr td {
                     })
                 });
                 $scope.line_chart.chart.caption = response.data.line_graph.meta.title;
-                var line_colors = ["#C72C5E", "#DE3E58", "#A1B1C3"];;
+                var line_colors = lineGraphColors;;
                 $scope.line_chart.dataset = [];
                 response.data.line_graph.series.forEach(function (item, index) {
                         item.color = line_colors[index % line_colors.length];
