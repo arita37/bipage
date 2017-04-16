@@ -115,7 +115,13 @@ tbody tr td {
                 , "data": undefined
             }
     
-    
+    //---------------------table 2 options------
+   var table2options= {fitColumns: true, columns: [{title: "brand"  , field: "name"}, {title: "percentage" , field: "pct"  , align: "center" ,formatter: "progress"}, {title: "percentage"  , field: "pct" , align: "center" , formatter: pctFormat}, {title: "count" , field: "count"}, {title: "nb" , field: "count"}], }
+     function pctFormat(value, data, cell, row, options) { //plain text value
+                    return value + "%";
+                };
+    //------------------big table options----
+       var bigTableOptions= {fitColumns: true, columns: [{title: "id", field: "id", align: "right", sorter: "number" },{title: "brand" , field: "name"}, { title: "percentage"  , field: "pct"  , align: "center" , formatter: "progress"}, {title: "percentage"  , field: "pct"   , align: "center"  , formatter: pctFormat}, {title: "count" , field: "count"} ,{title: "nb"  , field: "count"}], }
     </script>
 </head>
 
@@ -228,49 +234,18 @@ tbody tr td {
     angular.module("chartsApp", ['ng-fusioncharts', 'ui.grid']).directive("convertTable", function () {
         return {
             link: function (scope, element, attrs) {
-                scope.pctFormat = function (value, data, cell, row, options) { //plain text value
-                    return value + "%";
-                };
+               
                 //############# column configuration for page 7 big table#################
-                $(element).tabulator({
-                    fitColumns: true
-                    , columns: [{
-                            title: "id", field: "id", align: "right", sorter: "number" },
-                      {     title: "brand" , field: "name"
-                    }, {
-                            title: "percentage"  , field: "pct"  , align: "center" , formatter: "progress"
-                    }, {
-                            title: "percentage"  , field: "pct"   , align: "center"  , formatter: scope.pctFormat
-                    }, {
-                            title: "count" , field: "count"
-                    }  , {
-                            title: "nb"  , field: "count"
-                        }]
-                , })
+                $(element).tabulator(bigTableOptions)
                 $(element).tabulator("setData", attrs.convertTable);
             }
         }
     }).directive("convertTable2", function () {
         return {
             link: function (scope, element, attrs) {
-                scope.pctFormat = function (value, data, cell, row, options) { //plain text value
-                    return value + "%";
-                };
+                
                 //########## column configuration for page 4 big table####################
-                $(element).tabulator({
-                    fitColumns: true
-                    , columns: [{
-                            title: "brand"  , field: "name"
-                    }, {
-                            title: "percentage" , field: "pct"  , align: "center" , formatter: "progress"
-                    }, {
-                            title: "percentage"  , field: "pct" , align: "center" , formatter: scope.pctFormat
-                    }, {
-                            title: "count"  , field: "count"
-                    }, {
-                            title: "nb" , field: "count"
-                     }]
-                , })
+                $(element).tabulator(table2options)
                 $(element).tabulator("setData", attrs.convertTable2);
             }
         }
@@ -287,28 +262,7 @@ tbody tr td {
             ////############### pyramid chart config#################
             return pyramidChartOptions;
         };
-        this.areaChartConfig = function () {
-            //############### area chart config###############
-            return {
-                "chart": {
-                    "caption": ""
-                    , "subcaption": ""
-                    , "plotgradientcolor": ""
-                    , "bgcolor": "FFFFFF"
-                    , "showalternatehgridcolor": "0"
-                    , "showplotborder": "0"
-                    , "showvalues": "0"
-                    , "labeldisplay": "WRAP"
-                    , "divlinecolor": "CCCCCC"
-                    , "showcanvasborder": "0"
-                    , "canvasborderalpha": "0"
-                    , "palettecolors": "990000"
-                    , "yaxisvaluespadding": "10"
-                    , "showborder": "0"
-                }
-                , "data": []
-            }
-        }
+        
         this.circularGraphObject = function () {
             //############### c ircular graph config###############
             return circularChartOptions;
