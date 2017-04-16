@@ -52,6 +52,9 @@
     
     </style>
     <script>
+    // Big JSON page
+    var url_page_area_graph_1= "https://raw.githubusercontent.com/arita37/bipage/master/static/gg/custom_json/area-graph.json"
+
     var topBoxColor=["#CB6674","#3362BB","#CB6674"]
     function areaChart(){
         return {
@@ -74,6 +77,10 @@
                 , "data": []
             }
     }
+
+
+
+
     </script>
 </head>
 
@@ -140,8 +147,10 @@
     
     // Initiliation Graphs, Tables
     angular.module("app", ['ng-fusioncharts', 'ui.grid','ui.bootstrap']).controller("rootCtrl",function($scope,$http){
-       
-        $http.get("https://raw.githubusercontent.com/arita37/bipage/master/static/gg/custom_json/area-graph.json").then(function(res){
+
+
+
+        $http.get(url_page_area_graph_1).then(function(res){
            $scope.middleGraphTab1=res.data.graph_middle_tab1;
             //----------------daily graph -tab1-----------------------
             $scope.tab1Daily=$scope.middleGraphTab1.daily_graph.data;
