@@ -1,0 +1,146 @@
+<html class="Page Page--stickyFooter Page--debug" lang="ja"><head><style type="text/css">.gm-err-container{height:100%;width:100%;display:table;background-color:#e0e0e0;position:relative;left:0;top:0}.gm-err-content{border-radius:1px;padding-top:0;padding-left:10%;padding-right:10%;position:static;vertical-align:middle;display:table-cell}.gm-err-content a{color:#4285f4}.gm-err-icon{text-align:center}.gm-err-title{margin:5px;margin-bottom:20px;color:#616161;font-family:Roboto,Arial,sans-serif;text-align:center;font-size:24px}.gm-err-message{margin:5px;color:#757575;font-family:Roboto,Arial,sans-serif;text-align:center;font-size:12px}.gm-err-autocomplete{padding-left:20px;background-repeat:no-repeat;background-size:15px 15px}</style>
+
+
+    <link rel="stylesheet" media="all" href="/assets/application-5f2a7c2c183d05486fd2ddc12178c6838779af7d87b69f77687f6616e399fbef.css" data-turbolinks-track="true">
+    <script src="/assets/application-736dab8f7eca42a5a1ef8d883449e78cd742a146c49165f374b2541ff63b6ddc.js" data-turbolinks-track="true"></script>
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?v=3&amp;key=&amp;libraries=places,geometry"></script>
+  <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/27/12/intl/fr_ALL/common.js"></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/27/12/intl/fr_ALL/util.js"></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/27/12/intl/fr_ALL/stats.js"></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps/api/js/AuthenticationService.Authenticate?1shttp%3A%2F%2F13.112.171.13%2Fapps%2F1%2Fbeacon%2Findex&amp;callback=_xdc_._pvb33r&amp;token=121090"></script><meta charset="UTF-8"><title>Beaconbank</title><meta name="csrf-param" content="authenticity_token"><meta name="csrf-token" content="j9UlihHXGbPllTzMikH0knoOj6BDhLVCe+TFVtQlb0hGE82SMb5huCrpR7tJgYXKApUxnwtAJRlJgWaC9yiqiQ=="></head>
+
+  <body class="Page-body app" data-controller="apps/beacons" data-action="index">
+
+    <header class="Page-header">
+      <h1 class="u-m-0"><a href="/">Beaconbank</a></h1>
+
+        <a href="/account/edit">田中 太郎</a>
+        <a rel="nofollow" data-method="delete" href="/logout">ログアウト</a>
+            <a href="/change_type">ビーコン設置者メニューへ</a>
+          <form action="#" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="H3U064DMjQKjuTCAIR3FGAA5yyRDn4jmTIx7f4avH9jWs9zzoKX1CWzFS/fi3bRAeKJ1GwtbGL1+6dirpaLaGQ==">
+              <select name="app[id]" id="app_id"><option selected="selected" value="1">test_app_株式会社テストその1</option></select>
+                <a href="/apps/1/edit">アプリ設定変更</a>
+</form>          <a href="/apps/new">新規アプリ登録</a>
+          <a href="#">開発者向けツール/ドキュメント</a>
+    </header>
+
+    <div class="Page-row">
+        <nav class="Page-nav PageNav js-page-nav">
+          <div class="PageNav-toggleButtonOuter">
+            <button name="button" type="button" class="js-page-nav-toggle-button">開閉</button>
+          </div>
+          <div class="PageNav-menuOuter">
+            <ul>
+              <li><a href="#">行動アナリティクス</a></li>
+              <li>
+                  <a href="/apps/1/group_index">ビーコングループ管理</a>
+              </li>
+              <li>
+                  <a href="/apps/1/beacon/index">ビーコン選択</a>
+                <ul>
+                  <li><a href="#">優先ビーコンの設定</a></li>
+                </ul>
+              </li>
+              <li><a href="#">ビーコンプッシュ管理</a>
+                <ul>
+                  <li><a href="#">ビーコンプッシュ登録</a></li>
+                </ul>
+              </li>
+              <li>
+                  <a href="/apps/1/beacon_logs">ログデータ閲覧</a>
+                <ul>
+                  <li><a href="#">コンテンツ閲覧ログ</a></li>
+                </ul>
+              </li>
+              <li><a href="#">ご利用レポート</a></li>
+            </ul>
+          </div>
+          <div class="PageNav-toggleButtonOuter">
+            <button name="button" type="button" class="js-page-nav-toggle-button">開閉</button>
+          </div>
+        </nav>
+
+      <main class="Page-main">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <h3>ビーコン選択</h3>
+<p>ココに説明文が入ります。</p>
+
+<h4>ビーコングループの新規作成</h4>
+<p>ココに説明文が入ります。</p>
+
+<div id="area_beacon">
+  <h3>シンプルモード</h3>
+  <p>ビーコンの種類や条件に基づいて、場所ごとに利用するビーコン（エリアビーコン）を設定します。</p>
+  <p>＜利用例＞<br>
+    </p><ul>
+      <li>あああああああああああああああああああ</li>
+      <li>あああああああああああああああああああ</li>
+      <li>あああああああああああああああああああ</li>
+    </ul>
+  <p></p>
+  <h4>●ビーコングループの設定</h4>
+  <p>ユーザーに来訪してほしい場所に設置されているビーコン（=CVビーコン）を選択します。</p>
+  <a href="/apps/1/beacon/area/new">設定を開始する</a>
+</div>
+
+<div id="cv_beacon">
+  <h3>コンバージョンモード</h3>
+  <p>ビーコンの種類や条件に基づいて、場所ごとに利用するビーコン（エリアビーコン）を設定します。</p>
+  <p>＜利用例＞<br>
+    </p><ul>
+      <li>あああああああああああああああああああ</li>
+      <li>あああああああああああああああああああ</li>
+      <li>あああああああああああああああああああ</li>
+    </ul>
+  <p></p>
+
+  <h4>①CVビーコングループの設定</h4>
+  <p>ユーザーに来訪してほしい場所に設置されているビーコン（=CVビーコン）を選択します。</p>
+  <a href="/apps/1/beacon/cv/index">設定を開始する</a>
+
+  <h4>②CVAビーコングループの設定</h4>
+  <p>各CVビーコングループに対して、そこへの送客をアシストする周辺のビーコンをビーコングループ（=CVAビーコングループ）として設定することで、ビーコン利用のお申込みが出来ます。</p>
+  <a href="/apps/1/beacon/cva/index">設定を開始する</a>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </main>
+    </div>
+
+    <footer class="Page-footer">
+      <h1 class="u-m-0">株式会社Unerry</h1>
+      <p>
+        ©unerry, inc.
+        <a href="#">アプリ管理XX規約</a> <!-- TODO 規約ページ -->
+        |
+        <a href="mailto:XXXX@beaconbank.jp">お問い合わせ</a>
+      </p>
+    </footer>
+
+
+
+</body></html>

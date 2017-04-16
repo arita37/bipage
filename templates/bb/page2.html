@@ -60,12 +60,14 @@
     
     </style>
     <script>
+
     var tabGraphUrl="https://raw.githubusercontent.com/arita37/bipage/master/static/gg/custom_json/area-graph.json";
     var topBoxColor=["#CB6674","#3362BB","#CB6674"];
     var pageTopBoxJson="https://raw.githubusercontent.com/arita37/bipage/master/static/gg/custom_json/page2.json";
     var dailyGraphTitle="Daily graph";
     var monthlyGraphTitle="Monthly graph";
     var weeklyGraphTitle="Weekly graph";
+
     function areaChart(){
         return {
                 "chart": {
@@ -74,6 +76,10 @@
                 , "data": []
             }
     }
+
+
+
+
     </script>
 </head>
 
@@ -144,6 +150,7 @@
     
     // Initiliation Graphs, Tables
     angular.module("app", ['ng-fusioncharts', 'ui.grid','ui.bootstrap']).controller("rootCtrl",function($scope,$http){
+
         $scope.activeTab1Graph=dailyGraphTitle;
          $scope.activeTab2Graph=dailyGraphTitle;
          $scope.activeTab3Graph=dailyGraphTitle;
@@ -158,7 +165,7 @@
         }
        
         $http.get(tabGraphUrl).then(function(res){
-           $scope.middleGraphTab1=res.data.graph_middle_tab1;
+ $scope.middleGraphTab1=res.data.graph_middle_tab1;
             //----------------daily graph -tab1-----------------------
             $scope.tab1Daily=$scope.middleGraphTab1.daily_graph.data;
             $scope.tab1DailyGraph=areaChart();
