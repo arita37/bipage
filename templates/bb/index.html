@@ -83,29 +83,9 @@ tbody tr td {
         //______________pyramid graph colors-------
          pyramidGraphColors=["#9BAEBC", "# E65065", "#CB145B"];
     var lineChartOptions={
-                "chart": {
-                    "caption": "Daily Visits"
-                    , "linethickness": "1"
-                    , "showvalues": "0"
-                    , "formatnumberscale": "0"
-                    , "anchorradius": "2"
-                    , "divlinecolor": "666666"
-                    , "divlinealpha": "30"
-                    , "divlineisdashed": "1"
-                    , "labelstep": "2"
-                    , "bgcolor": "FFFFFF"
-                    , "showalternatehgridcolor": "0"
-                    , "labelpadding": "10"
-                    , "canvasborderthickness": "1"
-                    , "legendiconscale": "1.5"
-                    , "legendshadow": "0"
-                    , "legendborderalpha": "0"
-                    , "canvasborderalpha": "50"
-                    , "numvdivlines": "5"
-                    , "vdivlinealpha": "20"
-                    , "showborder": "0"
+                "chart": { "caption": "Daily Visits", "linethickness": "1", "showvalues": "0","formatnumberscale": "0", "anchorradius": "2", "divlinecolor": "666666", "divlinealpha": "30", "divlineisdashed": "1", "labelstep": "2", "bgcolor": "FFFFFF", "showalternatehgridcolor": "0", "labelpadding": "10", "canvasborderthickness": "1", "legendiconscale": "1.5", "legendshadow": "0", "legendborderalpha": "0", "canvasborderalpha": "50", "numvdivlines": "5", "vdivlinealpha": "20", "showborder": "0"
                 }
-                , "categories": [
+                ,"categories": [
                     {
                         "category": []
         }
@@ -116,96 +96,22 @@ tbody tr td {
     
     //____________________-pyramidChartOptions________
     var pyramidChartOptions = {
-               "chart": {
-                    "caption": ""
-                    , "subcaption": ""
-                    , "linethickness": "1"
-                    , "showvalues": "0"
-                    , "formatnumberscale": "0"
-                    , "anchorradius": "2"
-                    , "divlinecolor": "666666"
-                    , "divlinealpha": "30"
-                    , "divlineisdashed": "1"
-                    , "labelstep": "2"
-                    , "bgcolor": "FFFFFF"
-                    , "showalternatehgridcolor": "0"
-                    , "labelpadding": "10"
-                    , "canvasborderthickness": "1"
-                    , "legendiconscale": "1.5"
-                    , "legendshadow": "0"
-                    , "legendborderalpha": "0"
-                    , "canvasborderalpha": "50"
-                    , "numvdivlines": "5"
-                    , "vdivlinealpha": "20"
-                    , "showborder": "0"
-                    , "showtooltip": "1"
-                    , "paletteColors": "#46b8da,#993f6c,#cc0000"
-                    , labelDisplay: "wrap"
-                    , "showLabelsAtCenter": "1"
-                    , "baseFontSize": "12"
-                    , baseFontColor: "#fff"
-                    , "numberSuffix": "$"
-                    , "plotToolText": "$label"
-                    , showToolTipShadow: "1"
-                    , "toolTipBorderColor": "#FFFFFF"
-                    , "plottooltext": "<div class='tooltip-custom'>$label</div>"
-                    , "showLegend": "1"
-                    , "outCnvBaseFontColor": "#8D8D8D"
+               "chart": {"caption": "", "subcaption": "", "linethickness": "1", "showvalues": "0", "formatnumberscale": "0", "anchorradius": "2", "divlinecolor": "666666", "divlinealpha": "30", "divlineisdashed": "1", "labelstep": "2", "bgcolor": "FFFFFF", "showalternatehgridcolor": "0", "labelpadding": "10", "canvasborderthickness": "1", "legendiconscale": "1.5", "legendshadow": "0", "legendborderalpha": "0", "canvasborderalpha": "50", "numvdivlines": "5", "vdivlinealpha": "20", "showborder": "0", "showtooltip": "1", "paletteColors": "#46b8da,#993f6c,#cc0000", labelDisplay: "wrap", "showLabelsAtCenter": "1", "baseFontSize": "12", baseFontColor: "#fff", "numberSuffix": "$", "plotToolText": "$label", showToolTipShadow: "1", "toolTipBorderColor": "#FFFFFF", "plottooltext": "<div class='tooltip-custom'>$label</div>", "showLegend": "1" , "outCnvBaseFontColor": "#8D8D8D"
                 , }
                 , "data": []
                 , "styles": {
                     "definition": [
-                        {
-                            "name": "myToolTipFont"
-                            , "type": "font"
-                            , "font": "Arial"
-                            , "size": "12"
-                            , "color": "FF5904"
-      }
-    ]
+                        {"name": "myToolTipFont", "type": "font", "font": "Arial", "size": "12", "color": "FF5904"}
+                    ]
                     , "application": [
-                        {
-                            "toobject": "ToolTip"
-                            , "styles": "myToolTipFont"
-      }
-    ]
+                        {"toobject": "ToolTip", "styles": "myToolTipFont"}
+                    ]
                 }
             }
         
         //___________________________ circular chart options
     var circularChartOptions={
-                "chart": {
-                    "enableSmartLabels": "1"
-                    , "chartTopMargin": "0"
-                    , "chartRightMargin": "0"
-                    , "chartBottomMargin": "0"
-                    , "caption": ""
-                    , "subCaption": ""
-                    , "numberPrefix": ""
-                    , "bgColor": "#ffffff"
-                    , "showBorder": "0"
-                    , "use3DLighting": "0"
-                    , "showShadow": "0"
-                    , "enableSmartLabels": "0"
-                    , "startingAngle": "310"
-                    , "showLabels": "0"
-                    , "showValues": "1"
-                    , "showPercentValues": "1"
-                    , "showLegend": "1"
-                    , "legendShadow": "0"
-                    , "legendPosition": "right"
-                    , "legendBorderAlpha": "0"
-                    , "defaultCenterLabel": ""
-                    , "centerLabel": ""
-                    , "centerLabelBold": "0"
-                    , "showTooltip": "1"
-                    , "decimals": "0"
-                    , "captionFontSize": "14"
-                    , "subcaptionFontSize": "14"
-                    , "subcaptionFontBold": "0"
-                    , "useDataPlotColorForLabels": "1"
-                    , "legendlabel": "ddd"
-                }
+                "chart": {"enableSmartLabels": "1", "chartTopMargin": "0", "chartRightMargin": "0", "chartBottomMargin": "0", "caption": "", "subCaption": "", "numberPrefix": "", "bgColor": "#ffffff", "showBorder": "0", "use3DLighting": "0", "showShadow": "0", "enableSmartLabels": "0", "startingAngle": "310", "showLabels": "0", "showValues": "1", "showPercentValues": "1", "showLegend": "1","legendShadow": "0", "legendPosition": "right", "legendBorderAlpha": "0", "defaultCenterLabel": "", "centerLabel": "", "centerLabelBold": "0", "showTooltip": "1", "decimals": "0", "captionFontSize": "14", "subcaptionFontSize": "14", "subcaptionFontBold": "0", "useDataPlotColorForLabels": "1", "legendlabel": "ddd"}
                 , "data": undefined
             }
     
