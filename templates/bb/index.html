@@ -76,6 +76,13 @@ tbody tr td {
 }
     </style>
     <script>
+//-------------line graph caption--------------
+var LINE_CAPTION="caption for line graph";
+var LINE_SUBCAPTION="subcaption for line graph"
+
+    //--------------circular graph caption------------------
+    var CIRCULAR_GRAPH1_CAPTION="circular_graph1";
+    var LEFT_CIRCULAR_GRAPH="circular_graph1"
         //______________-circular graph colors______
         var circularGraphColors=["#CD0A59", "#E84F63", "#D3D3D3"];
         //------------------line graph colors___________
@@ -332,9 +339,9 @@ tbody tr td {
                 $scope.columns_1 = tableData.columns;
                 $scope.data_1 = tableData.rows;
                 }
-                function createLineChart(){
-                     $scope.line_chart.chart.caption = "caption for graph";
-                $scope.line_chart.chart.subcaption = "subcaption for graph";
+                function createLineChart(lineGraphCaption, lineGraphSubcaption){
+                     $scope.line_chart.chart.caption = lineGraphCaption;//"caption for graph";
+                $scope.line_chart.chart.subcaption = lineGraphSubcaption//"subcaption for graph";
                 $scope.line_flag = true;
                 $scope.line_chart.categories[0].category = [];
                 var lineChartXAxis = response.data.line_graph.xaxis.data;
@@ -360,25 +367,25 @@ tbody tr td {
                 
                 
                 }
-                function createLeftCircularGraph(){
+                function createLeftCircularGraph(caption){
                 var graphConfigLeftCircular = {};
                 var graphFormatedData_1 = circularGraphWithoutCaption(response.data.Circular_Graph_left);
                 $scope.firstChart_2.data = graphFormatedData_1;
-                $scope.firstChart_2.chart.caption = "Circular_Graph1";
+                $scope.firstChart_2.chart.caption = LEFT_CIRCULAR_GRAPH;
                 $scope.left_circular = true;
                 }
-                function createRightCircularGraph(){
+                function createRightCircularGraph(chartCaption){
                     var graphFormatedData_2 = circularGraphWithoutCaption(response.data.Circular_Graph_right);
                 $scope.firstChart_3.data = graphFormatedData_2;
-                $scope.firstChart_3.chart.caption = "Circular_Graph1";
+                $scope.firstChart_3.chart.caption = chartCaption;//"Circular_Graph1"
                 $scope.rightCircular = true;
                 }
                 createPyramidData();
                 createTopRightTable();
-                createLineChart();
+                createLineChart(LINE_CAPTION,LINE_SUBCAPTION);
                 createBottomTables();
-                createLeftCircularGraph();
-                createRightCircularGraph();
+                createLeftCircularGraph(LEFT_CIRCULAR_GRAPH);
+                createRightCircularGraph(CIRCULAR_GRAPH1_CAPTION);
 
             }
         }
