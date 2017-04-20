@@ -76,20 +76,10 @@ tbody tr td {
 }
     </style>
     <script>
-//-------------line graph caption--------------
+//-------------line graph caption-------------------------------------------------------
 var LINE_CAPTION="caption for line graph";
 var LINE_SUBCAPTION="subcaption for line graph"
-
-    //--------------circular graph caption------------------
-    var CIRCULAR_GRAPH1_CAPTION="circular_graph1";
-    var LEFT_CIRCULAR_GRAPH="circular_graph1"
-        //______________-circular graph colors______
-        var circularGraphColors=["#CD0A59", "#E84F63", "#D3D3D3"];
-        //------------------line graph colors___________
-        var lineGraphColors=["#C72C5E", "#DE3E58", "#A1B1C3"]
-        //______________pyramid graph colors-------
-         pyramidGraphColors=["#9BAEBC", "# E65065", "#CB145B"];
-    var lineChartOptions={
+var lineChartOptions={
                 "chart": { "caption": "Daily Visits", "linethickness": "1", "showvalues": "0","formatnumberscale": "0", "anchorradius": "2", "divlinecolor": "666666", "divlinealpha": "30", "divlineisdashed": "1", "labelstep": "2", "bgcolor": "FFFFFF", "showalternatehgridcolor": "0", "labelpadding": "10", "canvasborderthickness": "1", "legendiconscale": "1.5", "legendshadow": "0", "legendborderalpha": "0", "canvasborderalpha": "50", "numvdivlines": "5", "vdivlinealpha": "20", "showborder": "0"
                 }
                 ,"categories": [
@@ -97,11 +87,31 @@ var LINE_SUBCAPTION="subcaption for line graph"
                 ]
                 , "dataset": []
             }
+
+//------------------line graph colors   -----------------------------------------------
+var lineGraphColors=["#C72C5E", "#DE3E58", "#A1B1C3"]
+
+
+
+//--------------circular graph caption------------------
+    var CIRCULAR_GRAPH1_CAPTION="circular_graph1";
+    var LEFT_CIRCULAR_GRAPH="circular_graph1"
+        //______________-circular graph colors______
+        var circularGraphColors=["#CD0A59", "#E84F63", "#D3D3D3"];
+
+
+
+
     
     
-    //____________________-pyramidChartOptions________
-    var pyramidChartOptions = {
-               "chart": {"caption": "", "subcaption": "", "linethickness": "1", "showvalues": "0", "formatnumberscale": "0", "anchorradius": "2", "divlinecolor": "666666", "divlinealpha": "30", "divlineisdashed": "1", "labelstep": "2", "bgcolor": "FFFFFF", "showalternatehgridcolor": "0", "labelpadding": "10", "canvasborderthickness": "1", "legendiconscale": "1.5", "legendshadow": "0", "legendborderalpha": "0", "canvasborderalpha": "50", "numvdivlines": "5", "vdivlinealpha": "20", "showborder": "0", "showtooltip": "1", "paletteColors": "#46b8da,#993f6c,#cc0000", labelDisplay: "wrap", "showLabelsAtCenter": "1", "baseFontSize": "12", baseFontColor: "#fff", "numberSuffix": "$", "plotToolText": "$label", showToolTipShadow: "1", "toolTipBorderColor": "#FFFFFF", "plottooltext": "<div class='tooltip-custom'>$label</div>", "showLegend": "1" , "outCnvBaseFontColor": "#8D8D8D"
+//____________________-pyramidChartOptions________________________
+pyramidGraphColors=["#9BAEBC", "# E65065", "#CB145B"];
+
+var pyramidChartOptions = {
+               "chart": {"caption": "", "subcaption": "", "linethickness": "1", "showvalues": "0", "formatnumberscale": "0",
+                         "anchorradius": "2", "divlinecolor": "666666", "divlinealpha": "30", "divlineisdashed": "1",
+                         "labelstep": "2", "bgcolor": "FFFFFF", "showalternatehgridcolor": "0", "labelpadding": "10",
+                         "canvasborderthickness": "1", "legendiconscale": "1.5", "legendshadow": "0", "legendborderalpha": "0", "canvasborderalpha": "50", "numvdivlines": "5", "vdivlinealpha": "20", "showborder": "0", "showtooltip": "1", "paletteColors": "#46b8da,#993f6c,#cc0000", labelDisplay: "wrap", "showLabelsAtCenter": "1", "baseFontSize": "12", baseFontColor: "#fff", "numberSuffix": "$", "plotToolText": "$label", showToolTipShadow: "1", "toolTipBorderColor": "#FFFFFF", "plottooltext": "<div class='tooltip-custom'>$label</div>", "showLegend": "1" , "outCnvBaseFontColor": "#8D8D8D"
                 , }
                 , "data": []
                 , "styles": {
@@ -113,18 +123,19 @@ var LINE_SUBCAPTION="subcaption for line graph"
                 }
             }
         
-        //___________________________ circular chart options
-    var circularChartOptions={
+//___________________________ circular chart options
+var circularChartOptions={
                 "chart": {"enableSmartLabels": "1", "chartTopMargin": "0", "chartRightMargin": "0", "chartBottomMargin": "0", "caption": "", "subCaption": "", "numberPrefix": "", "bgColor": "#ffffff", "showBorder": "0", "use3DLighting": "0", "showShadow": "0", "enableSmartLabels": "0", "startingAngle": "310", "showLabels": "0", "showValues": "1", "showPercentValues": "1", "showLegend": "1","legendShadow": "0", "legendPosition": "right", "legendBorderAlpha": "0", "defaultCenterLabel": "", "centerLabel": "", "centerLabelBold": "0", "showTooltip": "1", "decimals": "0", "captionFontSize": "14", "subcaptionFontSize": "14", "subcaptionFontBold": "0", "useDataPlotColorForLabels": "1", "legendlabel": "ddd"}
             , "data": undefined
             }
     
-    //---------------------table 2 options------
-   var table2options= {fitColumns: true, columns: [{title: "brand"  , field: "name"}, {title: "percentage" , field: "pct"  , align: "center" ,formatter: "progress"}, {title: "percentage"  , field: "pct" , align: "center" , formatter: pctFormat}, {title: "count" , field: "count"}, {title: "nb" , field: "count"}], }
+//---------------------table 2 options--------------------------------------------
+var table2options= {fitColumns: true, columns: [{title: "brand"  , field: "name"}, {title: "percentage" , field: "pct"  , align: "center" ,formatter: "progress"}, {title: "percentage"  , field: "pct" , align: "center" , formatter: pctFormat}, {title: "count" , field: "count"}, {title: "nb" , field: "count"}], }
      function pctFormat(value, data, cell, row, options) { //plain text value
                     return value + "%";
                 };
-    //------------------big table options----
+
+//------------------big table options----
        var bigTableOptions= {fitColumns: true, columns: [{title: "id", field: "id", align: "right", sorter: "number" },{title: "brand" , field: "name"}, { title: "percentage"  , field: "pct"  , align: "center" , formatter: "progress"}, {title: "percentage"  , field: "pct"   , align: "center"  , formatter: pctFormat}, {title: "count" , field: "count"} ,{title: "nb"  , field: "count"}], }
     </script>
 </head>
@@ -140,28 +151,16 @@ var LINE_SUBCAPTION="subcaption for line graph"
                 <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                     <thead>
                         <tr>
-                            <td>{{columns_1[1]}}</td>
-                            <td>{{columns_1[2]}}</td>
-                            <td>{{columns_1[3]}}</td>
-                            <td>{{columns_1[4]}}</td>
-                            <td>{{columns_1[5]}}</td>
-                            <td>{{columns_1[6]}}</td>
-                            <td>{{columns_1[7]}}</td>
-                            <td>{{columns_1[8]}}</td>
-                            <td>{{columns_1[9]}}</td>
+                            <td>{{columns_1[1]}}</td><td>{{columns_1[2]}}</td><td>{{columns_1[3]}}</td><td>{{columns_1[4]}}</td>
+                            <td>{{columns_1[5]}}</td><td>{{columns_1[6]}}</td>
+                            <td>{{columns_1[7]}}</td><td>{{columns_1[8]}}</td><td>{{columns_1[9]}}</td>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="row in data_1" clas="border-less">
-                            <td>{{row[1]}}</td>
-                            <td>{{row[2]}}</td>
-                            <td>{{row[3]}}</td>
-                            <td>{{row[4]}}</td>
-                            <td>{{row[5]}}</td>
-                            <td>{{row[6]}}</td>
-                            <td>{{row[7]}}</td>
-                            <td>{{row[8]}}</td>
-                            <td>{{row[9]}}</td>
+                            <td>{{row[1]}}</td><td>{{row[2]}}</td><td>{{row[3]}}</td>
+                            <td>{{row[4]}}</td><td>{{row[5]}}</td><td>{{row[6]}}</td>
+                            <td>{{row[7]}}</td><td>{{row[8]}}</td><td>{{row[9]}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -259,16 +258,16 @@ var LINE_SUBCAPTION="subcaption for line graph"
             return $http.get(url)
         }
         this.lineChartConfig = function () {
-            //############### line chart config################
+            //############### line chart config ################
             return lineChartOptions;
         }
         this.funnelChartConfig = function () {
-            ////############### pyramid chart config#################
+            ////############### pyramid chart config #################
             return pyramidChartOptions;
         };
         
         this.circularGraphObject = function () {
-            //############### c ircular graph config###############
+            //############### c ircular graph config ###############
             return circularChartOptions;
         }
     }).controller('rootCtrl', function ($scope, dataService) {
@@ -277,21 +276,23 @@ var LINE_SUBCAPTION="subcaption for line graph"
         $scope.pyCharts = dataService.funnelChartConfig();
         $scope.pyFlag = false;
         $scope.pyramidColors =pyramidGraphColors;
-        
+
+
         // config variable for line chart
-        
         $scope.line_flag = false;
         $scope.line_chart = dataService.lineChartConfig();
-        
+
+
         //config variable for circular graph
         $scope.left_circular = false;
-       $scope.firstChart_2 = dataService.circularGraphObject();
+        $scope.firstChart_2 = dataService.circularGraphObject();
         $scope.firstChart_3 = dataService.circularGraphObject();
-        
+
+
         //reload the graph
-        $scope.reloadGraph = function () {
-            $scope.createGraph();
-        }
+        $scope.reloadGraph = function () {  $scope.createGraph();}
+
+
         $scope.createGraph = function () {
             dataService.getData("https://raw.githubusercontent.com/arita37/bipage/master/static/gg/custom_json/index.json").then(dataSuccessFull);
 
@@ -333,12 +334,16 @@ var LINE_SUBCAPTION="subcaption for line graph"
                 $scope.pyFlag = true;
                    
                }
-                
+
+
                 function createTopRightTable(){
-                var tableData = response.data.table_small_right1;
-                $scope.columns_1 = tableData.columns;
-                $scope.data_1 = tableData.rows;
+                  var tableData = response.data.table_small_right1;
+                  $scope.columns_1 = tableData.columns;
+                  $scope.data_1 = tableData.rows;
                 }
+
+
+
                 function createLineChart(lineGraphCaption, lineGraphSubcaption){
                      $scope.line_chart.chart.caption = lineGraphCaption;//"caption for graph";
                 $scope.line_chart.chart.subcaption = lineGraphSubcaption//"subcaption for graph";
@@ -351,6 +356,9 @@ var LINE_SUBCAPTION="subcaption for line graph"
                         , "stepSkipped": false
                     })
                 });
+
+
+
                 $scope.line_chart.chart.caption = response.data.line_graph.meta.title;
                 var line_colors = lineGraphColors;;
                 $scope.line_chart.dataset = [];
@@ -359,14 +367,18 @@ var LINE_SUBCAPTION="subcaption for line graph"
                         $scope.line_chart.dataset[index] = item;
                     })
                 }
+
+
+
                 function createBottomTables(){
                     var alltables = response.data;
                 $scope.bottomTable1 = alltables.table_bottom_1;
                 $scope.bottomTable2 = alltables.table_bottom_2;
                 $scope.bottomTable3 = alltables.table_bottom_3;
-                
-                
+
                 }
+
+
                 function createLeftCircularGraph(caption){
                 var graphConfigLeftCircular = {};
                 var graphFormatedData_1 = circularGraphWithoutCaption(response.data.Circular_Graph_left);
@@ -374,18 +386,23 @@ var LINE_SUBCAPTION="subcaption for line graph"
                 $scope.firstChart_2.chart.caption = LEFT_CIRCULAR_GRAPH;
                 $scope.left_circular = true;
                 }
+
+
                 function createRightCircularGraph(chartCaption){
                     var graphFormatedData_2 = circularGraphWithoutCaption(response.data.Circular_Graph_right);
                 $scope.firstChart_3.data = graphFormatedData_2;
                 $scope.firstChart_3.chart.caption = chartCaption;//"Circular_Graph1"
                 $scope.rightCircular = true;
                 }
+
+
                 createPyramidData();
                 createTopRightTable();
                 createLineChart(LINE_CAPTION,LINE_SUBCAPTION);
                 createBottomTables();
                 createLeftCircularGraph(LEFT_CIRCULAR_GRAPH);
                 createRightCircularGraph(CIRCULAR_GRAPH1_CAPTION);
+
 
             }
         }
