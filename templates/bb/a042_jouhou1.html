@@ -21,122 +21,110 @@
 
     <link rel="stylesheet" href="../../static/gg/custom_js_css/bootstrap.min.css">
     <!--    Js and styles common to all js pages-->
-   
-   <style>
-    .container {
-    width: 1224px;
-}
+
+
+    <style>
+.container {    width: 1224px;  }
 
 .tooltip-custom {
-    color: black;
-    padding: 10px;
-    text-align: center;
-    font-size: 12px;
-    font-weight: bold;
-    border-radius: 8px;
-}
+    color: black;          padding: 10px;
+    text-align: center;    font-size: 12px;
+    font-weight: bold;     border-radius: 8px;   }
 
-thead {
-    background-color: #999999;
-    color: #fff;
-}
+thead {    background-color: #999999;    color: #fff; }
 
-tbody tr td {
-    color: #575757;
-}
+tbody tr td {    color: #575757;  }
 
-.table-striped>tbody>tr:nth-of-type(odd) {
-    background-color: #DEDEDE;
-}
+.table-striped>tbody>tr:nth-of-type(odd) {    background-color: #DEDEDE;  }
 
-.table-striped>tbody>tr:nth-of-type(odd) {
-    background-color: #F4F4F4;
-}
+.table-striped>tbody>tr:nth-of-type(odd) {    background-color: #F4F4F4;  }
 
 .table-bordered>tbody>tr>td,
 .table-bordered>tbody>tr>th,
 .table-bordered>tfoot>tr>td,
 .table-bordered>tfoot>tr>th,
 .table-bordered>thead>tr>td,
-.table-bordered>thead>tr>th {
-    border: 1px solid #fff;
-}
+.table-bordered>thead>tr>th {    border: 1px solid #fff;   }
 
-.hr {
-    margin: top: 5px;
-    margin-bottom: 5px;
-    height: 3px;
-    background-color: #E4E4E4;
-    width: 100%
-}
+.hr {  margin: top: 5px;    margin-bottom: 5px;
+       height: 3px;         background-color: #E4E4E4;      width: 100%  }
 
-.row {
-    margin-left: 0;
-    margin-right: 0
-}
+.row {    margin-left: 0;  margin-right: 0   }
     </style>
     <script>
+
+var JSON_PAGE_URL= "https://raw.githubusercontent.com/arita37/bipage/master/static/gg/custom_json/index.json"
+
 //-------------line graph caption-------------------------------------------------------
+var lineGraphColors=["#C72C5E", "#DE3E58", "#A1B1C3"]
 var LINE_CAPTION="caption for line graph";
 var LINE_SUBCAPTION="subcaption for line graph"
 var lineChartOptions={
-                "chart": { "caption": "Daily Visits", "linethickness": "1", "showvalues": "0","formatnumberscale": "0", "anchorradius": "2", "divlinecolor": "666666", "divlinealpha": "30", "divlineisdashed": "1", "labelstep": "2", "bgcolor": "FFFFFF", "showalternatehgridcolor": "0", "labelpadding": "10", "canvasborderthickness": "1", "legendiconscale": "1.5", "legendshadow": "0", "legendborderalpha": "0", "canvasborderalpha": "50", "numvdivlines": "5", "vdivlinealpha": "20", "showborder": "0"
-                }
-                ,"categories": [
-                    {"category": [] }
-                ]
-                , "dataset": []
-            }
-
-//------------------line graph colors   -----------------------------------------------
-var lineGraphColors=["#C72C5E", "#DE3E58", "#A1B1C3"]
-
-
-
-//--------------circular graph caption------------------
-    var CIRCULAR_GRAPH1_CAPTION="circular_graph1";
-    var LEFT_CIRCULAR_GRAPH="circular_graph1"
-        //______________-circular graph colors______
-        var circularGraphColors=["#CD0A59", "#E84F63", "#D3D3D3"];
-
-
+  "chart": { "caption": "Daily Visits", "linethickness": "1", "showvalues": "0","formatnumberscale": "0", "anchorradius": "2",
+  "divlinecolor": "666666", "divlinealpha": "30", "divlineisdashed": "1", "labelstep": "2", "bgcolor": "FFFFFF",
+  "showalternatehgridcolor": "0", "labelpadding": "10", "canvasborderthickness": "1", "legendiconscale": "1.5",
+  "legendshadow": "0", "legendborderalpha": "0", "canvasborderalpha": "50", "numvdivlines": "5", "vdivlinealpha": "20",
+  "showborder": "0"
+  }
+  ,"categories": [ {"category": [] } ]
+  , "dataset": []
+}
 
 
     
-    
-//____________________-pyramidChartOptions________________________
+//____________________-pyramidChartOptions________________________----------------------
 pyramidGraphColors=["#9BAEBC", "# E65065", "#CB145B"];
 
 var pyramidChartOptions = {
-               "chart": {"caption": "", "subcaption": "", "linethickness": "1", "showvalues": "0", "formatnumberscale": "0",
-                         "anchorradius": "2", "divlinecolor": "666666", "divlinealpha": "30", "divlineisdashed": "1",
-                         "labelstep": "2", "bgcolor": "FFFFFF", "showalternatehgridcolor": "0", "labelpadding": "10",
-                         "canvasborderthickness": "1", "legendiconscale": "1.5", "legendshadow": "0", "legendborderalpha": "0", "canvasborderalpha": "50", "numvdivlines": "5", "vdivlinealpha": "20", "showborder": "0", "showtooltip": "1", "paletteColors": "#46b8da,#993f6c,#cc0000", labelDisplay: "wrap", "showLabelsAtCenter": "1", "baseFontSize": "12", baseFontColor: "#fff", "numberSuffix": "$", "plotToolText": "$label", showToolTipShadow: "1", "toolTipBorderColor": "#FFFFFF", "plottooltext": "<div class='tooltip-custom'>$label</div>", "showLegend": "1" , "outCnvBaseFontColor": "#8D8D8D"
-                , }
-                , "data": []
-                , "styles": {
-                    "definition": [
-                        {"name": "myToolTipFont", "type": "font", "font": "Arial", "size": "12", "color": "FF5904"}
-                    ]
-                ,"application": [{"toobject": "ToolTip", "styles": "myToolTipFont"}
-                    ]
-                }
-            }
-        
-//___________________________ circular chart options
+  "chart": {"caption": "", "subcaption": "", "linethickness": "1", "showvalues": "0", "formatnumberscale": "0",
+            "anchorradius": "2", "divlinecolor": "666666", "divlinealpha": "30", "divlineisdashed": "1",
+            "labelstep": "2", "bgcolor": "FFFFFF", "showalternatehgridcolor": "0", "labelpadding": "10",
+            "canvasborderthickness": "1", "legendiconscale": "1.5", "legendshadow": "0", "legendborderalpha": "0",
+            "canvasborderalpha": "50", "numvdivlines": "5", "vdivlinealpha": "20", "showborder": "0", "showtooltip": "1",
+            "paletteColors": "#46b8da,#993f6c,#cc0000", labelDisplay: "wrap", "showLabelsAtCenter": "1", "baseFontSize": "12",
+            "baseFontColor": "#fff", "numberSuffix": "$", "plotToolText": "$label", "showToolTipShadow": "1", "toolTipBorderColor": "#FFFFFF", "plottooltext": "<div class='tooltip-custom'>$label</div>", "showLegend": "1" , "outCnvBaseFontColor": "#8D8D8D"
+  , }
+  , "data": []
+  , "styles": {
+      "definition": [ {"name": "myToolTipFont", "type": "font", "font": "Arial", "size": "12", "color": "FF5904"} ]
+      ,"application": [{"toobject": "ToolTip", "styles": "myToolTipFont"}  ]
+      }
+}
+
+
+//___________________________ circular chart options-------------------------------------
+var CIRCULAR_GRAPH1_CAPTION="circular_graph1";
+var LEFT_CIRCULAR_GRAPH="circular_graph1"
+var circularGraphColors= ["#CD0A59", "#E84F63", "#D3D3D3"];
+
 var circularChartOptions={
-                "chart": {"enableSmartLabels": "1", "chartTopMargin": "0", "chartRightMargin": "0", "chartBottomMargin": "0", "caption": "", "subCaption": "", "numberPrefix": "", "bgColor": "#ffffff", "showBorder": "0", "use3DLighting": "0", "showShadow": "0", "enableSmartLabels": "0", "startingAngle": "310", "showLabels": "0", "showValues": "1", "showPercentValues": "1", "showLegend": "1","legendShadow": "0", "legendPosition": "right", "legendBorderAlpha": "0", "defaultCenterLabel": "", "centerLabel": "", "centerLabelBold": "0", "showTooltip": "1", "decimals": "0", "captionFontSize": "14", "subcaptionFontSize": "14", "subcaptionFontBold": "0", "useDataPlotColorForLabels": "1", "legendlabel": "ddd"}
-            , "data": undefined
-            }
-    
+  "chart": {"enableSmartLabels": "1", "chartTopMargin": "0", "chartRightMargin": "0", "chartBottomMargin": "0", "caption": "",
+            "subCaption": "", "numberPrefix": "", "bgColor": "#ffffff", "showBorder": "0", "use3DLighting": "0", "showShadow": "0",
+            "enableSmartLabels": "0", "startingAngle": "310", "showLabels": "0", "showValues": "1", "showPercentValues": "1",
+            "showLegend": "1","legendShadow": "0", "legendPosition": "right", "legendBorderAlpha": "0", "defaultCenterLabel": "",
+            "centerLabel": "", "centerLabelBold": "0", "showTooltip": "1", "decimals": "0", "captionFontSize": "14",
+            "subcaptionFontSize": "14", "subcaptionFontBold": "0", "useDataPlotColorForLabels": "1", "legendlabel": "ddd"}
+, "data": undefined
+}
+
+
 //---------------------table 2 options--------------------------------------------
-var table2options= {fitColumns: true, columns: [{title: "brand"  , field: "name"}, {title: "percentage" , field: "pct"  , align: "center" ,formatter: "progress"}, {title: "percentage"  , field: "pct" , align: "center" , formatter: pctFormat}, {title: "count" , field: "count"}, {title: "nb" , field: "count"}], }
-     function pctFormat(value, data, cell, row, options) { //plain text value
-                    return value + "%";
-                };
+var table2options= {fitColumns: true,
+  columns: [{title: "brand"  , field: "name"}, {title: "percentage" , field: "pct"  , align: "center" ,formatter: "progress"},
+            {title: "percentage"  , field: "pct" , align: "center" , formatter: pctFormat}, {title: "count" , field: "count"},
+            {title: "nb" , field: "count"}], }
+
+  function pctFormat(value, data, cell, row, options) {   return value + "%";  }; //plain text value
+
 
 //------------------big table options----
-       var bigTableOptions= {fitColumns: true, columns: [{title: "id", field: "id", align: "right", sorter: "number" },{title: "brand" , field: "name"}, { title: "percentage"  , field: "pct"  , align: "center" , formatter: "progress"}, {title: "percentage"  , field: "pct"   , align: "center"  , formatter: pctFormat}, {title: "count" , field: "count"} ,{title: "nb"  , field: "count"}], }
+var bigTableOptions= {fitColumns: true,
+   columns: [{title: "id", field: "id", align: "right", sorter: "number" },{title: "brand" , field: "name"},
+             {title: "percentage"  , field: "pct"  , align: "center" , formatter: "progress"},
+             {title: "percentage"  , field: "pct"   , align: "center"  , formatter: pctFormat}, {title: "count" , field: "count"} ,
+             {title: "nb"  , field: "count"}], }
+
+
     </script>
 </head>
 
@@ -144,6 +132,7 @@ var table2options= {fitColumns: true, columns: [{title: "brand"  , field: "name"
     <div class="container" ng-app="chartsApp" ng-controller="rootCtrl">
         <button class="btn btn-primary" ng-click="reloadGraph()">reload</button>
         <div class="row">
+            <!---    Pyramid Graphs     ---->
             <div class="col-xs-5" ng-if="pyFlag">
                 <div fusioncharts width="100%" height="400" type="pyramid" dataSource="{{pyCharts}}" x></div>
             </div>
@@ -232,13 +221,11 @@ var table2options= {fitColumns: true, columns: [{title: "brand"  , field: "name"
 
 
 <script>
-    
     // Initiliation Graphs, Tables
     angular.module("chartsApp", ['ng-fusioncharts', 'ui.grid']).directive("convertTable", function () {
         return {
             link: function (scope, element, attrs) {
-               
-                //############# column configuration for page 7 big table#################
+                //############# column configuration for page 7 big table   #####################
                 $(element).tabulator(bigTableOptions)
                 $(element).tabulator("setData", attrs.convertTable);
             }
@@ -247,29 +234,19 @@ var table2options= {fitColumns: true, columns: [{title: "brand"  , field: "name"
         return {
             link: function (scope, element, attrs) {
                 
-                //########## column configuration for page 4 big table####################
+                //########## column configuration for page 4 big table      ####################
                 $(element).tabulator(table2options)
                 $(element).tabulator("setData", attrs.convertTable2);
             }
         }
     }).service("dataService", function ($http) {
-        //############### MEthod to get ajax data for provided URL############
-        this.getData = function (url) {
-            return $http.get(url)
-        }
-        this.lineChartConfig = function () {
-            //############### line chart config ################
-            return lineChartOptions;
-        }
-        this.funnelChartConfig = function () {
-            ////############### pyramid chart config #################
-            return pyramidChartOptions;
-        };
-        
-        this.circularGraphObject = function () {
-            //############### c ircular graph config ###############
-            return circularChartOptions;
-        }
+
+        this.getData = function (url) { return $http.get(url) ; }     // ############### MEthod to get ajax data for provided URL############
+
+        this.lineChartConfig =     function ()     { return lineChartOptions;  }
+        this.funnelChartConfig =   function ()     { return pyramidChartOptions; };
+        this.circularGraphObject = function ()     { return circularChartOptions; }
+
     }).controller('rootCtrl', function ($scope, dataService) {
        
        //config variable for pyramid chart 
@@ -294,11 +271,11 @@ var table2options= {fitColumns: true, columns: [{title: "brand"  , field: "name"
 
 
         $scope.createGraph = function () {
-            dataService.getData("https://raw.githubusercontent.com/arita37/bipage/master/static/gg/custom_json/index.json").then(dataSuccessFull);
+            dataService.getData(JSON_PAGE_URL).then(dataSuccessFull);
 
             function dataSuccessFull(response) {
-                // complete json for the page
-                var allData = response.data;
+                var allData = response.data;   // complete json for the page
+
                 // formating data for circular graph
                 function circularGraphWithoutCaption(response) {
                     var circulargraphData = response;
@@ -318,12 +295,12 @@ var table2options= {fitColumns: true, columns: [{title: "brand"  , field: "name"
                
                function createPyramidData(){
                    var pyramidData = allData.pyramid1;
-                $scope.pyCharts.chart.caption = pyramidData.meta.title
-                var funnelData = pyramidData.data.categories;
-                var arrData = []
-                for (var index = 0; index < funnelData.length; index++) {
-                    var obj = funnelData[index];
-                    arrData.push({
+                   $scope.pyCharts.chart.caption = pyramidData.meta.title
+                   var funnelData = pyramidData.data.categories;
+                   var arrData = []
+                   for (var index = 0; index < funnelData.length; index++) {
+                     var obj = funnelData[index];
+                     arrData.push({
                         label: obj.label + '{BR} ' + obj.value
                         , value: obj.value
                         , color: $scope.pyramidColors[index % $scope.pyramidColors.length]
@@ -332,7 +309,7 @@ var table2options= {fitColumns: true, columns: [{title: "brand"  , field: "name"
                 //**************pyramid chart******************
                 $scope.pyCharts.data = arrData;
                 $scope.pyFlag = true;
-                   
+
                }
 
 
@@ -343,10 +320,9 @@ var table2options= {fitColumns: true, columns: [{title: "brand"  , field: "name"
                 }
 
 
-
                 function createLineChart(lineGraphCaption, lineGraphSubcaption){
-                     $scope.line_chart.chart.caption = lineGraphCaption;//"caption for graph";
-                $scope.line_chart.chart.subcaption = lineGraphSubcaption//"subcaption for graph";
+                     $scope.line_chart.chart.caption = lineGraphCaption;
+                $scope.line_chart.chart.subcaption = lineGraphSubcaption
                 $scope.line_flag = true;
                 $scope.line_chart.categories[0].category = [];
                 var lineChartXAxis = response.data.line_graph.xaxis.data;
@@ -391,7 +367,7 @@ var table2options= {fitColumns: true, columns: [{title: "brand"  , field: "name"
                 function createRightCircularGraph(chartCaption){
                     var graphFormatedData_2 = circularGraphWithoutCaption(response.data.Circular_Graph_right);
                 $scope.firstChart_3.data = graphFormatedData_2;
-                $scope.firstChart_3.chart.caption = chartCaption;//"Circular_Graph1"
+                $scope.firstChart_3.chart.caption = chartCaption;
                 $scope.rightCircular = true;
                 }
 
