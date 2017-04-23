@@ -114,7 +114,7 @@ var table2options= {fitColumns: true,
             {title: "percentage"  , field: "pct" , align: "center" , formatter: pctFormat}, {title: "count" , field: "count"},
             {title: "nb" , field: "count"}], }
 
-  function pctFormat(value, data, cell, row, options) {   return value + "%";  }; //plain text value
+function pctFormat(value, data, cell, row, options) {   return value + "%";  }; //plain text value
 
 
 //------------------big table options----
@@ -132,10 +132,13 @@ var bigTableOptions= {fitColumns: true,
     <div class="container" ng-app="chartsApp" ng-controller="rootCtrl">
         <button class="btn btn-primary" ng-click="reloadGraph()">reload</button>
         <div class="row">
+
             <!---    Pyramid Graphs     ---->
             <div class="col-xs-5" ng-if="pyFlag">
                 <div fusioncharts width="100%" height="400" type="pyramid" dataSource="{{pyCharts}}" x></div>
             </div>
+
+            <!---    Table     ---->
             <div class="col-xs-7 table-responsive" style="padding:20px">
                 <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                     <thead>
@@ -221,6 +224,23 @@ var bigTableOptions= {fitColumns: true,
 
 
 <script>
+/*
+                response.data ---> AllDAta ---> $scope.
+                    line_chart
+                    bottomTable2.data.rows
+
+
+
+                allData :   Big JSON page
+                $scope.   : Variable ID inside HTML code
+                            HTML_ID  <---->  $scope ID is same
+
+
+*/
+
+
+
+
     // Initiliation Graphs, Tables
     angular.module("chartsApp", ['ng-fusioncharts', 'ui.grid']).directive("convertTable", function () {
         return {
@@ -233,7 +253,6 @@ var bigTableOptions= {fitColumns: true,
     }).directive("convertTable2", function () {
         return {
             link: function (scope, element, attrs) {
-                
                 //########## column configuration for page 4 big table      ####################
                 $(element).tabulator(table2options)
                 $(element).tabulator("setData", attrs.convertTable2);
@@ -241,7 +260,7 @@ var bigTableOptions= {fitColumns: true,
         }
     }).service("dataService", function ($http) {
 
-        this.getData = function (url) { return $http.get(url) ; }     // ############### MEthod to get ajax data for provided URL############
+        this.getData = function (url) { return $http.get(url) ; }     // MEthod to get ajax data for provided URL############
 
         this.lineChartConfig =     function ()     { return lineChartOptions;  }
         this.funnelChartConfig =   function ()     { return pyramidChartOptions; };
@@ -276,7 +295,65 @@ var bigTableOptions= {fitColumns: true,
             function dataSuccessFull(response) {
                 var allData = response.data;   // complete json for the page
 
-                // formating data for circular graph
+
+                function createPyramidData(){
+                   var pyramidData =               allData.pyramid1;
+                   $scope.pyCharts.chart.caption=  pyramidData.meta.title
+                   var funnelData = pyramidData.data.categories;
+                   var arrData = []
+                   for (var index = 0; index < funnelData.length; index++) {
+                     var obj = funnelData[index];
+                     arrData.push({
+                        label: obj.label + '{BR} ' + obj.value
+                        , value: obj.value
+                        , color: $scope.pyramidColors[index % $scope.pyramidColors.length]
+                    });
+                   }
+
+                   $scope.pyCharts.data = arrData;     //    pyramid chart******************
+                   $scope.pyFlag = true;
+                }
+
+
+                function createTopRightTable(){
+                  var tableData=     response.data.table_small_right1;
+                  $scope.columns_1=  tableData.columns;
+                  $scope.data_1=     tableData.rows;
+                }
+
+
+                function createLineChart(lineGraphCaption, lineGraphSubcaption){
+                  $scope.line_chart.chart.caption =    lineGraphCaption;
+                  $scope.line_chart.chart.subcaption = lineGraphSubcaption
+                  $scope.line_flag = true;
+                  $scope.line_chart.categories[0].category = [];
+                  var lineChartXAxis = response.data.line_graph.xaxis.data;
+                  lineChartXAxis.forEach(function (item) {
+                    $scope.line_chart.categories[0].category.push({
+                        "label": item.value
+                        , "stepSkipped": false
+                    })
+                  });
+
+                  $scope.line_chart.chart.caption = response.data.line_graph.meta.title;
+                  var line_colors = lineGraphColors;
+                  $scope.line_chart.dataset = [];
+                  response.data.line_graph.series.forEach(function (item, index) {
+                        item.color = line_colors[index % line_colors.length];
+                        $scope.line_chart.dataset[index] = item;
+                  })
+                }
+
+
+                function createBottomTables(){
+                  var alltables =       response.data;
+                  $scope.bottomTable1 = alltables.table_bottom_1;
+                  $scope.bottomTable2 = alltables.table_bottom_2;
+                  $scope.bottomTable3 = alltables.table_bottom_3;
+                  }
+
+
+
                 function circularGraphWithoutCaption(response) {
                     var circulargraphData = response;
                     var graphFormatedData = [];
@@ -291,84 +368,22 @@ var bigTableOptions= {fitColumns: true,
                     }
                     return graphFormatedData;
                 }
-                
-               
-               function createPyramidData(){
-                   var pyramidData = allData.pyramid1;
-                   $scope.pyCharts.chart.caption = pyramidData.meta.title
-                   var funnelData = pyramidData.data.categories;
-                   var arrData = []
-                   for (var index = 0; index < funnelData.length; index++) {
-                     var obj = funnelData[index];
-                     arrData.push({
-                        label: obj.label + '{BR} ' + obj.value
-                        , value: obj.value
-                        , color: $scope.pyramidColors[index % $scope.pyramidColors.length]
-                    });
-                }
-                //**************pyramid chart******************
-                $scope.pyCharts.data = arrData;
-                $scope.pyFlag = true;
-
-               }
-
-
-                function createTopRightTable(){
-                  var tableData = response.data.table_small_right1;
-                  $scope.columns_1 = tableData.columns;
-                  $scope.data_1 = tableData.rows;
-                }
-
-
-                function createLineChart(lineGraphCaption, lineGraphSubcaption){
-                     $scope.line_chart.chart.caption = lineGraphCaption;
-                $scope.line_chart.chart.subcaption = lineGraphSubcaption
-                $scope.line_flag = true;
-                $scope.line_chart.categories[0].category = [];
-                var lineChartXAxis = response.data.line_graph.xaxis.data;
-                lineChartXAxis.forEach(function (item) {
-                    $scope.line_chart.categories[0].category.push({
-                        "label": item.value
-                        , "stepSkipped": false
-                    })
-                });
-
-
-
-                $scope.line_chart.chart.caption = response.data.line_graph.meta.title;
-                var line_colors = lineGraphColors;;
-                $scope.line_chart.dataset = [];
-                response.data.line_graph.series.forEach(function (item, index) {
-                        item.color = line_colors[index % line_colors.length];
-                        $scope.line_chart.dataset[index] = item;
-                    })
-                }
-
-
-
-                function createBottomTables(){
-                    var alltables = response.data;
-                $scope.bottomTable1 = alltables.table_bottom_1;
-                $scope.bottomTable2 = alltables.table_bottom_2;
-                $scope.bottomTable3 = alltables.table_bottom_3;
-
-                }
 
 
                 function createLeftCircularGraph(caption){
-                var graphConfigLeftCircular = {};
-                var graphFormatedData_1 = circularGraphWithoutCaption(response.data.Circular_Graph_left);
-                $scope.firstChart_2.data = graphFormatedData_1;
-                $scope.firstChart_2.chart.caption = LEFT_CIRCULAR_GRAPH;
-                $scope.left_circular = true;
+                  var graphConfigLeftCircular = {};
+                  var graphFormatedData_1 = circularGraphWithoutCaption(response.data.Circular_Graph_left);
+                  $scope.firstChart_2.data =          graphFormatedData_1;
+                  $scope.firstChart_2.chart.caption = LEFT_CIRCULAR_GRAPH;
+                  $scope.left_circular = true;
                 }
 
 
                 function createRightCircularGraph(chartCaption){
-                    var graphFormatedData_2 = circularGraphWithoutCaption(response.data.Circular_Graph_right);
-                $scope.firstChart_3.data = graphFormatedData_2;
-                $scope.firstChart_3.chart.caption = chartCaption;
-                $scope.rightCircular = true;
+                  var graphFormatedData_2 = circularGraphWithoutCaption(response.data.Circular_Graph_right);
+                  $scope.firstChart_3.data = graphFormatedData_2;
+                  $scope.firstChart_3.chart.caption = chartCaption;
+                  $scope.rightCircular = true;
                 }
 
 
