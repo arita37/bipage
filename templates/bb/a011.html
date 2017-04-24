@@ -2,6 +2,7 @@
 <!doctype html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>A011</title>
     <!-- load library--->
     <script src="../../static/gg/custom_js_css/jquery-3.2.1.js"></script>
@@ -25,60 +26,41 @@
       *{
           box-sizing:border-box;
       }
-      .box{
-            border-radius: 4px;
-            border: 3px solid #E6E6E6;
-      }
-      .box-container{
-          padding:10px;
-      }
-      .value {
-    font-size: 25px;
-    text-align: right;
-    padding: 10px;
-          color:#CB6674;
-}
+      .box{   border-radius: 4px;   border: 3px solid #E6E6E6;  }
+      .box-container{ padding:10px;   }
+      .value {  font-size: 25px;  text-align: right; padding: 10px;   color:#CB6674; }
       .title {
       padding: 5px;
     /* color: #868686; */
 }
     
-      .glyphicon{
-          font-size: 20px;
-      }
-      .mg-bot{
-          margin-bottom: 20px;
-      }
-      ul.menu{
-          list-style:none
-      }
-      ul.menu li{
-          display:inline-block;
-          padding:10px;
-          
-      }
+      .glyphicon{  font-size: 20px;   }
+      .mg-bot{     margin-bottom: 20px; }
+      ul.menu{     list-style:none }
+      ul.menu li{  display:inline-block;  padding:10px;  }
     
     </style>
     <script>
 
-    var tabGraphUrl="https://raw.githubusercontent.com/arita37/bipage/master/static/gg/custom_json/area-graph.json";
+    var tabGraphUrl= "../../static/gg/custom_json/area-graph.json";
+
+    var pageTopBoxJson= "../../static/gg/custom_json/page2.json";
+
     var topBoxColor=["#CB6674","#3362BB","#CB6674"];
-    var pageTopBoxJson="https://raw.githubusercontent.com/arita37/bipage/master/static/gg/custom_json/page2.json";
-    var dailyGraphTitle="Daily graph";
-    var monthlyGraphTitle="Monthly graph";
-    var weeklyGraphTitle="Weekly graph";
 
-    function areaChart(){
-        return {
-                "chart": {
-                    "caption": "", "subcaption": "", "plotgradientcolor": "", "bgcolor": "FFFFFF", "showalternatehgridcolor": "0", "showplotborder": "0", "showvalues": "0", "labeldisplay": "WRAP", "divlinecolor": "CCCCCC", "showcanvasborder": "0", "canvasborderalpha": "0", "palettecolors": "990000", "yaxisvaluespadding": "10", "showborder": "0"
-                }
-                , "data": []
-            }
+    var dailyGraphTitle=   "Daily graph";
+    var monthlyGraphTitle= "Monthly graph";
+    var weeklyGraphTitle=  "Weekly graph";
+
+    function areaChart(){ return {
+       "chart": { "caption": "", "subcaption": "", "plotgradientcolor": "", "bgcolor": "FFFFFF",
+                  "showalternatehgridcolor": "0", "showplotborder": "0", "showvalues": "0", "labeldisplay": "WRAP",
+                  "divlinecolor": "CCCCCC", "showcanvasborder": "0", "canvasborderalpha": "0", "palettecolors": "990000",
+                  "yaxisvaluespadding": "10", "showborder": "0"
+                },
+       "data": []
+       }
     }
-
-
-
 
     </script>
 </head>
@@ -88,61 +70,57 @@
     <div class="row">
         <div class="col-xs-4 box-container" ng-repeat="data in firstGraph">
             <div class="box">
-                <div class="title">
-            {{data.title}}
+                <div class="title">{{data.title}}</div>
+                <div class="value">{{data.value}}<span ng-style="set_color($index)" class="glyphicon glyphicon glyphicon-arrow-{{data.image}}" aria-hidden="true"></span>
                 </div>
-                <div class="value">
-                {{data.value}}<span ng-style="set_color($index)" class="glyphicon glyphicon glyphicon-arrow-{{data.image}}" aria-hidden="true"></span>
-                </div>
-            
             </div>
-        
         </div>
-        
-        
-        </div>
-         <uib-tabset active="active" ng-if="tabGraphflag">
-   
-    <uib-tab index="1"  heading="tab1 graph">
-     <ul class="menu"><li><a href="#" ng-click="toggelTab1Graph('Daily graph')">daily graph</a></li><li><a href="#" ng-click="toggelTab1Graph('Weekly graph')">weekly graph</a></li><li><a href="#" ng-click="toggelTab1Graph('Monthly graph')">monthly graph</a></li></ul>
+　　</div>
+
+   <uib-tabset active="active" ng-if="tabGraphflag">
+
+    <uib-tab index="1"  heading="ユ－ザ-数">
+     <ul class="menu"><li><a href="#" ng-click="toggelTab1Graph('Daily graph')">日</a></li><li><a href="#" ng-click="toggelTab1Graph('Weekly graph')">週</a></li><li><a href="#" ng-click="toggelTab1Graph('Monthly graph')">月</a></li></ul>
         <div class="row mg-bot" ng-repeat="graph in tab1Graphs" ng-show="graph.title==activeTab1Graph" >
-           
-        <div class="col-xs-12" >
-            
-          <label>{{graph.title}}</label>
+        　<div class="col-xs-12" >
+          　<label>{{graph.title}}</label>
             <div fusioncharts width="100%" height="300" type="area2d" dataSource="{{graph.graph}}"> </div>
-            
-            </div>
-        
+        　</div>
         </div>
-             </uib-tab>
-              <uib-tab index="2"  heading="tab2 graph">
-    <ul class="menu"><li><a href="#" ng-click="toggelTab2Graph('Daily graph')">daily graph</a></li><li><a href="#" ng-click="toggelTab2Graph('Weekly graph')">weekly graph</a></li><li><a href="#" ng-click="toggelTab2Graph('Monthly graph')">monthly graph</a></li></ul>
-        <div class="row mg-bot" ng-repeat="graph in tab2Graphs" ng-show="graph.title==activeTab2Graph">
-           
-        <div class="col-xs-12" >
-<label>{{graph.title}}</label>
-            <div fusioncharts width="100%" height="300" type="area2d" dataSource="{{graph.graph}}"> </div>
-            
-            </div>
-        
-        </div>
-             </uib-tab>
-             <uib-tab index="3"  heading="tab3 graph">
-     <ul class="menu"><li><a href="#" ng-click="toggelTab3Graph('Daily graph')">daily graph</a></li><li><a href="#" ng-click="toggelTab3Graph('Weekly graph')">weekly graph</a></li><li><a href="#" ng-click="toggelTab3Graph('Monthly graph')">monthly graph</a></li></ul>
-        <div class="row mg-bot" ng-repeat="graph in tab3Graphs" ng-show="graph.title==activeTab3Graph">
-           
-        <div class="col-xs-12" >
-<label>{{graph.title}}</label>
-            <div fusioncharts width="100%" height="300" type="area2d" dataSource="{{graph.graph}}"> </div>
-            
-            </div>
-        
-        </div>
-             </uib-tab>
-        </uib-tabset>
-    </div>
-    
+    </uib-tab>
+
+　  <uib-tab index="2"  heading="ログビ－コン反応数">
+    　　<ul class="menu"><li><a href="#" ng-click="toggelTab2Graph('Daily graph')">日</a></li><li><a href="#" ng-click="toggelTab2Graph('Weekly graph')">週</a></li><li><a href="#" ng-click="toggelTab2Graph('Monthly graph')">月</a></li></ul>
+        　<div class="row mg-bot" ng-repeat="graph in tab2Graphs" ng-show="graph.title==activeTab2Graph">
+       　　 <div class="col-xs-12" ><label>{{graph.title}}</label>
+            　　<div fusioncharts width="100%" height="300" type="area2d" dataSource="{{graph.graph}}"></div>
+        　　</div>
+        　</div>
+　　</uib-tab>
+
+    <uib-tab index="3"  heading="利用ビ－コン反応数">
+    　 <ul class="menu"><li><a href="#" ng-click="toggelTab3Graph('Daily graph')">日</a></li><li><a href="#" ng-click="toggelTab3Graph('Weekly graph')">週</a></li><li><a href="#" ng-click="toggelTab3Graph('Monthly graph')">月</a></li></ul>
+    　    <div class="row mg-bot" ng-repeat="graph in tab3Graphs" ng-show="graph.title==activeTab3Graph">
+      　  <div class="col-xs-12" >月
+　　　　　　　<label>{{graph.title}}</label>
+            　<div fusioncharts width="100%" height="300" type="area2d" dataSource="{{graph.graph}}"> </div>
+        　</div>
+        　</div>
+    </uib-tab>
+
+    <uib-tab index="4"  heading="CV ビ－コン反応数">
+    　 <ul class="menu"><li><a href="#" ng-click="toggelTab4Graph('Daily graph')">日</a></li><li><a href="#" ng-click="toggelTab4Graph('Weekly graph')">週</a></li><li><a href="#" ng-click="toggelTab4Graph('Monthly graph')">月</a></li></ul>
+    　    <div class="row mg-bot" ng-repeat="graph in tab4Graphs" ng-show="graph.title==activeTab4Graph">
+      　  <div class="col-xs-12" >
+　　　　　　　<label>{{graph.title}}</label>
+            　<div fusioncharts width="100%" height="300" type="area2d" dataSource="{{graph.graph}}"> </div>
+        　</div>
+        　</div>
+    </uib-tab>
+　 </uib-tabset>
+
+
+　　</div>
 </body>
 
 
@@ -152,20 +130,20 @@
     angular.module("app", ['ng-fusioncharts', 'ui.grid','ui.bootstrap']).controller("rootCtrl",function($scope,$http){
 
         $scope.activeTab1Graph=dailyGraphTitle;
-         $scope.activeTab2Graph=dailyGraphTitle;
-         $scope.activeTab3Graph=dailyGraphTitle;
-        $scope.toggelTab1Graph=function(type){
-            $scope.activeTab1Graph=type
-        }
-        $scope.toggelTab2Graph=function(type){
-            $scope.activeTab2Graph=type;
-        }
-       $scope.toggelTab3Graph=function(type){
-            $scope.activeTab3Graph=type;
-        }
-       
+        $scope.activeTab2Graph=dailyGraphTitle;
+        $scope.activeTab3Graph=dailyGraphTitle;
+        $scope.activeTab4Graph=dailyGraphTitle;
+
+        $scope.toggelTab1Graph=function(type){  $scope.activeTab1Graph=type }
+        $scope.toggelTab2Graph=function(type){  $scope.activeTab2Graph=type;}
+        $scope.toggelTab3Graph=function(type){   $scope.activeTab3Graph=type; }
+        $scope.toggelTab4Graph=function(type){   $scope.activeTab4Graph=type; }
+
+
+
         $http.get(tabGraphUrl).then(function(res){
- $scope.middleGraphTab1=res.data.graph_middle_tab1;
+
+            $scope.middleGraphTab1=res.data.graph_middle_tab1;
             //----------------daily graph -tab1-----------------------
             $scope.tab1Daily=$scope.middleGraphTab1.daily_graph.data;
             $scope.tab1DailyGraph=areaChart();
@@ -196,14 +174,14 @@
             }
             $scope.tab1Graphs=[]
             $scope.tab1Graphs.push({title:dailyGraphTitle,"graph": $scope.tab1DailyGraph});
-             $scope.tab1Graphs.push({title:weeklyGraphTitle,graph: $scope.tab1WeeklyGraph});
+            $scope.tab1Graphs.push({title:weeklyGraphTitle,graph: $scope.tab1WeeklyGraph});
             $scope.tab1Graphs.push( {title:monthlyGraphTitle,graph:$scope.tab1MonthlyGraph});
             
             
             
-            //------------------Tab2 graph---------------
-             //----------------daily graph -tab2-----------------------
-             $scope.middleGraphTab2=res.data.graph_middle_tab2;
+            //------------------Tab2 graph----------------------------
+            //----------------daily graph -tab2-----------------------
+            $scope.middleGraphTab2=res.data.graph_middle_tab2;
             $scope.tab2Daily=$scope.middleGraphTab2.daily_graph.data;
             $scope.tab2DailyGraph=areaChart();
             for(var index=0;index< $scope.tab2Daily.categories[0].data.length;index++){
@@ -235,9 +213,13 @@
             $scope.tab2Graphs.push({title:dailyGraphTitle,graph: $scope.tab2DailyGraph});
              $scope.tab2Graphs.push({title:weeklyGraphTitle,graph: $scope.tab2WeeklyGraph});
             $scope.tab2Graphs.push({title:monthlyGraphTitle,graph: $scope.tab2MonthlyGraph});
+
+
+
+
             //---------------Tab3 graph-------
             //----------------daily graph -tab3-----------------------
-             $scope.middleGraphTab3=res.data.graph_middle_tab3;
+            $scope.middleGraphTab3=res.data.graph_middle_tab3;
             $scope.tab3Daily=$scope.middleGraphTab3.daily_graph.data;
             $scope.tab3DailyGraph=areaChart();
             for(var index=0;index< $scope.tab3Daily.categories[0].data.length;index++){
@@ -247,7 +229,7 @@
                 })
             }
             
-            //---------------weekly graph -tab2-------------
+            //---------------weekly graph -tab3-------------
             $scope.tab3Weekly=$scope.middleGraphTab3.weekly_graph.data;
             $scope.tab3WeeklyGraph=areaChart();
             for(var index=0;index< $scope.tab3Weekly.categories[0].data.length;index++){
@@ -256,7 +238,7 @@
                     value:$scope.tab3Weekly.categories[0].data[index].value
                 })
             }
-            //--------------monthly graph -tab2-------------------
+            //--------------monthly graph -tab3-------------------
             $scope.tab3monthly=$scope.middleGraphTab3.monthly_graph.data;
             $scope.tab3MonthlyGraph=areaChart();
             for(var index=0;index< $scope.tab3monthly.categories[0].data.length;index++){
@@ -270,6 +252,48 @@
              $scope.tab3Graphs.push({title:weeklyGraphTitle,"graph": $scope.tab3WeeklyGraph});
             $scope.tab3Graphs.push( {title:monthlyGraphTitle,"graph":$scope.tab3MonthlyGraph});
             $scope.tabGraphflag=true;
+
+
+            //---------------Tab4 graph---------------------------------------------------------
+            //----------------daily graph -tab4------------------------------------------------
+            $scope.middleGraphTab4= res.data.graph_middle_tab4;
+            $scope.tab4Daily=$scope.middleGraphTab4.daily_graph.data;
+            $scope.tab4DailyGraph=areaChart();
+            for(var index=0;index< $scope.tab4Daily.categories[0].data.length;index++){
+                $scope.tab4DailyGraph.data.push({
+                    label:$scope.tab4Daily.xaxis.data[index].value,
+                    value:$scope.tab4Daily.categories[0].data[index].value
+                })
+            }
+
+            //---------------weekly graph -tab4-------------
+            $scope.tab4Weekly=$scope.middleGraphTab4.weekly_graph.data;
+            $scope.tab4WeeklyGraph=areaChart();
+            for(var index=0;index< $scope.tab3Weekly.categories[0].data.length;index++){
+                $scope.tab4WeeklyGraph.data.push({
+                    label:$scope.tab4Weekly.xaxis.data[index].value,
+                    value:$scope.tab4Weekly.categories[0].data[index].value
+                })
+            }
+
+            //--------------monthly graph -tab3-------------------
+            $scope.tab4monthly=$scope.middleGraphTab4.monthly_graph.data;
+            $scope.tab4MonthlyGraph=areaChart();
+            for(var index=0;index< $scope.tab4monthly.categories[0].data.length;index++){
+                $scope.tab4MonthlyGraph.data.push({
+                    label:$scope.tab4monthly.xaxis.data[index].value,
+                    value:$scope.tab4monthly.categories[0].data[index].value
+                })
+            }
+
+            $scope.tab4Graphs=[]
+            $scope.tab4Graphs.push( {title:dailyGraphTitle,"graph":$scope.tab4DailyGraph});
+            $scope.tab4Graphs.push({title:weeklyGraphTitle,"graph": $scope.tab4WeeklyGraph});
+            $scope.tab4Graphs.push( {title:monthlyGraphTitle,"graph":$scope.tab4MonthlyGraph});
+            $scope.tabGraphflag=true;
+
+
+
         })
         $http.get(pageTopBoxJson).then(function(res){
             $scope.topBoxColor=topBoxColor;
