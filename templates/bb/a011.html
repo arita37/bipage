@@ -48,9 +48,9 @@
 
     var topBoxColor=["#CB6674","#3362BB","#CB6674"];
 
-    var dailyGraphTitle=   "Daily graph";
-    var monthlyGraphTitle= "Monthly graph";
-    var weeklyGraphTitle=  "Weekly graph";
+    var dailyGraphTitle=   "日";
+    var monthlyGraphTitle= "月";
+    var weeklyGraphTitle=  "週";
 
     function areaChart(){ return {
        "chart": { "caption": "", "subcaption": "", "plotgradientcolor": "", "bgcolor": "FFFFFF",
@@ -80,7 +80,7 @@
    <uib-tabset active="active" ng-if="tabGraphflag">
 
     <uib-tab index="1"  heading="ユ－ザ-数">
-     <ul class="menu"><li><a href="#" ng-click="toggelTab1Graph('Daily graph')">日</a></li><li><a href="#" ng-click="toggelTab1Graph('Weekly graph')">週</a></li><li><a href="#" ng-click="toggelTab1Graph('Monthly graph')">月</a></li></ul>
+     <ul class="menu"><li><a href="#" ng-click="toggelTab1Graph('日')">日</a></li><li><a href="#" ng-click="toggelTab1Graph('週')">週</a></li><li><a href="#" ng-click="toggelTab1Graph('月')">月</a></li></ul>
         <div class="row mg-bot" ng-repeat="graph in tab1Graphs" ng-show="graph.title==activeTab1Graph" >
         　<div class="col-xs-12" >
           　<label>{{graph.title}}</label>
@@ -90,7 +90,7 @@
     </uib-tab>
 
 　  <uib-tab index="2"  heading="ログビ－コン反応数">
-    　　<ul class="menu"><li><a href="#" ng-click="toggelTab2Graph('Daily graph')">日</a></li><li><a href="#" ng-click="toggelTab2Graph('Weekly graph')">週</a></li><li><a href="#" ng-click="toggelTab2Graph('Monthly graph')">月</a></li></ul>
+    　　<ul class="menu"><li><a href="#" ng-click="toggelTab2Graph('日')">日</a></li><li><a href="#" ng-click="toggelTab2Graph('週')">週</a></li><li><a href="#" ng-click="toggelTab2Graph('月')">月</a></li></ul>
         　<div class="row mg-bot" ng-repeat="graph in tab2Graphs" ng-show="graph.title==activeTab2Graph">
        　　 <div class="col-xs-12" ><label>{{graph.title}}</label>
             　　<div fusioncharts width="100%" height="300" type="area2d" dataSource="{{graph.graph}}"></div>
@@ -99,7 +99,7 @@
 　　</uib-tab>
 
     <uib-tab index="3"  heading="利用ビ－コン反応数">
-    　 <ul class="menu"><li><a href="#" ng-click="toggelTab3Graph('Daily graph')">日</a></li><li><a href="#" ng-click="toggelTab3Graph('Weekly graph')">週</a></li><li><a href="#" ng-click="toggelTab3Graph('Monthly graph')">月</a></li></ul>
+    　 <ul class="menu"><li><a href="#" ng-click="toggelTab3Graph('日')">日</a></li><li><a href="#" ng-click="toggelTab3Graph('週')">週</a></li><li><a href="#" ng-click="toggelTab3Graph('月')">月</a></li></ul>
     　    <div class="row mg-bot" ng-repeat="graph in tab3Graphs" ng-show="graph.title==activeTab3Graph">
       　  <div class="col-xs-12" >月
 　　　　　　　<label>{{graph.title}}</label>
@@ -109,7 +109,7 @@
     </uib-tab>
 
     <uib-tab index="4"  heading="CV ビ－コン反応数">
-    　 <ul class="menu"><li><a href="#" ng-click="toggelTab4Graph('Daily graph')">日</a></li><li><a href="#" ng-click="toggelTab4Graph('Weekly graph')">週</a></li><li><a href="#" ng-click="toggelTab4Graph('Monthly graph')">月</a></li></ul>
+    　 <ul class="menu"><li><a href="#" ng-click="toggelTab4Graph('日')">日</a></li><li><a href="#" ng-click="toggelTab4Graph('週')">週</a></li><li><a href="#" ng-click="toggelTab4Graph('月')">月</a></li></ul>
     　    <div class="row mg-bot" ng-repeat="graph in tab4Graphs" ng-show="graph.title==activeTab4Graph">
       　  <div class="col-xs-12" >
 　　　　　　　<label>{{graph.title}}</label>
@@ -211,7 +211,7 @@
             }
             $scope.tab2Graphs=[]
             $scope.tab2Graphs.push({title:dailyGraphTitle,graph: $scope.tab2DailyGraph});
-             $scope.tab2Graphs.push({title:weeklyGraphTitle,graph: $scope.tab2WeeklyGraph});
+            $scope.tab2Graphs.push({title:weeklyGraphTitle,graph: $scope.tab2WeeklyGraph});
             $scope.tab2Graphs.push({title:monthlyGraphTitle,graph: $scope.tab2MonthlyGraph});
 
 
@@ -295,6 +295,8 @@
 
 
         })
+
+
         $http.get(pageTopBoxJson).then(function(res){
             $scope.topBoxColor=topBoxColor;
             $scope.firstGraph=res.data.value_top.data;
