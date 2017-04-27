@@ -2,6 +2,8 @@
 <!doctype html>
 <html>
 <head>
+   <meta charset="utf-8">
+
     <title>A042</title>
     <!-- load library--->
     <script src="../../static/gg/custom_js_css/jquery-3.2.1.js"></script>
@@ -53,7 +55,7 @@ tbody tr td {    color: #575757;  }
     </style>
     <script>
 
-var JSON_PAGE_URL= "https://raw.githubusercontent.com/arita37/bipage/master/static/gg/custom_json/index.json"
+var JSON_PAGE_URL= "../../static/gg/custom_json/a042_jouhou1.json"
 
 //-------------line graph caption-------------------------------------------------------
 var lineGraphColors=["#C72C5E", "#DE3E58", "#A1B1C3"]
@@ -222,9 +224,7 @@ var bigTableOptions= {fitColumns: true,
     </div>
 </body>
 
-
-<script>
-/*
+<!--
                 response.data ---> AllDAta ---> $scope.
                     line_chart
                     bottomTable2.data.rows
@@ -236,16 +236,15 @@ var bigTableOptions= {fitColumns: true,
                             HTML_ID  <---->  $scope ID is same
 
 
-*/
+--->
 
-
-
+<script>
 
     // Initiliation Graphs, Tables
     angular.module("chartsApp", ['ng-fusioncharts', 'ui.grid']).directive("convertTable", function () {
         return {
             link: function (scope, element, attrs) {
-                //############# column configuration for page 7 big table   #####################
+                //############# column configuration for page 7 big table   ######################################
                 $(element).tabulator(bigTableOptions)
                 $(element).tabulator("setData", attrs.convertTable);
             }
@@ -253,7 +252,7 @@ var bigTableOptions= {fitColumns: true,
     }).directive("convertTable2", function () {
         return {
             link: function (scope, element, attrs) {
-                //########## column configuration for page 4 big table      ####################
+                //########## column configuration for page 4 big table      #####################################
                 $(element).tabulator(table2options)
                 $(element).tabulator("setData", attrs.convertTable2);
             }
