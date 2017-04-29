@@ -60,10 +60,7 @@ var JSON_PAGE_URL= "../../static/gg/custom_json/a042_jouhou1.json"
 
 
 
-//-------------line graph caption-------------------------------------------------------
-//var lineGraphColors=["#C72C5E", "#DE3E58", "#A1B1C3"]
-//var LINE_CAPTION="caption for line graph";
-//var LINE_SUBCAPTION="subcaption for line graph"
+//-------------line graph ------------------------------------------------------
 var lineChartOptions={
   "graphcolors": ["#C72C5E", "#DE3E58", "#A1B1C3"],
   "caption": "caption for line graph",
@@ -88,9 +85,7 @@ var dynamic_json=  JSON_PAGE["line_graph"]
 
 
 
-
-
-//---------------------table 2 options--------------------------------------------
+//---------------------table --------------------------------------------
 var table2options= {fitColumns: true,
   columns: [{title: "brand"  , field: "name"}, {title: "percentage" , field: "pct"  , align: "center" ,formatter: "progress"},
             {title: "percentage"  , field: "pct" , align: "center" , formatter: pctFormat}, {title: "count" , field: "count"},
@@ -109,13 +104,11 @@ var dynamic_json=  JSON_PAGE["table_bottom_1"]
 
 
 
-//___________________________ circular chart options-------------------------------------
-
-
-var circularChartOptions={
-CIRCULAR_GRAPH1_CAPTION="circular_graph1",
-LEFT_CIRCULAR_GRAPH="circular_graph1",
-circularGraphColors= ["#CD0A59", "#E84F63", "#D3D3D3"],
+//___________________________ circular chart ------------------------------------
+var circulargraph01_static={
+ "caption": "circular_graph1",
+ "sub_caption": "circular_graph1",
+ "graphcolors": ["#CD0A59", "#E84F63", "#D3D3D3"],
 
   "chart": {"enableSmartLabels": "1", "chartTopMargin": "0", "chartRightMargin": "0", "chartBottomMargin": "0", "caption": "",
             "subCaption": "", "numberPrefix": "", "bgColor": "#ffffff", "showBorder": "0", "use3DLighting": "0", "showShadow": "0",
@@ -127,9 +120,12 @@ circularGraphColors= ["#CD0A59", "#E84F63", "#D3D3D3"],
 }
 
 
-<chart-circular class="HTML_SAME_classname" static_json="hard_code_javascript_VAR"
-dynamic_json='json_id_INSIDE_BIGJSON' table-id='table_bottom_3'></chart-circular>
+<chart-circular class="HTML_SAME_classname" static_json="circulargraph01_static_ang"
+dynamic_json='Circular_Graph_left' table-id='table_bottom_3'></chart-circular>
 
+
+var circulargraph01_static_ang =  circulargraph01_static
+var dynamic_json=  JSON_PAGE["Circular_Graph_left"]
 
 
 
