@@ -86,7 +86,7 @@ var dynamic_json=  JSON_PAGE["line_graph"]
 
 
 //---------------------table --------------------------------------------
-var table2options= {fitColumns: true,
+var table2_static= {fitColumns: true,
   "title": "TableTitle",
   columns: [{title: "brand"  , field: "name"}, {title: "percentage" , field: "pct"  , align: "center" ,formatter: "progress"},
             {title: "percentage"  , field: "pct" , align: "center" , formatter: pctFormat}, {title: "count" , field: "count"},
@@ -95,11 +95,11 @@ var table2options= {fitColumns: true,
 function pctFormat(value, data, cell, row, options) {   return value + "%";  }; //plain text value
 
 
-<chart-table class="HTML_SAME_classname" static_json="table2options_ang"
+<chart-table class="HTML_SAME_classname" static_json="table2_static_ang"
 dynamic_json='table_bottom_1' table-id='table_bottom_3'></chart-table>
 
 
-var table2_static_ang =  table2options
+var table2_static_ang =  table2_static
 var dynamic_json=  JSON_PAGE["table_bottom_1"]
 
 
