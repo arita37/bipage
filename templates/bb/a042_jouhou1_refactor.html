@@ -76,7 +76,7 @@ var lineChartOptions={
 }
 
 <chart-line class="HTML_SAME_classname" static_json_id="lineChart01_static_ang"
-dynamic_json_id='line_graph' table-id='table_bottom_3'></chart-line>
+dynamic_json_id='line_graph'  idref='table_bottom_3'></chart-line>
 
 var lineChart01_static_ang =  lineChartOptions
 var dynamic_json=  JSON_PAGE["line_graph"]
@@ -121,7 +121,7 @@ var circulargraph01_static={
 
 
 <chart-circular class="HTML_SAME_classname" static_json="circulargraph01_static_ang"
-dynamic_json='Circular_Graph_left' table-id='table_bottom_3'></chart-circular>
+dynamic_json='Circular_Graph_left' idref='table_bottom_3'></chart-circular>
 
 
 var circulargraph01_static_ang =  circulargraph01_static
@@ -134,10 +134,11 @@ var dynamic_json=  JSON_PAGE["Circular_Graph_left"]
 
 
     
-//____________________-pyramidChartOptions________________________----------------------
-pyramidGraphColors=["#9BAEBC", "# E65065", "#CB145B"];
+//____________________-pyramidChar______________________----------------------
 
-var pyramidChartOptions = {
+var pyramidchart01_static = {
+  "graphcolors: ["#9BAEBC", "# E65065", "#CB145B"],
+
   "chart": {"caption": "", "subcaption": "", "linethickness": "1", "showvalues": "0", "formatnumberscale": "0",
             "anchorradius": "2", "divlinecolor": "666666", "divlinealpha": "30", "divlineisdashed": "1",
             "labelstep": "2", "bgcolor": "FFFFFF", "showalternatehgridcolor": "0", "labelpadding": "10",
@@ -152,6 +153,23 @@ var pyramidChartOptions = {
       ,"application": [{"toobject": "ToolTip", "styles": "myToolTipFont"}  ]
       }
 }
+
+
+<chart-pyramid class="HTML_SAME_classname" static_json="pyramidchart01_static_ang"
+dynamic_json='pyramid1' idref='table_bottom_3'></chart-pyramid>
+
+
+var pyramidchart01_static_ang =  pyramidchart01_static
+var dynamic_json=  JSON_PAGE["pyramid1"]
+
+
+
+
+
+
+
+
+
 
 
 
