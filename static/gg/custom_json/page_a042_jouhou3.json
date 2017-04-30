@@ -1,0 +1,37 @@
+{
+
+
+
+
+ "table_bottom1":
+  { "meta": { "json_type": "table_histogram",     "title" : "Table histo Grame"  },
+	  "columns_type" : {"1": "str", "2": "str",             "3": "graph_barhisto",  "4":"str",    "5":"str" },
+	  "columns" :      {"1": "CV Area 1", "2": "CV Area 2", "3": "Pct Bar",         "4":"Pct 1",  "5":"Pct 2" },
+ "rows": [
+         {"1": "CV Group 1",         "2": "CV Group 2", "3": "35%",  "4": "35%",	"5": "25.1%"},
+         {"1": "CV Group 1",         "2": "CV Group 2", "3": "35%",  "4": "35%",	"5": "25.1%"},
+         {"1": "CV Group 1",         "2": "CV Group 2", "3": "35%",  "4": "35%",	"5": "25.1%"},
+         {"1": "CV Group 1",         "2": "CV Group 2", "3": "35%",  "4": "35%",	"5": "25.1%"},
+         {"1": "CV Group 1",         "2": "CV Group 2", "3": "35%",  "4": "35%",	"5": "25.1%"}
+       ]
+}
+
+
+
+ "table_bottom2":
+  { "meta": { "json_type": "table_histogram",     "title" : "Table histo Grame"  },
+	  "columns_type" : {"1": "str", "2": "str",             "3": "graph_barhisto",  "4":"str",    "5":"str" },
+	  "columns" :      {"1": "CV Area 1", "2": "CV Area 2", "3": "Pct Bar",         "4":"Pct 1",  "5":"Pct 2" },
+ "rows": [
+         {"1": "CV Group 1",         "2": "CV Group 2", "3": "35%",  "4": "35%",	"5": "25.1%"},
+         {"1": "CV Group 1",         "2": "CV Group 2", "3": "35%",  "4": "35%",	"5": "25.1%"},
+         {"1": "CV Group 1",         "2": "CV Group 2", "3": "35%",  "4": "35%",	"5": "25.1%"},
+         {"1": "CV Group 1",         "2": "CV Group 2", "3": "35%",  "4": "35%",	"5": "25.1%"},
+         {"1": "CV Group 1",         "2": "CV Group 2", "3": "35%",  "4": "35%",	"5": "25.1%"}
+       ]
+}
+
+
+
+
+}
