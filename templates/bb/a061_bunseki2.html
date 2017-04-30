@@ -44,17 +44,12 @@
 <body>
     <div class="container" ng-app="app" ng-controller="rootCtrl">
 
-
-
         <div class="row">
             <div class="col-xs-12" ng-if="line_flag">
                 <div fusioncharts width="100%" height="400" type="msline" dataSource="{{line_chart}}"></div>
             </div>
         </div>
-
-
 <hr>
-
 
 
 <!---- Big Table bottom Tabulator  -------------------------------------------------->
@@ -73,29 +68,39 @@
 
 
 
-
-
 　　</div>
 </body>
 
 
 
 
-<!---
-http://olifolkerd.github.io/tabulator/quickstart/
-
-
---->
-
-
 
 <script>
+/*  http://www.fusioncharts.com/dev/chart-attributes.html?chart=multilevelpie
+*/
+
 var json_page=       "../../static/gg/custom_json/page_a061_bunseki2.json";
 
 
 
+//-------------TOP Graph -----------------------------------------------------------------------------
+var lineGraphColors=["#C72C5E", "#DE3E58", "#A1B1C3"]
+var LINE_CAPTION="caption for line graph";
+var LINE_SUBCAPTION="subcaption for line graph"
+var lineChartOptions={
+  "chart": { "caption": "Daily Visits", "linethickness": "1", "showvalues": "0","formatnumberscale": "0", "anchorradius": "2",
+  "divlinecolor": "666666", "divlinealpha": "30", "divlineisdashed": "1", "labelstep": "2", "bgcolor": "FFFFFF",
+  "showalternatehgridcolor": "0", "labelpadding": "10", "canvasborderthickness": "1", "legendiconscale": "1.5",
+  "legendshadow": "0", "legendborderalpha": "0", "canvasborderalpha": "50", "numvdivlines": "5", "vdivlinealpha": "20",
+  "showborder": "0"
+  }
+  ,"categories": [ {"category": [] } ]
+  , "dataset": []
+}
 
-//------------------ Bottom big table options------------------------------------------------------
+
+
+//------------------ Bottom big table ----------------------------------------------------------------
 function pctFormat(value, data, cell, row, options) {   return value + "%";  }; //plain text value
 
 var table_bottom1_static= {fitColumns: true,
@@ -103,11 +108,82 @@ var table_bottom1_static= {fitColumns: true,
              {title: "CV Area 2",   field: "2"},
              {title: "percentage",  field: "3", align: "center", formatter: "progress"},
              {title: "percentage",  field: "3", align: "center", formatter: pctFormat},
-             {title: "Pct 1" , field: "4"} ,
-             {title: "Pct 2"  , field: "5"}], }
+             {title: "Pct 1" ,      field: "4"} ,
+             {title: "Pct 2"  ,     field: "5"}], }
+
+</script>
 
 
-//-------------------------- Middle Graph -----------------------------------------------------
+
+
+<script>
+// Initiliation Graphs, Tables  ----------------------------------------------------------------------
+var app = angular.module("app", ['ng-fusioncharts', 'ui.grid','ui.bootstrap']);
+
+
+
+//  JSON to Angular
+app.controller('rootCtrl',  function($scope, $http){
+        // Asynchrone Get
+        $http.get(json_page).then(function(res){
+
+
+        // --------------------- Top Middle line chart ------------------------------------------------
+        $scope.line_flag = false;
+        $scope.line_chart = lineChartOptions;
+
+
+        $scope.line_chart.chart.caption =     LINE_CAPTION;
+        $scope.line_chart.chart.subcaption =  LINE_SUBCAPTION;
+        $scope.line_flag = true;
+        $scope.line_chart.categories[0].category = [];
+        var lineChartXAxis = res.data.line_graph.xaxis.data;
+        lineChartXAxis.forEach(function (item) {
+             $scope.line_chart.categories[0].category.push({
+                        "label": item.value, "stepSkipped": false
+             })
+        });
+
+        $scope.line_chart.chart.caption = res.data.line_graph.meta.title;
+        var line_colors = lineGraphColors;
+        $scope.line_chart.dataset = [];
+         res.data.line_graph.series.forEach(function (item, index) {
+                        item.color = line_colors[index % line_colors.length];
+                        $scope.line_chart.dataset[index] = item;
+         })
+
+
+
+
+        //-----------  Bottom Big Table  ------------------------------------------------------------
+        $("#table_bottom1").tabulator(table_bottom1_static);
+        $("#table_bottom1").tabulator("setData", res.data.table_bottom1.rows);
+
+
+
+
+
+        })
+})
+</script>
+
+
+
+
+
+
+<!---
+
+
+
+
+http://olifolkerd.github.io/tabulator/quickstart/
+
+
+
+
+
+//-------------------------- Top Graph -----------------------------------------------------
 var dailyGraphTitle1=   "Push Haishin";
 var areachart_left_static= {
        "chart": { "caption": "Graph left", "subcaption": "", "plotgradientcolor": "", "bgcolor": "FFFFFF",
@@ -119,27 +195,6 @@ var areachart_left_static= {
 };
 
 
-
-
-</script>
-
-
-
-
-<script>
-// Initiliation Graphs, Tables  ------------------------------------------------------------------
-var app = angular.module("app", ['ng-fusioncharts', 'ui.grid','ui.bootstrap']);
-
-
-
-//  JSON to Angular
-app.controller('rootCtrl',  function($scope, $http){
-        // Asynchrone Get
-        $http.get(json_page).then(function(res){
-
-
-        //-------------  Top Right Table ---------------------------------------------------------------------
-        $scope.table_topright1=  res.data.table_topright1;
 
 
 
@@ -156,6 +211,12 @@ app.controller('rootCtrl',  function($scope, $http){
             $scope.tab1Graphs.push({title:dailyGraphTitle1,"graph": $scope.tab1DailyGraph});
             $scope.activeTab1Graph= dailyGraphTitle1;
             $scope.toggelTab1Graph= function(type){  $scope.activeTab1Graph=type }
+
+
+
+
+        //-------------  Top Right Table ---------------------------------------------------------------------
+        $scope.table_topright1=  res.data.table_topright1;
 
 
 
@@ -182,28 +243,6 @@ app.controller('rootCtrl',  function($scope, $http){
 
         //--------------  Middle Right Column ------------------------------------------------------
         $scope.bottomTable2 = res.data.table_bottom_2;
-
-
-        //-----------  Bottom Big Table  ------------------------------------------------------------
-        $("#table_bottom1").tabulator(table_bottom1_static);
-        $("#table_bottom1").tabulator("setData", res.data.table_bottom1.rows);
-
-
-
-
-
-        })
-})
-</script>
-
-
-
-
-
-
-<!---
-
-
 
 
 
