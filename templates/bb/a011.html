@@ -22,6 +22,9 @@
     <script type="text/javascript" src="../../static/gg/tabulator/tabulator.js"></script>
 
     <link rel="stylesheet" href="../../static/gg/custom_js_css/bootstrap.min.css">
+
+
+
   <style>
       *{ box-sizing:border-box;}
       .box{   border-radius: 4px;   border: 3px solid #E6E6E6;  }
@@ -36,29 +39,7 @@
       ul.menu li{  display:inline-block;  padding:10px;  }
     
     </style>
-    <script>
 
-    var tabGraphUrl= "../../static/gg/custom_json/area-graph.json";
-
-    var pageTopBoxJson= "../../static/gg/custom_json/page2.json";
-
-    var topBoxColor=["#CB6674","#3362BB","#CB6674"];
-
-    var dailyGraphTitle=   "日";
-    var monthlyGraphTitle= "月";
-    var weeklyGraphTitle=  "週";
-
-    function areaChart(){ return {
-       "chart": { "caption": "", "subcaption": "", "plotgradientcolor": "", "bgcolor": "FFFFFF",
-                  "showalternatehgridcolor": "0", "showplotborder": "0", "showvalues": "0", "labeldisplay": "WRAP",
-                  "divlinecolor": "CCCCCC", "showcanvasborder": "0", "canvasborderalpha": "0", "palettecolors": "990000",
-                  "yaxisvaluespadding": "10", "showborder": "0"
-                },
-       "data": []
-       }
-    }
-
-    </script>
 </head>
 
 <body>
@@ -119,9 +100,31 @@
 　　</div>
 </body>
 
+<script>
+    var json_page=   "../../static/gg/custom_json/page_a011.json";
+
+    var topBoxColor=["#CB6674","#3362BB","#CB6674"];
+
+
+    //-------------- Graph Setup -----------------------------------------------------------------------------
+    var dailyGraphTitle=   "日";
+    var monthlyGraphTitle= "月";
+    var weeklyGraphTitle=  "週";
+
+    function areaChart(){ return {
+       "chart": { "caption": "", "subcaption": "", "plotgradientcolor": "", "bgcolor": "FFFFFF",
+                  "showalternatehgridcolor": "0", "showplotborder": "0", "showvalues": "0", "labeldisplay": "WRAP",
+                  "divlinecolor": "CCCCCC", "showcanvasborder": "0", "canvasborderalpha": "0", "palettecolors": "990000",
+                  "yaxisvaluespadding": "10", "showborder": "0"
+                },
+       "data": []
+       }
+    }
+
+</script>
+
 
 <script>
-    
     // Initiliation Graphs, Tables
     angular.module("app", ['ng-fusioncharts', 'ui.grid','ui.bootstrap']).controller("rootCtrl",function($scope,$http){
 
@@ -137,10 +140,22 @@
 
 
 
-        $http.get(tabGraphUrl).then(function(res){
+        $http.get(json_page).then(function(res){
 
+            //------------------ Top boxes ------------------------------------------------------
+            $scope.topBoxColor=  topBoxColor;
+            $scope.firstGraph=   res.data.value_top.data;
+            $scope.set_color=    function(index){
+                console.log(index)
+                return {
+                    color:$scope.topBoxColor[index%$scope.topBoxColor.length]
+                }
+            }
+
+
+            // ------------------  Tab Graph -------------------------------------------
             $scope.middleGraphTab1=res.data.graph_middle_tab1;
-            //----------------daily graph -tab1-----------------------
+            //----------------daily graph -tab1-----------------------------------------
             $scope.tab1Daily=$scope.middleGraphTab1.daily_graph.data;
             $scope.tab1DailyGraph=areaChart();
             for(var index=0;index< $scope.tab1Daily.categories[0].data.length;index++){
@@ -150,7 +165,7 @@
                 })
             }
             
-            //---------------weekly graph -tab1-------------
+            //---------------weekly graph -tab1-----------------------------------------
             $scope.tab1Weekly=$scope.middleGraphTab1.weekly_graph.data;
             $scope.tab1WeeklyGraph=areaChart();
             for(var index=0;index< $scope.tab1Weekly.categories[0].data.length;index++){
@@ -159,7 +174,7 @@
                     value:$scope.tab1Weekly.categories[0].data[index].value
                 })
             }
-            //--------------monthly graph -tab1-------------------
+            //--------------monthly graph -tab1------------------------------------------
             $scope.tab1monthly=$scope.middleGraphTab1.monthly_graph.data;
             $scope.tab1MonthlyGraph=areaChart();
             for(var index=0;index< $scope.tab1monthly.categories[0].data.length;index++){
@@ -290,18 +305,6 @@
 
 
 
-        })
-
-
-        $http.get(pageTopBoxJson).then(function(res){
-            $scope.topBoxColor=topBoxColor;
-            $scope.firstGraph=res.data.value_top.data;
-            $scope.set_color=function(index){
-                console.log(index)
-                return {
-                    color:$scope.topBoxColor[index%$scope.topBoxColor.length]
-                }
-            }
         })
     })
     </script>
