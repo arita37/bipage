@@ -1,46 +1,67 @@
+{% verbatim %}
+
+
 <!DOCTYPE html>
 <html>
-{% verbatim %}
+
 <head><title>A061_bunseki3.html</title>
 <meta charset="UTF-8">
+
+
+<!---
+<script> var json_page= "../../geoproject/static/gg/custom_json/page_a061_bunseki3.json"
+</script>
+
+<link rel="stylesheet" href="../../geoproject/static/css/style.css" >
+<script src="../../geoproject/static/gg/custom_js_css/njfiorioze-3.2.1.js"></script> <script src="../../geoproject/static/gg/custom_js_css/njfiorioze-ui.js"></script> <script src="../../geoproject/static/gg/custom_js_css/dbca6ceb2a.js"></script> <script type="text/javascript" src="../../geoproject/static/gg/custom_js_css/jsfhue/jsfhue.js"></script> <script type="text/javascript" src="../../geoproject/static/gg/pdgjr5/js/pdgjr5.js"></script> <script type="text/javascript" src="../../geoproject/static/gg/pdgjr5/wrappers/jsfhuejs/jfsdfsdf5sd5fs5d.min.js"></script> <script src="../../geoproject/static/gg/custom_js_css/ui-grid.min.js"></script> <link rel="stylesheet" href="../../geoproject/static/gg/custom_js_css/ui-grid.min.css"> <link href="../../geoproject/static/gg/custom_js_css/a5e4e5z.min.css" rel="stylesheet"> <script type="text/javascript" src="../../geoproject/static/gg/a5e4e5z/a5e4e5z.js"></script> <link rel="stylesheet" href="../../geoproject/static/gg/custom_js_css/bootstrap.min.css"> <script type="text/javascript" src="../../geoproject/static/gg/custom_js_css/jsfhue/ui-bootstrap-tpls-2.5.0.min.js"></script> <script type="text/javascript" src="../../geoproject/static/gg/pdgjr5/js/ds8f5dsf5s.js"></script> <script type="text/javascript" src="../../geoproject/static/gg/pdgjr5/js/prezjrzej.js"></script>
+
+--->
+
+
+
 <link rel="stylesheet" href="../../static/css/style.css" >
 <script src="../../static/gg/custom_js_css/njfiorioze-3.2.1.js"></script> <script src="../../static/gg/custom_js_css/njfiorioze-ui.js"></script> <script src="../../static/gg/custom_js_css/dbca6ceb2a.js"></script> <script type="text/javascript" src="../../static/gg/custom_js_css/jsfhue/jsfhue.js"></script> <script type="text/javascript" src="../../static/gg/pdgjr5/js/pdgjr5.js"></script> <script type="text/javascript" src="../../static/gg/pdgjr5/wrappers/jsfhuejs/jfsdfsdf5sd5fs5d.min.js"></script> <script src="../../static/gg/custom_js_css/ui-grid.min.js"></script> <link rel="stylesheet" href="../../static/gg/custom_js_css/ui-grid.min.css"> <link href="../../static/gg/custom_js_css/a5e4e5z.min.css" rel="stylesheet"> <script type="text/javascript" src="../../static/gg/a5e4e5z/a5e4e5z.js"></script> <link rel="stylesheet" href="../../static/gg/custom_js_css/bootstrap.min.css"> <script type="text/javascript" src="../../static/gg/custom_js_css/jsfhue/ui-bootstrap-tpls-2.5.0.min.js"></script> <script type="text/javascript" src="../../static/gg/pdgjr5/js/ds8f5dsf5s.js"></script> <script type="text/javascript" src="../../static/gg/pdgjr5/js/prezjrzej.js"></script>
+<script>
+ var json_page=   "../../static/gg/custom_json/page_a061_bunseki3.json"
+</script>
+
+
 
 <style>
 .rTable { display: table; width: 100%; } .rTableRow { display: table-row; } .rTableHeading { display: table-header-group; background-color: #ddd; } .rTableCell, .rTableHead { display: table-cell; padding: 3px 10px; border: 1px solid #999999; } .rTableHeading { display: table-header-group; background-color: #ddd; font-weight: bold; } .rTableFoot { display: table-footer-group; font-weight: bold; background-color: #ddd; } .rTableBody { display: table-row-group; }
+
+
+.h4class { font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", YuGothic, Verdana, Meiryo, sans-serif ;     font-size: 16px; font-weight: 600; }
+
 </style>
 
 </head>
 <body>
 <div class="container" ng-app="app" ng-controller="rootCtrl">
 
-<h1>全体分析</h1>
-
-<div class="row">
-<div class="col-xs-6" ng-if="left_circular">
- <h3>リタン 比率</h3>
+<!---  <h1>全体分析</h1>   --->
+<br><br>
+<div class="row"><div class="col-xs-6" ng-if="left_circular">
+<h4 class="h4class">リ－ビタ－ 比率</h4>
 <div fusioncharts width="100%" height="300" type="doughnut2d" dataSource="{{circularchart_topleft}}"> </div>
-</div>
-</div>
-
+</div></div>
 
 <br><hr><br>
 
-
 <!-------------    Middle    Circular Graph   ----------------------------------------------------------------------->
-<h2>User Tanmatsu joukyou</h2>
+<h4 class="h4class">ユ－ザ－端末状況</h4>
 <div class="row">
             <div class="col-xs-4" ng-if="left_circular">
-                <h3>Return Hiritsu</h3>
+                <h4 class="h4class">利用規約同意率</h4>
                 <div fusioncharts width="100%" height="300" type="doughnut2d" dataSource="{{circularchartleft}}"> </div>
             </div>
             <div class="col-xs-4" ng-if="middle_circular">
-                <h3>Return Hiritsu</h3>
+                <h4 class="h4class">位置情報利用許可率</h4>
                 <div fusioncharts width="100%" height="300" type="doughnut2d" dataSource="{{circularchartmiddle}}"> </div>
             </div>
 
             <div class="col-xs-4" ng-if="right_circular">
-                <h3>Return Hiritsu</h3>
+                <h4 class="h4class">BluetoothON率</h4>
                 <div fusioncharts width="100%" height="300" type="doughnut2d" dataSource="{{circularchartright}}"> </div>
             </div>
 
@@ -51,14 +72,13 @@
 <br><hr><br>
 
 
-
-<h2>Return Hiritsu</h2>
+<h4 class="h4class">ユ－ザ－端末状況</h4>
 <!---    Bottom :   Tables ----------------------------------------------------------------------------------->
 <div class="row">
             <div class="row">
                 <div class="col-xs-4">
                     <label class="tableTitle">{{bottomTable1.meta.title}}</label>
-                    <table id="example" class="table table-striped" cellspacing="0" width="100%">
+                    <table  style="font-size: 12px;"  id="example" class="table table-striped" cellspacing="0" width="100%">
                         <thead><tr>
                             <td>{{bottomTable1.columns[1]}}</td><td>{{bottomTable1.columns[2]}}</td>
                             <td>{{bottomTable1.columns[3]}}</td><td>{{bottomTable1.columns[4]}}</td>
@@ -75,7 +95,7 @@
                 </div>
                 <div class="col-xs-4">
                     <label class="tableTitle">{{bottomTable2.meta.title}}</label>
-                    <table id="example" class="table table-striped" cellspacing="0" width="100%">
+                    <table  style="font-size: 12px;"   id="example" class="table table-striped" cellspacing="0" width="100%">
                         <thead><tr>
                             <td>{{bottomTable2.columns[1]}}</td><td>{{bottomTable2.columns[2]}}</td>
                             <td>{{bottomTable2.columns[3]}}</td><td>{{bottomTable2.columns[4]}}</td>
@@ -92,7 +112,7 @@
                 </div>
                 <div class="col-xs-4">
                     <label class="tableTitle">{{bottomTable3.meta.title}}</label>
-                    <table id="example" class="table table-striped" cellspacing="0" width="100%">
+                    <table   style="font-size: 12px;" id="example" class="table table-striped" cellspacing="0" width="100%">
                         <thead><tr>
                             <td>{{bottomTable3.columns[1]}}</td><td>{{bottomTable3.columns[2]}}</td>
                             <td>{{bottomTable3.columns[3]}}</td><td>{{bottomTable3.columns[4]}}</td>
@@ -100,7 +120,7 @@
                         <tbody>
                             <tr clas="border-less" ng-repeat="row in bottomTable3.rows">
                                 <td style="border:none">{{row[1]}}</td>
-                                <td style="border:none; text-decoration:underline">{{row[2]}}</td>
+                                <td style="border:none;">{{row[2]}}</td>
                                 <td style="border:none; color:#DF707E">{{row[3]}}</td>
                                 <td style="border:none">{{'('+row[4]+')'}}</td>
                             </tr>
@@ -116,22 +136,17 @@
 
 
 <script>
-
-var json_page= "../../static/gg/custom_json/page_a061_bunseki3.json"
-
-
-
 //------------------------- Bottom circular chart options-------------------------------------
 var circularchart_topleft_static={
   "circularGraphColors": ["#CD0A59", "#E84F63", "#D3D3D3"],
-  "caption" :  "circular_graph1",
-  "chart": {"enableSmartLabels": "1", "chartTopMargin": "0", "chartRightMargin": "0", "chartBottomMargin": "0", "caption": "", "subCaption": "", "numberPrefix": "", "bgColor": "#ffffff", "showBorder": "0", "use3DLighting": "0", "showShadow": "0", "enableSmartLabels": "1", "startingAngle": "310", "showLabels": "0", "showValues": "1", "showPercentValues": "1", "showLegend": "1","legendShadow": "0", "legendPosition": "bottom", "legendBorderAlpha": "0", "defaultCenterLabel": "", "centerLabel": "", "centerLabelBold": "0", "showTooltip": "1", "decimals": "0", "captionFontSize": "14", "subcaptionFontSize": "14", "subcaptionFontBold": "0", "useDataPlotColorForLabels": "1", "legendlabel": "ddd"}
+  "caption" :  "",
+  "chart": {"enableSmartLabels": "1", "chartTopMargin": "0", "chartRightMargin": "0", "chartBottomMargin": "0", "caption": "", "subCaption": "", "numberPrefix": "", "bgColor": "#ffffff", "showBorder": "0", "use3DLighting": "0", "showShadow": "0", "enableSmartLabels": "1", "startingAngle": "310", "showLabels": "0", "showValues": "1", "showPercentValues": "1", "showLegend": "1","legendShadow": "0", "legendPosition": "right", "legendBorderAlpha": "0", "defaultCenterLabel": "", "centerLabel": "", "centerLabelBold": "0", "showTooltip": "1", "decimals": "0", "captionFontSize": "14", "subcaptionFontSize": "14", "subcaptionFontBold": "0", "useDataPlotColorForLabels": "1", "legendlabel": "ddd"}
 , "data": undefined
 }
 
 var circularchart_left_static={
   "circularGraphColors": ["#CD0A59", "#E84F63", "#D3D3D3"],
-  "caption" :  "circular_graph1",
+  "caption" :  "",
   "chart": {"enableSmartLabels": "1", "chartTopMargin": "0", "chartRightMargin": "0", "chartBottomMargin": "0", "caption": "", "subCaption": "", "numberPrefix": "", "bgColor": "#ffffff", "showBorder": "0", "use3DLighting": "0", "showShadow": "0", "enableSmartLabels": "0", "startingAngle": "310", "showLabels": "0", "showValues": "1", "showPercentValues": "1", "showLegend": "1","legendShadow": "0", "legendPosition": "bottom", "legendBorderAlpha": "0", "defaultCenterLabel": "", "centerLabel": "", "centerLabelBold": "0", "showTooltip": "1", "decimals": "0", "captionFontSize": "14", "subcaptionFontSize": "14", "subcaptionFontBold": "0", "useDataPlotColorForLabels": "1", "legendlabel": "ddd"}
 , "data": undefined
 }
@@ -139,7 +154,7 @@ var circularchart_left_static={
 
 var circularchart_middle_static={
   "circularGraphColors": ["#CD0A59", "#E84F63", "#D3D3D3"],
-  "caption" :  "circular_graph2",
+  "caption" :  "",
   "chart": {"enableSmartLabels": "1", "chartTopMargin": "0", "chartRightMargin": "0", "chartBottomMargin": "0", "caption": "", "subCaption": "", "numberPrefix": "", "bgColor": "#ffffff", "showBorder": "0", "use3DLighting": "0", "showShadow": "0", "enableSmartLabels": "0", "startingAngle": "310", "showLabels": "0", "showValues": "1", "showPercentValues": "1", "showLegend": "1","legendShadow": "0", "legendPosition": "bottom", "legendBorderAlpha": "0", "defaultCenterLabel": "", "centerLabel": "", "centerLabelBold": "0", "showTooltip": "1", "decimals": "0", "captionFontSize": "14", "subcaptionFontSize": "14", "subcaptionFontBold": "0", "useDataPlotColorForLabels": "1", "legendlabel": "ddd"}
 , "data": undefined
 }
@@ -147,7 +162,7 @@ var circularchart_middle_static={
 
 var circularchart_right_static={
   "circularGraphColors": ["#CD0A59", "#E84F63", "#D3D3D3"],
-  "caption" :  "circular_graph2",
+  "caption" :  "",
   "chart": {"enableSmartLabels": "1", "chartTopMargin": "0", "chartRightMargin": "0", "chartBottomMargin": "0", "caption": "", "subCaption": "", "numberPrefix": "", "bgColor": "#ffffff", "showBorder": "0", "use3DLighting": "0", "showShadow": "0", "enableSmartLabels": "0", "startingAngle": "310", "showLabels": "0", "showValues": "1", "showPercentValues": "1", "showLegend": "1","legendShadow": "0", "legendPosition": "bottom", "legendBorderAlpha": "0", "defaultCenterLabel": "", "centerLabel": "", "centerLabelBold": "0", "showTooltip": "1", "decimals": "0", "captionFontSize": "14", "subcaptionFontSize": "14", "subcaptionFontBold": "0", "useDataPlotColorForLabels": "1", "legendlabel": "ddd"}
 , "data": undefined
 }
@@ -170,6 +185,13 @@ function pctFormat(value, data, cell, row, options) {   return value + "%";  }; 
 
 
 
+{% endverbatim %}
+<script>
+var res= {"data" :  {} };
+res.data=  JSON.parse("{{ json_page_python |escapejs }}")
+</script>
+{% verbatim %}
+
 
 
 
@@ -181,7 +203,7 @@ var app = angular.module("app", ['ng-fusioncharts', 'ui.grid','ui.bootstrap']);
 //  JSON to Angular
 app.controller('rootCtrl',  function($scope, $http){
         // Asynchrone Get
-        $http.get(json_page).then(function(res){
+        //$http.get(json_page).then(function(res){
 
 
 
@@ -201,7 +223,7 @@ app.controller('rootCtrl',  function($scope, $http){
         var graphData= [];
         for (var i = 0; i < circulargraphData.length; i++) {
            var obj = circulargraphData[i];
-           graphData.push({ "label": obj.label , "value": obj.count , "color": colors[i % colors.length]
+           graphData.push({ "label": obj.label , "value": obj.value , "color": colors[i % colors.length]
         })}
 
         $scope.circularchart_topleft.data =     graphData;
@@ -219,7 +241,7 @@ app.controller('rootCtrl',  function($scope, $http){
         var graphData= [];
         for (var i = 0; i < circulargraphData.length; i++) {
            var obj = circulargraphData[i];
-           graphData.push({ "label": obj.label , "value": obj.count , "color": colors[i % colors.length]
+           graphData.push({ "label": obj.label , "value": obj.value , "color": colors[i % colors.length]
         })}
 
         $scope.circularchartleft.data =     graphData;
@@ -236,7 +258,7 @@ app.controller('rootCtrl',  function($scope, $http){
         var graphData= [];
         for (var i = 0; i < circulargraphData.length; i++) {
            var obj = circulargraphData[i];
-           graphData.push({ "label": obj.label , "value": obj.count , "color": colors[i % colors.length]
+           graphData.push({ "label": obj.label , "value": obj.value , "color": colors[i % colors.length]
         })}
         $scope.circularchartmiddle.data =     graphData;
         $scope.middle_circular = true;
@@ -252,13 +274,13 @@ app.controller('rootCtrl',  function($scope, $http){
         var graphData= [];
         for (var i = 0; i < circulargraphData.length; i++) {
            var obj = circulargraphData[i];
-           graphData.push({ "label": obj.label , "value": obj.count , "color": colors[i % colors.length]
+           graphData.push({ "label": obj.label , "value": obj.value , "color": colors[i % colors.length]
         })}
         $scope.circularchartright.data =     graphData;
         $scope.right_circular = true;
 
 
-        })
+        //})
 
 })
 </script>
@@ -271,7 +293,7 @@ app.controller('rootCtrl',  function($scope, $http){
 </body>
 </html>
 
-{% endverbatim %}
+
 
 
 
@@ -349,3 +371,9 @@ app.controller('rootCtrl',  function($scope, $http){
 
 
 ---->
+
+
+{% endverbatim %}
+
+
+

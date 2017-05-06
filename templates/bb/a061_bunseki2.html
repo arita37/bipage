@@ -5,7 +5,25 @@
     <meta charset="UTF-8">
     <title>A011</title>
     <!-- load library--->
-    <script src="../../static/gg/custom_js_css/njfiorioze-3.2.1.js"></script> <script src="../../static/gg/custom_js_css/njfiorioze-ui.js"></script> <script src="../../static/gg/custom_js_css/dbca6ceb2a.js"></script> <script type="text/javascript" src="../../static/gg/custom_js_css/jsfhue/jsfhue.js"></script> <script type="text/javascript" src="../../static/gg/pdgjr5/js/pdgjr5.js"></script> <script type="text/javascript" src="../../static/gg/pdgjr5/wrappers/jsfhuejs/jfsdfsdf5sd5fs5d.min.js"></script> <script src="../../static/gg/custom_js_css/ui-grid.min.js"></script> <link rel="stylesheet" href="../../static/gg/custom_js_css/ui-grid.min.css"> <link href="../../static/gg/custom_js_css/a5e4e5z.min.css" rel="stylesheet"> <script type="text/javascript" src="../../static/gg/a5e4e5z/a5e4e5z.js"></script> <link rel="stylesheet" href="../../static/gg/custom_js_css/bootstrap.min.css"> <script type="text/javascript" src="../../static/gg/custom_js_css/jsfhue/ui-bootstrap-tpls-2.5.0.min.js"></script> <script type="text/javascript" src="../../static/gg/pdgjr5/js/ds8f5dsf5s.js"></script> <script type="text/javascript" src="../../static/gg/pdgjr5/js/prezjrzej.js"></script>
+<!--- Internal testing ---->
+
+<!---
+<script> var json_page= "../../geoproject/static/gg/custom_json/page_a061_bunseki2.json"
+</script>
+
+<link rel="stylesheet" href="../../geoproject/static/css/style.css" >
+<script src="../../geoproject/static/gg/custom_js_css/njfiorioze-3.2.1.js"></script> <script src="../../geoproject/static/gg/custom_js_css/njfiorioze-ui.js"></script> <script src="../../geoproject/static/gg/custom_js_css/dbca6ceb2a.js"></script> <script type="text/javascript" src="../../geoproject/static/gg/custom_js_css/jsfhue/jsfhue.js"></script> <script type="text/javascript" src="../../geoproject/static/gg/pdgjr5/js/pdgjr5.js"></script> <script type="text/javascript" src="../../geoproject/static/gg/pdgjr5/wrappers/jsfhuejs/jfsdfsdf5sd5fs5d.min.js"></script> <script src="../../geoproject/static/gg/custom_js_css/ui-grid.min.js"></script> <link rel="stylesheet" href="../../geoproject/static/gg/custom_js_css/ui-grid.min.css"> <link href="../../geoproject/static/gg/custom_js_css/a5e4e5z.min.css" rel="stylesheet"> <script type="text/javascript" src="../../geoproject/static/gg/a5e4e5z/a5e4e5z.js"></script> <link rel="stylesheet" href="../../geoproject/static/gg/custom_js_css/bootstrap.min.css"> <script type="text/javascript" src="../../geoproject/static/gg/custom_js_css/jsfhue/ui-bootstrap-tpls-2.5.0.min.js"></script> <script type="text/javascript" src="../../geoproject/static/gg/pdgjr5/js/ds8f5dsf5s.js"></script> <script type="text/javascript" src="../../geoproject/static/gg/pdgjr5/js/prezjrzej.js"></script>
+--->
+
+<!--- Prod ---->
+
+<script>
+ var json_page= "../../static/gg/custom_json/page_a061_bunseki2.json"
+</script>
+
+<link rel="stylesheet" href="../../static/css/style.css" >
+<script src="../../static/gg/custom_js_css/njfiorioze-3.2.1.js"></script> <script src="../../static/gg/custom_js_css/njfiorioze-ui.js"></script> <script src="../../static/gg/custom_js_css/dbca6ceb2a.js"></script> <script type="text/javascript" src="../../static/gg/custom_js_css/jsfhue/jsfhue.js"></script> <script type="text/javascript" src="../../static/gg/pdgjr5/js/pdgjr5.js"></script> <script type="text/javascript" src="../../static/gg/pdgjr5/wrappers/jsfhuejs/jfsdfsdf5sd5fs5d.min.js"></script> <script src="../../static/gg/custom_js_css/ui-grid.min.js"></script> <link rel="stylesheet" href="../../static/gg/custom_js_css/ui-grid.min.css"> <link href="../../static/gg/custom_js_css/a5e4e5z.min.css" rel="stylesheet"> <script type="text/javascript" src="../../static/gg/a5e4e5z/a5e4e5z.js"></script> <link rel="stylesheet" href="../../static/gg/custom_js_css/bootstrap.min.css"> <script type="text/javascript" src="../../static/gg/custom_js_css/jsfhue/ui-bootstrap-tpls-2.5.0.min.js"></script> <script type="text/javascript" src="../../static/gg/pdgjr5/js/ds8f5dsf5s.js"></script> <script type="text/javascript" src="../../static/gg/pdgjr5/js/prezjrzej.js"></script>
+
 
 
   <style>
@@ -21,6 +39,8 @@
       ul.menu{     list-style:none }
       ul.menu li{  display:inline-block;  padding:10px;  }
 
+.h4class { font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", YuGothic, Verdana, Meiryo, sans-serif ;     font-size: 16px; font-weight: 600; }
+
     </style>
 
 
@@ -30,9 +50,18 @@
 <body>
     <div class="container" ng-app="app" ng-controller="rootCtrl">
 
+         <h4 class="h4class">アプリ　DNA</h4>
+       <!-- <div style="height: 10px; text-align: right;"><a style="background-color: transparent;"  href="#" ng-click="toggelTab1Graph('日')">日</a> <a style="background-color: transparent;"  href="#" ng-click="toggelTab1Graph('週')">週</a> <a style="background-color: transparent;"  href="#" ng-click="toggelTab1Graph('月')">月</a></div>  -->
+        <div class="row" >
+        　<div class="col-xs-12" ng-if="line_flag">
+            <div fusioncharts width="100%" height="500" type="msline" dataSource="{{line_chart_daily}}"></div>
+
+        　</div>
+
         <div class="row">
             <div class="col-xs-12" ng-if="line_flag">
-                <div fusioncharts width="100%" height="400" type="msline" dataSource="{{line_chart}}"></div>
+
+
             </div>
         </div>
 <hr>
@@ -49,21 +78,6 @@ http://olifolkerd.github.io/tabulator/docs/#css
 --->
 
 
-
-
-
-<!---
- <div convert-table="{{table_bottom1}}"></div>
-
-<div class="row">
- <div class="col-xs-12 margn-btm" ng-repeat="d in allBigTables">
-    <div convert-table="{{d}}"></div>
- </div>
- </div>
---->
-
-
-
 　　</div>
 </body>
 
@@ -75,20 +89,22 @@ http://olifolkerd.github.io/tabulator/docs/#css
 /*  http://www.fusioncharts.com/dev/chart-attributes.html?chart=multilevelpie
 */
 
-var json_page=       "../../static/gg/custom_json/page_a061_bunseki2.json";
-
-
 
 //-------------TOP Graph -----------------------------------------------------------------------------
 var lineGraphColors=["#C72C5E", "#DE3E58", "#A1B1C3"]
 var LINE_CAPTION="caption for line graph";
-var LINE_SUBCAPTION="subcaption for line graph"
+var LINE_SUBCAPTION="";
 var lineChartOptions={
-  "chart": { "caption": "Daily Visits", "linethickness": "1", "showvalues": "0","formatnumberscale": "0", "anchorradius": "2",
-  "divlinecolor": "666666", "divlinealpha": "30", "divlineisdashed": "1", "labelstep": "2", "bgcolor": "FFFFFF",
-  "showalternatehgridcolor": "0", "labelpadding": "10", "canvasborderthickness": "1", "legendiconscale": "1.5",
-  "legendshadow": "0", "legendborderalpha": "0", "canvasborderalpha": "50", "numvdivlines": "5", "vdivlinealpha": "20",
-  "showborder": "0"
+  "chart": { "caption": "", "linethickness": "1", "showvalues": "0","formatnumberscale": "0",
+        "subcaption": "", "plotgradientcolor": "#F1F1F1",
+                  "showalternatehgridcolor": "0", "showplotborder": "0", "showvalues": "1",
+                  "divlinecolor": "CCCCCC", "showcanvasborder": "0", "canvasborderalpha": "0", "palettecolors": "ED7D8B",
+                  "yaxisvaluespadding": "10", "showborder": "0",
+                  "anchorradius": "4",  "anchorborderthickness": "2", "anchorbgcolor": "red",
+                  "plotbordercolor": "008ee4","plotborderthickness": "3",
+                  "labelDisplay": "rotate", "bgColor": "EEEEEE,CCCCCC",
+                 "bgratio": "60,40", "bgAlpha": "70,80",
+
   }
   ,"categories": [ {"category": [] } ]
   , "dataset": []
@@ -98,19 +114,27 @@ var lineChartOptions={
 
 //------------------ Bottom big table ----------------------------------------------------------------
 // http://olifolkerd.github.io/tabulator/docs/#css
-
+// height:"400px",
 function pctFormat(value, data, cell, row, options) {   return value + "%";  }; //plain text value
 
 var table_bottom1_static= {fitColumns: true,
-   columns: [{title: "CV Area 1",   field: "1", align: "left", sorter:"string" },
-             {title: "CV Area 2",   field: "2"},
-             {title: "percentage",  field: "3", align: "center", formatter: "progress"},
-             {title: "percentage",  field: "3", align: "center", formatter: pctFormat},
-             {title: "Pct 1" ,      field: "4"} ,
-             {title: "Pct 2"  ,     field: "5"}], }
+width:"100%",
+
+  fitColumns:true,
+  tooltips:true,
+  pagination:false,
+  movableCols:true,
+
+   columns: [{title: "設置場所分類(大分類中分類)",   field: "2", align: "left", sorter:"string" },
+             {title: "ユ－ザ－数バ－",   field: "4", align: "center", formatter: "progress"},
+             {title: "ユ－ザ－数",  field: "3", },
+             {title: "ユ－ザ－率",  field: "4", formatter: pctFormat },
+             {title: "ログ反応数",         field: "5", align: "center" },
+             {title: "利用ビ－コン反応数",  field: "6", align: "center" } ,
+             {title: "CVビ－コン反応数" ,  field: "7",  align: "center" }] }
+
 
 </script>
-
 
 
 
@@ -128,29 +152,70 @@ app.controller('rootCtrl',  function($scope, $http){
 
         // --------------------- Top Middle line chart ------------------------------------------------
         $scope.line_flag = false;
-        $scope.line_chart = lineChartOptions;
-
-
-        $scope.line_chart.chart.caption =     LINE_CAPTION;
-        $scope.line_chart.chart.subcaption =  LINE_SUBCAPTION;
+        $scope.line_chart_daily = lineChartOptions;
+        $scope.line_chart_daily.chart.caption =     LINE_CAPTION;
+        $scope.line_chart_daily.chart.subcaption =  LINE_SUBCAPTION;
         $scope.line_flag = true;
-        $scope.line_chart.categories[0].category = [];
-        var lineChartXAxis = res.data.line_graph.xaxis.data;
+        $scope.line_chart_daily.categories[0].category = [];
+        var lineChartXAxis = res.data.line_graph_daily.xaxis.data;
         lineChartXAxis.forEach(function (item) {
-             $scope.line_chart.categories[0].category.push({
-                        "label": item.value, "stepSkipped": false
-             })
+             $scope.line_chart_daily.categories[0].category.push({ "label": item.value, "stepSkipped": false  })
         });
 
-        $scope.line_chart.chart.caption = res.data.line_graph.meta.title;
+        $scope.line_chart_daily.chart.caption = res.data.line_graph_daily.meta.title;
         var line_colors = lineGraphColors;
-        $scope.line_chart.dataset = [];
-         res.data.line_graph.series.forEach(function (item, index) {
+        $scope.line_chart_daily.dataset = [];
+         res.data.line_graph_daily.series.forEach(function (item, index) {
                         item.color = line_colors[index % line_colors.length];
-                        $scope.line_chart.dataset[index] = item;
+                        $scope.line_chart_daily.dataset[index] = item;
          })
 
 
+/*
+Does not make to have weekly or Monthly Profile, give up this part
+
+      To do for Mutiple Graph
+            // ------------------  Tab Graph -------------------------------------------
+            $scope.middleGraphTab1=res.data.graph_middle_tab1;
+
+            //----------------daily graph -tab1-----------------------------------------
+            $scope.tab1Daily= $scope.line_graph_daily.data;
+            $scope.tab1DailyGraph=areaChart();
+            for(var index=0;index< $scope.tab1Daily.categories[0].data.length;index++){
+                $scope.tab1DailyGraph.data.push({
+                    label:$scope.tab1Daily.xaxis.data[index].value,
+                    value:$scope.tab1Daily.categories[0].data[index].value
+                })
+            }
+
+            //---------------weekly graph -tab1-----------------------------------------
+            $scope.tab1Weekly= $scope.line_graph_weekly.data;
+            $scope.tab1WeeklyGraph=areaChart();
+            for(var index=0;index< $scope.tab1Weekly.categories[0].data.length;index++){
+                $scope.tab1WeeklyGraph.data.push({
+                    label:$scope.tab1Weekly.xaxis.data[index].value,
+                    value:$scope.tab1Weekly.categories[0].data[index].value
+                })
+            }
+
+            //--------------monthly graph -tab1------------------------------------------
+            $scope.tab1monthly= $scope.line_graph_monthly.data;
+            $scope.tab1MonthlyGraph=areaChart();
+            for(var index=0;index< $scope.tab1monthly.categories[0].data.length;index++){
+                $scope.tab1MonthlyGraph.data.push({
+                    label:$scope.tab1monthly.xaxis.data[index].value,
+                    value:$scope.tab1monthly.categories[0].data[index].value
+                })
+            }
+            $scope.tab1Graphs=[]
+            $scope.tab1Graphs.push({title:dailyGraphTitle,"graph": $scope.tab1DailyGraph});
+            $scope.tab1Graphs.push({title:weeklyGraphTitle,graph: $scope.tab1WeeklyGraph});
+            $scope.tab1Graphs.push( {title:monthlyGraphTitle,graph:$scope.tab1MonthlyGraph});
+
+
+
+
+*/
 
 
         //-----------  Bottom Big Table  ------------------------------------------------------------

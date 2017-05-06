@@ -1,109 +1,60 @@
-{% verbatim %}
-<!doctype html>
-<html>
-<head>
+<!doctype html><html><head>
     <meta charset="UTF-8">
     <title>A011</title>
-    <!-- load library--->
-    <script src="../../static/gg/custom_js_css/njfiorioze-3.2.1.js"></script> <script src="../../static/gg/custom_js_css/njfiorioze-ui.js"></script> <script src="../../static/gg/custom_js_css/dbca6ceb2a.js"></script> <script type="text/javascript" src="../../static/gg/custom_js_css/jsfhue/jsfhue.js"></script> <script type="text/javascript" src="../../static/gg/pdgjr5/js/pdgjr5.js"></script> <script type="text/javascript" src="../../static/gg/pdgjr5/wrappers/jsfhuejs/jfsdfsdf5sd5fs5d.min.js"></script> <script src="../../static/gg/custom_js_css/ui-grid.min.js"></script> <link rel="stylesheet" href="../../static/gg/custom_js_css/ui-grid.min.css"> <link href="../../static/gg/custom_js_css/a5e4e5z.min.css" rel="stylesheet"> <script type="text/javascript" src="../../static/gg/a5e4e5z/a5e4e5z.js"></script> <link rel="stylesheet" href="../../static/gg/custom_js_css/bootstrap.min.css"> <script type="text/javascript" src="../../static/gg/custom_js_css/jsfhue/ui-bootstrap-tpls-2.5.0.min.js"></script> <script type="text/javascript" src="../../static/gg/pdgjr5/js/ds8f5dsf5s.js"></script> <script type="text/javascript" src="../../static/gg/pdgjr5/js/prezjrzej.js"></script>
+<script>
+var res={"data" : {}  };
+res.data=  JSON.parse("{{ json_page_python |escapejs }}")
+</script>
+
+<!--- Internal testing ---->
+<!---
+<script> var json_page= "../../geoproject/static/gg/custom_json/page_a011.json"
+</script>
+
+<link rel="stylesheet" href="../../geoproject/static/css/style.css" >
+<script src="../../geoproject/static/gg/custom_js_css/njfiorioze-3.2.1.js"></script> <script src="../../geoproject/static/gg/custom_js_css/njfiorioze-ui.js"></script> <script src="../../geoproject/static/gg/custom_js_css/dbca6ceb2a.js"></script> <script type="text/javascript" src="../../geoproject/static/gg/custom_js_css/jsfhue/jsfhue.js"></script> <script type="text/javascript" src="../../geoproject/static/gg/pdgjr5/js/pdgjr5.js"></script> <script type="text/javascript" src="../../geoproject/static/gg/pdgjr5/wrappers/jsfhuejs/jfsdfsdf5sd5fs5d.min.js"></script> <script src="../../geoproject/static/gg/custom_js_css/ui-grid.min.js"></script> <link rel="stylesheet" href="../../geoproject/static/gg/custom_js_css/ui-grid.min.css"> <link href="../../geoproject/static/gg/custom_js_css/a5e4e5z.min.css" rel="stylesheet"> <script type="text/javascript" src="../../geoproject/static/gg/a5e4e5z/a5e4e5z.js"></script> <link rel="stylesheet" href="../../geoproject/static/gg/custom_js_css/bootstrap.min.css"> <script type="text/javascript" src="../../geoproject/static/gg/custom_js_css/jsfhue/ui-bootstrap-tpls-2.5.0.min.js"></script> <script type="text/javascript" src="../../geoproject/static/gg/pdgjr5/js/ds8f5dsf5s.js"></script> <script type="text/javascript" src="../../geoproject/static/gg/pdgjr5/js/prezjrzej.js"></script>
+--->
 
 
-  <style>
-      *{ box-sizing:border-box;}
-      .box{   border-radius: 4px;   border: 3px solid #E6E6E6;  }
-      .box-container{ padding:10px;   }
-      .value {  font-size: 25px;  text-align: right; padding: 10px;   color:#CB6674; }
-      .title { padding: 5px;
-      /* color: #868686; */
-      }
-      .glyphicon{  font-size: 20px;   }
-      .mg-bot{     margin-bottom: 20px; }
-      ul.menu{     list-style:none }
-      ul.menu li{  display:inline-block;  padding:10px;  }
-    
-    </style>
-
-</head>
-
-<body>
-    <div class="container" ng-app="app" ng-controller="rootCtrl">
-    <div class="row">
-        <div class="col-xs-4 box-container" ng-repeat="data in firstGraph">
-            <div class="box">
-                <div class="title">{{data.title}}</div>
-                <div class="value">{{data.value}}<span ng-style="set_color($index)" class="glyphicon glyphicon glyphicon-arrow-{{data.image}}" aria-hidden="true"></span>
-                </div>
-            </div>
-        </div>
-　　</div>
-
-   <uib-tabset active="active" ng-if="tabGraphflag">
-
-    <uib-tab index="1"  heading="ユ－ザ-数">
-     <ul class="menu"><li><a href="#" ng-click="toggelTab1Graph('日')">日</a></li><li><a href="#" ng-click="toggelTab1Graph('週')">週</a></li><li><a href="#" ng-click="toggelTab1Graph('月')">月</a></li></ul>
-        <div class="row mg-bot" ng-repeat="graph in tab1Graphs" ng-show="graph.title==activeTab1Graph" >
-        　<div class="col-xs-12" >
-          　<label>{{graph.title}}</label>
-            <div fusioncharts width="100%" height="300" type="area2d" dataSource="{{graph.graph}}"> </div>
-        　</div>
-        </div>
-    </uib-tab>
-
-　  <uib-tab index="2"  heading="ログビ－コン反応数">
-    　　<ul class="menu"><li><a href="#" ng-click="toggelTab2Graph('日')">日</a></li><li><a href="#" ng-click="toggelTab2Graph('週')">週</a></li><li><a href="#" ng-click="toggelTab2Graph('月')">月</a></li></ul>
-        　<div class="row mg-bot" ng-repeat="graph in tab2Graphs" ng-show="graph.title==activeTab2Graph">
-       　　 <div class="col-xs-12" ><label>{{graph.title}}</label>
-            　　<div fusioncharts width="100%" height="300" type="area2d" dataSource="{{graph.graph}}"></div>
-        　　</div>
-        　</div>
-　　</uib-tab>
-
-    <uib-tab index="3"  heading="利用ビ－コン反応数">
-    　 <ul class="menu"><li><a href="#" ng-click="toggelTab3Graph('日')">日</a></li><li><a href="#" ng-click="toggelTab3Graph('週')">週</a></li><li><a href="#" ng-click="toggelTab3Graph('月')">月</a></li></ul>
-    　    <div class="row mg-bot" ng-repeat="graph in tab3Graphs" ng-show="graph.title==activeTab3Graph">
-      　  <div class="col-xs-12" >月
-　　　　　　　<label>{{graph.title}}</label>
-            　<div fusioncharts width="100%" height="300" type="area2d" dataSource="{{graph.graph}}"> </div>
-        　</div>
-        　</div>
-    </uib-tab>
-
-    <uib-tab index="4"  heading="CV ビ－コン反応数">
-    　 <ul class="menu"><li><a href="#" ng-click="toggelTab4Graph('日')">日</a></li><li><a href="#" ng-click="toggelTab4Graph('週')">週</a></li><li><a href="#" ng-click="toggelTab4Graph('月')">月</a></li></ul>
-    　    <div class="row mg-bot" ng-repeat="graph in tab4Graphs" ng-show="graph.title==activeTab4Graph">
-      　  <div class="col-xs-12" >
-　　　　　　　<label>{{graph.title}}</label>
-            　<div fusioncharts width="100%" height="300" type="area2d" dataSource="{{graph.graph}}"> </div>
-        　</div>
-        　</div>
-    </uib-tab>
-　 </uib-tabset>
+<!--- Prod ------------------------------------------------------------------------------------>
+<script> var json_page= "../../static/gg/custom_json/page_a011.json" </script>
 
 
-　　</div>
-</body>
+{% load static %}
+{% load compress %}
+{% compress js %}
+
+<script src="{% static 'gg/custom_js_css/njfiorioze-3.2.1.js'%}"></script> <script src="{% static 'gg/custom_js_css/njfiorioze-ui.js'%}"></script> <script src="{% static 'gg/custom_js_css/dbca6ceb2a.js'%}"></script> <script type="text/javascript" src="{% static 'gg/custom_js_css/jsfhue/jsfhue.js'%}"></script> <script type="text/javascript" src="{% static 'gg/pdgjr5/js/pdgjr5.js'%}"></script> <script type="text/javascript" src="{% static 'gg/pdgjr5/wrappers/jsfhuejs/jfsdfsdf5sd5fs5d.min.js'%}"></script> <script src="{% static 'gg/custom_js_css/ui-grid.min.js'%}"></script>   <script type="text/javascript" src="{% static 'gg/a5e4e5z/a5e4e5z.js'%}"></script>  <script type="text/javascript" src="{% static 'gg/custom_js_css/jsfhue/ui-bootstrap-tpls-2.5.0.min.js'%}"></script> <script type="text/javascript" src="{% static 'gg/pdgjr5/js/ds8f5dsf5s.js'%}"></script> <script type="text/javascript" src="{% static 'gg/pdgjr5/js/prezjrzej.js'%}"></script>
+
+
 
 <script>
-    var json_page=   "../../static/gg/custom_json/page_a011.json";
-
-    var topBoxColor=["#CB6674","#3362BB","#CB6674"];
-
-
+    var topBoxColor=["#CB6674","#CB6674","#CB6674", "#CB6674" ];
+    /*  Issues with rotation of color and sign of item */
     //-------------- Graph Setup -----------------------------------------------------------------------------
-    var dailyGraphTitle=   "日";
-    var monthlyGraphTitle= "月";
-    var weeklyGraphTitle=  "週";
+    var dailyGraphTitle=   "日"; var monthlyGraphTitle= "月"; var weeklyGraphTitle=  "週";
 
     function areaChart(){ return {
-       "chart": { "caption": "", "subcaption": "", "plotgradientcolor": "", "bgcolor": "FFFFFF",
-                  "showalternatehgridcolor": "0", "showplotborder": "0", "showvalues": "0", "labeldisplay": "WRAP",
-                  "divlinecolor": "CCCCCC", "showcanvasborder": "0", "canvasborderalpha": "0", "palettecolors": "990000",
-                  "yaxisvaluespadding": "10", "showborder": "0"
+       "chart": { "palettecolors": "ED7D8B", "labeldisplay": "rotate",
+                  "anchorradius": "4",  "anchorborderthickness": "2",  "anchorBgColor": "#CE5E71",
+                  "lineThickness": "5",
+
+                  "caption": "", "subcaption": "", "plotgradientcolor": "", "bgcolor": "FFFFFF",
+                  "showalternatehgridcolor": "0", "showplotborder": "0", "showvalues": "0",
+                  "divlinecolor": "CCCCCC", "showcanvasborder": "1", "canvasborderalpha": "1",  "yaxisvaluespadding": "10", "showborder": "0"
                 },
        "data": []
        }
     }
 
+/*
+anchorSides It specifies the number of sides the anchor will have, depending on the shape of the anchor you want to render. This attribute takes values between 3 and 20.
+anchorRadius It specifies the radius of the anchors(in pixels).
+anchorBorderColor It specifies the hex code of the color that will be used to render the anchor borders e.g. #00ffaa.
+anchorBorderThickness  It specifies the thickness of the anchor borders(in pixels).
+anchorBgColor  It specifies the hex code for the color that will be applied to the anchor background e.g. #00ffaa.
+anchorBgAlpha
+*/
 </script>
 
 
@@ -121,17 +72,21 @@
         $scope.toggelTab3Graph=function(type){   $scope.activeTab3Graph=type; }
         $scope.toggelTab4Graph=function(type){   $scope.activeTab4Graph=type; }
 
+        $http.get(json_page).then(function(res2){
+           return res2.data
+        })
 
+        // $http.get(json_page).then(function(res2){
 
-        $http.get(json_page).then(function(res){
+            // var res={"data" : {}};
+            // res.data= json_data
 
             //------------------ Top boxes ------------------------------------------------------
             $scope.topBoxColor=  topBoxColor;
             $scope.firstGraph=   res.data.value_top.data;
             $scope.set_color=    function(index){
                 console.log(index)
-                return {
-                    color:$scope.topBoxColor[index%$scope.topBoxColor.length]
+                return {  color:$scope.topBoxColor[index%$scope.topBoxColor.length]
                 }
             }
 
@@ -147,7 +102,7 @@
                     value:$scope.tab1Daily.categories[0].data[index].value
                 })
             }
-            
+
             //---------------weekly graph -tab1-----------------------------------------
             $scope.tab1Weekly=$scope.middleGraphTab1.weekly_graph.data;
             $scope.tab1WeeklyGraph=areaChart();
@@ -170,9 +125,9 @@
             $scope.tab1Graphs.push({title:dailyGraphTitle,"graph": $scope.tab1DailyGraph});
             $scope.tab1Graphs.push({title:weeklyGraphTitle,graph: $scope.tab1WeeklyGraph});
             $scope.tab1Graphs.push( {title:monthlyGraphTitle,graph:$scope.tab1MonthlyGraph});
-            
-            
-            
+
+
+
             //------------------Tab2 graph----------------------------
             //----------------daily graph -tab2-----------------------
             $scope.middleGraphTab2=res.data.graph_middle_tab2;
@@ -184,7 +139,7 @@
                     value:$scope.tab2Daily.categories[0].data[index].value
                 })
             }
-            
+
             //---------------weekly graph -tab2-------------
             $scope.tab2Weekly=$scope.middleGraphTab2.weekly_graph.data;
             $scope.tab2WeeklyGraph=areaChart();
@@ -209,8 +164,6 @@
             $scope.tab2Graphs.push({title:monthlyGraphTitle,graph: $scope.tab2MonthlyGraph});
 
 
-
-
             //---------------Tab3 graph-------
             //----------------daily graph -tab3-----------------------
             $scope.middleGraphTab3=res.data.graph_middle_tab3;
@@ -222,7 +175,7 @@
                     value:$scope.tab3Daily.categories[0].data[index].value
                 })
             }
-            
+
             //---------------weekly graph -tab3-------------
             $scope.tab3Weekly=$scope.middleGraphTab3.weekly_graph.data;
             $scope.tab3WeeklyGraph=areaChart();
@@ -286,11 +239,125 @@
             $scope.tab4Graphs.push( {title:monthlyGraphTitle,"graph":$scope.tab4MonthlyGraph});
             $scope.tabGraphflag=true;
 
-
-
-        })
+        //})
     })
     </script>
+{% endcompress %}
+
+{% verbatim %}
+{% endverbatim %}
+
+
+{% verbatim %}
+<link rel="stylesheet" href="../../static/css/style.css" > <link rel="stylesheet" href="../../static/gg/custom_js_css/bootstrap.min.css">
+<link href="../../static/gg/custom_js_css/a5e4e5z.min.css" rel="stylesheet"> <link rel="stylesheet" href="../../static/gg/custom_js_css/ui-grid.min.css">
+<style>
+      *{ box-sizing:border-box;}
+      .box{   border-radius: 4px;   border: 3px solid #E6E6E6;  }
+      .box-container{ padding:10px;   }
+
+      .value {  font-size: 20px;  text-align: right; padding: 7px;   color:#CB6674; }
+      .title { padding: 5px; font-weight:600;
+      }
+
+      .glyphicon{  font-size: 20px;   }
+      .mg-bot{     margin-bottom: 20px; }
+      ul.menu{     list-style:none }
+      ul.menu li{  display:inline-block;  padding:10px;  }
+
+      .glyphicon glyphicon glyphicon-arrow-up{  color: rgb(203, 102, 116);   }
+
+      ul.menu.ng-scope {  font-size: 11px;  color: transparent;  line-height:11px;  display:block; }
+
+/*  Tab Link  + 日  */
+a { color: #777; text-decoration: none; background-color: #D5D5D5;
+}
+
+a:focus,a:hover {
+    color: #337ab7; text-decoration: underline; background-color: green; font-weight:bold;
+}
+
+
+/*
+<ul class="menu ng-scope" style="height: 10px; text-align: right;">
+<li style=" padding: 1px;"><a href="#" ng-click="toggelTab1Graph('日')"    style="background-color: transparent;"  >日</a>
+</li><li><a href="#" ng-click="toggelTab1Graph('週')">週</a></li><li><a href="#" ng-click="toggelTab1Graph('月')">月</a></li></ul>
+
+<a href="#" ng-click="toggelTab1Graph('日')" style="
+    background-color: transparent;
+">日</a>
+
+| " ? - Ubuntu ...
+
+template{display:none}a{background-color: #D5D5D5
+
+html{font-family:sans-serif;
+   -webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}
+
+   body{margin:0}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,
+     summary{display:block}audio,canvas,progress,
+     video{display:inline-block;vertical-align:baseline}audio:not([controls])
+     {display:none;height:0}[hidden],
+     template{display:none}a{background-color: #D5D5D5}
+*/
+</style>
+</head>
+
+<body>
+    <div class="container" ng-app="app" ng-controller="rootCtrl">
+    <div class="row">
+        <div class="col-xs-3 box-container" ng-repeat="data in firstGraph">
+            <div class="box">
+                <div class="title">{{data.title}}</div>
+                <div class="value">{{data.value}}<span ng-style="set_color($index)" class="glyphicon glyphicon glyphicon-arrow-{{data.image}}" aria-hidden="true"></span>
+                </div>
+            </div>
+        </div>
+　　</div>
+
+   <uib-tabset active="active" ng-if="tabGraphflag">
+
+    <uib-tab index="1"  heading="ユ－ザ-数">
+     <ul class="menu"  style="height: 12px; text-align: right;"><li><a style="background-color: transparent;"  href="#" ng-click="toggelTab1Graph('日')">日</a></li><li><a style="background-color: transparent;"  href="#" ng-click="toggelTab1Graph('週')">週</a></li><li><a style="background-color: transparent;"  href="#" ng-click="toggelTab1Graph('月')">月</a></li></ul>
+        <div class="row mg-bot" ng-repeat="graph in tab1Graphs" ng-show="graph.title==activeTab1Graph" >
+        　<div class="col-xs-12" >
+          　<!-- <label>{{graph.title}}</label>   --->
+            <div fusioncharts width="100%" height="300" type="area2d" dataSource="{{graph.graph}}"> </div>
+        　</div>
+        </div>
+    </uib-tab>
+
+　  <uib-tab index="2"  heading="ログビ－コン反応数">
+     <ul class="menu"  style="height: 12px; text-align: right;"><li><a style="background-color: transparent;"  href="#" ng-click="toggelTab2Graph('日')">日</a></li><li><a style="background-color: transparent;"  href="#" ng-click="toggelTab2Graph('週')">週</a></li><li><a style="background-color: transparent;"  href="#" ng-click="toggelTab2Graph('月')">月</a></li></ul>
+        　<div class="row mg-bot" ng-repeat="graph in tab2Graphs" ng-show="graph.title==activeTab2Graph">
+       　　 <div class="col-xs-12" >
+            　　<div fusioncharts width="100%" height="300" type="area2d" dataSource="{{graph.graph}}"></div>
+        　　</div>
+        　</div>
+　　</uib-tab>
+
+    <uib-tab index="3"  heading="利用ビ－コン反応数">
+     <ul class="menu"  style="height: 12px; text-align: right;"><li><a   href="#" ng-click="toggelTab3Graph('日')">日</a></li><li><a style="background-color: transparent;"  href="#" ng-click="toggelTab3Graph('週')">週</a></li><li><a style="background-color: transparent;"  href="#" ng-click="toggelTab3Graph('月')">月</a></li></ul>
+    　    <div class="row mg-bot" ng-repeat="graph in tab3Graphs" ng-show="graph.title==activeTab3Graph">
+      　  <div class="col-xs-12" >
+            　<div fusioncharts width="100%" height="300" type="area2d" dataSource="{{graph.graph}}"> </div>
+        　</div>
+        　</div>
+    </uib-tab>
+
+    <uib-tab index="4"  heading="CV ビ－コン反応数">
+     <ul class="menu"  style="height: 12px; text-align: right;"><li><a style="background-color: transparent;"  href="#" ng-click="toggelTab4Graph('日')">日</a></li><li><a style="background-color: transparent;"  href="#" ng-click="toggelTab4Graph('週')">週</a></li><li><a style="background-color: transparent;"  href="#" ng-click="toggelTab4Graph('月')">月</a></li></ul>
+    　    <div class="row mg-bot" ng-repeat="graph in tab4Graphs" ng-show="graph.title==activeTab4Graph">
+      　  <div class="col-xs-12" >
+            　<div fusioncharts width="100%" height="300" type="area2d" dataSource="{{graph.graph}}"> </div>
+        　</div>
+        　</div>
+    </uib-tab>
+　 </uib-tabset>
+
+
+　　</div>
+</body>
 </html>
 
 {% endverbatim %}

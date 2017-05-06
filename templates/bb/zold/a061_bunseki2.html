@@ -1,0 +1,510 @@
+{% verbatim %}
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>A011</title>
+    <!-- load library--->
+    <script src="../../static/gg/custom_js_css/njfiorioze-3.2.1.js"></script> <script src="../../static/gg/custom_js_css/njfiorioze-ui.js"></script> <script src="../../static/gg/custom_js_css/dbca6ceb2a.js"></script> <script type="text/javascript" src="../../static/gg/custom_js_css/jsfhue/jsfhue.js"></script> <script type="text/javascript" src="../../static/gg/pdgjr5/js/pdgjr5.js"></script> <script type="text/javascript" src="../../static/gg/pdgjr5/wrappers/jsfhuejs/jfsdfsdf5sd5fs5d.min.js"></script> <script src="../../static/gg/custom_js_css/ui-grid.min.js"></script> <link rel="stylesheet" href="../../static/gg/custom_js_css/ui-grid.min.css"> <link href="../../static/gg/custom_js_css/a5e4e5z.min.css" rel="stylesheet"> <script type="text/javascript" src="../../static/gg/a5e4e5z/a5e4e5z.js"></script> <link rel="stylesheet" href="../../static/gg/custom_js_css/bootstrap.min.css"> <script type="text/javascript" src="../../static/gg/custom_js_css/jsfhue/ui-bootstrap-tpls-2.5.0.min.js"></script> <script type="text/javascript" src="../../static/gg/pdgjr5/js/ds8f5dsf5s.js"></script> <script type="text/javascript" src="../../static/gg/pdgjr5/js/prezjrzej.js"></script>
+
+
+  <style>
+      *{ box-sizing:border-box;}
+      .box{   border-radius: 4px;   border: 3px solid #E6E6E6;  }
+      .box-container{ padding:10px;   }
+      .value {  font-size: 25px;  text-align: right; padding: 10px;   color:#CB6674; }
+      .title { padding: 5px;
+      /* color: #868686; */
+      }
+      .glyphicon{  font-size: 20px;   }
+      .mg-bot{     margin-bottom: 20px; }
+      ul.menu{     list-style:none }
+      ul.menu li{  display:inline-block;  padding:10px;  }
+
+    </style>
+
+
+
+</head>
+
+<body>
+    <div class="container" ng-app="app" ng-controller="rootCtrl">
+
+        <div class="row">
+            <div class="col-xs-12" ng-if="line_flag">
+                <div fusioncharts width="100%" height="400" type="msline" dataSource="{{line_chart}}"></div>
+            </div>
+        </div>
+<hr>
+
+
+<!---- Big Table bottom Tabulator  -------------------------------------------------->
+<div id="table_bottom1"></div>
+
+
+<!---
+Tabulator Docs
+http://olifolkerd.github.io/tabulator/docs/#css
+
+--->
+
+
+
+
+
+<!---
+ <div convert-table="{{table_bottom1}}"></div>
+
+<div class="row">
+ <div class="col-xs-12 margn-btm" ng-repeat="d in allBigTables">
+    <div convert-table="{{d}}"></div>
+ </div>
+ </div>
+--->
+
+
+
+　　</div>
+</body>
+
+
+
+
+
+<script>
+/*  http://www.fusioncharts.com/dev/chart-attributes.html?chart=multilevelpie
+*/
+
+var json_page=       "../../static/gg/custom_json/page_a061_bunseki2.json";
+
+
+
+//-------------TOP Graph -----------------------------------------------------------------------------
+var lineGraphColors=["#C72C5E", "#DE3E58", "#A1B1C3"]
+var LINE_CAPTION="caption for line graph";
+var LINE_SUBCAPTION="subcaption for line graph"
+var lineChartOptions={
+  "chart": { "caption": "Daily Visits", "linethickness": "1", "showvalues": "0","formatnumberscale": "0", "anchorradius": "2",
+  "divlinecolor": "666666", "divlinealpha": "30", "divlineisdashed": "1", "labelstep": "2", "bgcolor": "FFFFFF",
+  "showalternatehgridcolor": "0", "labelpadding": "10", "canvasborderthickness": "1", "legendiconscale": "1.5",
+  "legendshadow": "0", "legendborderalpha": "0", "canvasborderalpha": "50", "numvdivlines": "5", "vdivlinealpha": "20",
+  "showborder": "0"
+  }
+  ,"categories": [ {"category": [] } ]
+  , "dataset": []
+}
+
+
+
+//------------------ Bottom big table ----------------------------------------------------------------
+// http://olifolkerd.github.io/tabulator/docs/#css
+
+function pctFormat(value, data, cell, row, options) {   return value + "%";  }; //plain text value
+
+var table_bottom1_static= {fitColumns: true,
+   columns: [{title: "CV Area 1",   field: "1", align: "left", sorter:"string" },
+             {title: "CV Area 2",   field: "2"},
+             {title: "percentage",  field: "3", align: "center", formatter: "progress"},
+             {title: "percentage",  field: "3", align: "center", formatter: pctFormat},
+             {title: "Pct 1" ,      field: "4"} ,
+             {title: "Pct 2"  ,     field: "5"}], }
+
+</script>
+
+
+
+
+<script>
+// Initiliation Graphs, Tables  ----------------------------------------------------------------------
+var app = angular.module("app", ['ng-fusioncharts', 'ui.grid','ui.bootstrap']);
+
+
+
+//  JSON to Angular
+app.controller('rootCtrl',  function($scope, $http){
+        // Asynchrone Get
+        $http.get(json_page).then(function(res){
+
+
+        // --------------------- Top Middle line chart ------------------------------------------------
+        $scope.line_flag = false;
+        $scope.line_chart = lineChartOptions;
+
+
+        $scope.line_chart.chart.caption =     LINE_CAPTION;
+        $scope.line_chart.chart.subcaption =  LINE_SUBCAPTION;
+        $scope.line_flag = true;
+        $scope.line_chart.categories[0].category = [];
+        var lineChartXAxis = res.data.line_graph.xaxis.data;
+        lineChartXAxis.forEach(function (item) {
+             $scope.line_chart.categories[0].category.push({
+                        "label": item.value, "stepSkipped": false
+             })
+        });
+
+        $scope.line_chart.chart.caption = res.data.line_graph.meta.title;
+        var line_colors = lineGraphColors;
+        $scope.line_chart.dataset = [];
+         res.data.line_graph.series.forEach(function (item, index) {
+                        item.color = line_colors[index % line_colors.length];
+                        $scope.line_chart.dataset[index] = item;
+         })
+
+
+
+
+        //-----------  Bottom Big Table  ------------------------------------------------------------
+        $("#table_bottom1").tabulator(table_bottom1_static);
+        $("#table_bottom1").tabulator("setData", res.data.table_bottom1.rows);
+
+
+
+
+
+        })
+})
+</script>
+
+
+
+
+
+
+<!---
+
+
+
+
+http://olifolkerd.github.io/tabulator/quickstart/
+
+
+
+
+
+//-------------------------- Top Graph -----------------------------------------------------
+var dailyGraphTitle1=   "Push Haishin";
+var areachart_left_static= {
+       "chart": { "caption": "Graph left", "subcaption": "", "plotgradientcolor": "", "bgcolor": "FFFFFF",
+                  "showalternatehgridcolor": "0", "showplotborder": "0", "showvalues": "0", "labeldisplay": "WRAP",
+                  "divlinecolor": "CCCCCC", "showcanvasborder": "0", "canvasborderalpha": "0", "palettecolors": "990000",
+                  "yaxisvaluespadding": "10", "showborder": "0"
+                },
+       "data": []
+};
+
+
+
+
+
+        //------------------  Middle Left Graph        --------------------------------------------------------
+            $scope.tab1Daily=       res.data.areachart_left.data;
+            $scope.tab1DailyGraph=  areachart_left_static;
+
+            for(var index=0;index< $scope.tab1Daily.categories[0].data.length;index++){
+                $scope.tab1DailyGraph.data.push({
+                    label:$scope.tab1Daily.xaxis.data[index].value,
+                    value:$scope.tab1Daily.categories[0].data[index].value
+                })}
+            $scope.tab1Graphs=[]
+            $scope.tab1Graphs.push({title:dailyGraphTitle1,"graph": $scope.tab1DailyGraph});
+            $scope.activeTab1Graph= dailyGraphTitle1;
+            $scope.toggelTab1Graph= function(type){  $scope.activeTab1Graph=type }
+
+
+
+
+        //-------------  Top Right Table ---------------------------------------------------------------------
+        $scope.table_topright1=  res.data.table_topright1;
+
+
+
+        //------------------  Middle Left Graph        --------------------------------------------------------
+            $scope.tab2Daily=       res.data.areachart_right.data;
+            $scope.tab2DailyGraph=  areachart_right_static;
+
+            for(var index=0;index< $scope.tab2Daily.categories[0].data.length;index++){
+                $scope.tab2DailyGraph.data.push({
+                    label:$scope.tab2Daily.xaxis.data[index].value,
+                    value:$scope.tab2Daily.categories[0].data[index].value
+                })}
+            $scope.tab2Graphs=[]
+            $scope.tab2Graphs.push({title: dailyGraphTitle2, "graph": $scope.tab2DailyGraph});
+            $scope.activeTab2Graph= dailyGraphTitle2;
+            $scope.toggelTab2Graph= function(type){  $scope.activeTab2Graph=type }
+
+
+
+
+        //--------------  Middle Left Column ------------------------------------------------------
+        $scope.bottomTable1 = res.data.table_bottom_1;
+
+
+        //--------------  Middle Right Column ------------------------------------------------------
+        $scope.bottomTable2 = res.data.table_bottom_2;
+
+
+
+var dailyGraphTitle2=   "Push Haishin";
+var areachart_right_static= {
+       "title" :  "Graph number 2",
+       "chart": { "caption": "Graph right", "subcaption": "", "plotgradientcolor": "", "bgcolor": "FFFFFF",
+                  "showalternatehgridcolor": "0", "showplotborder": "0", "showvalues": "0", "labeldisplay": "WRAP",
+                  "divlinecolor": "CCCCCC", "showcanvasborder": "0", "canvasborderalpha": "0", "palettecolors": "990000",
+                  "yaxisvaluespadding": "10", "showborder": "0"
+                },
+       "data": []
+};
+
+
+
+
+        　<div class="row" >
+          　<label>{{areachartleft_ang.title}}</label>
+            <div fusioncharts width="100%" height="300" type="area2d" dataSource="{{areachartleft_ang}}"> </div>
+        　</div
+        //----------------- Middle Left : Area Chart        -------------------------------------------------
+        $scope.areachartleft_ang =   areaChart(); //  areachart_left_static;       //Creation of Graph in Angular
+        $scope.json_dynamic2 =        res.data.graph_middle_tab1; // res.data.areachart_left.data;     // Dynamic JSON
+
+        $scope.json_dynamic =       $scope.json_dynamic2.daily_graph.data;      // res.data.areachart_left.data;     // Dynamic JSON
+
+        $scope.areachartleft_ang.title= "Title 123";
+
+        for(var index=0; index < $scope.json_dynamic.categories[0].data.length; index++){
+                $scope.areachartleft_ang.data.push({
+                    label: $scope.json_dynamic.xaxis.data[index].value,
+                    value: $scope.json_dynamic.categories[0].data[index].value
+                })
+        }
+
+
+
+
+/*
+        $scope.areachart_left= areachart_left_static;
+        $scope.areachart_left_dynamic= res.data.graph_middle_tab1;
+
+
+        var graphData= [];
+        for (var i = 0; i < circulargraphData.length; i++) {
+           var obj = circulargraphData[i];
+           graphData.push({ "label": obj.label , "value": obj.count , "color": colors[i % colors.length]
+        })}
+
+        $scope.areahartleft.data =     graphData;
+        $scope.left_area = true;
+
+
+circularchart_left_static;
+        //------------------ Tab Graph in Middle       --------------------------------------------------------
+            $scope.activeTab1Graph=dailyGraphTitle;
+            $scope.toggelTab1Graph=function(type){  $scope.activeTab1Graph=type }
+
+
+            $scope.areachart_left_data= res.data.graph_middle_tab1;
+
+
+            //----------------daily graph -tab1-------------------------------
+            $scope.middleGraphTab1= res.data.graph_middle_tab1;
+            $scope.tab1Daily= $scope.middleGraphTab1.daily_graph.data;
+            $scope.tab1DailyGraph=areaChart();
+
+
+            for(var index=0;index< $scope.tab1Daily.categories[0].data.length;index++){
+                $scope.tab1DailyGraph.data.push({
+                    label:$scope.tab1Daily.xaxis.data[index].value,
+                    value:$scope.tab1Daily.categories[0].data[index].value
+                })
+            }
+
+
+        this.lineChartConfig =     function ()     { return lineChartOptions;  }
+
+        // config variable for line chart
+        $scope.line_flag = false;
+        $scope.line_chart = dataService.lineChartConfig();
+
+
+                function createLineChart(lineGraphCaption, lineGraphSubcaption){
+                  $scope.line_chart.chart.caption =    lineGraphCaption;
+                  $scope.line_chart.chart.subcaption = lineGraphSubcaption
+                  $scope.line_flag = true;
+                  $scope.line_chart.categories[0].category = [];
+                  var lineChartXAxis = response.data.line_graph.xaxis.data;
+                  lineChartXAxis.forEach(function (item) {
+                    $scope.line_chart.categories[0].category.push({
+                        "label": item.value
+                        , "stepSkipped": false
+                    })
+                  });
+
+                  $scope.line_chart.chart.caption = response.data.line_graph.meta.title;
+                  var line_colors = lineGraphColors;
+                  $scope.line_chart.dataset = [];
+                  response.data.line_graph.series.forEach(function (item, index) {
+                        item.color = line_colors[index % line_colors.length];
+                        $scope.line_chart.dataset[index] = item;
+                  })
+                }
+
+
+
+
+
+        //----------------- Bottom Left Circular graph        -------------------------------------------------
+        $scope.circularchartleft =               circularchart_left_static;   //Creation of Graph
+        var circulargraphData = res.data.circularchart_left;                  // Dynamic JSON
+        $scope.circularchartleft.chart.caption = circularchart_left_static.caption;
+        var colors= circularchart_right_static.circularGraphColors;
+
+        var graphData= [];
+        for (var i = 0; i < circulargraphData.length; i++) {
+           var obj = circulargraphData[i];
+           graphData.push({ "label": obj.label , "value": obj.count , "color": colors[i % colors.length]
+        })}
+
+        $scope.circularchartleft.data =     graphData;
+        $scope.left_circular = true;
+
+
+
+
+
+
+        //------------------ Tab Graph in Middle       --------------------------------------------------------
+            $scope.activeTab1Graph=dailyGraphTitle;
+            $scope.activeTab2Graph=dailyGraphTitle;
+            $scope.activeTab3Graph=dailyGraphTitle;
+            $scope.activeTab4Graph=dailyGraphTitle;
+
+            $scope.toggelTab1Graph=function(type){  $scope.activeTab1Graph=type }
+            $scope.toggelTab2Graph=function(type){  $scope.activeTab2Graph=type;}
+            $scope.toggelTab3Graph=function(type){   $scope.activeTab3Graph=type; }
+            $scope.toggelTab4Graph=function(type){   $scope.activeTab4Graph=type; }
+
+            //----------------daily graph -tab1-------------------------------
+            $scope.middleGraphTab1= res.data.graph_middle_tab1;
+            $scope.tab1Daily= $scope.middleGraphTab1.daily_graph.data;
+            $scope.tab1DailyGraph=areaChart();
+            for(var index=0;index< $scope.tab1Daily.categories[0].data.length;index++){
+                $scope.tab1DailyGraph.data.push({
+                    label:$scope.tab1Daily.xaxis.data[index].value,
+                    value:$scope.tab1Daily.categories[0].data[index].value
+                })
+            }
+
+            //---------------weekly graph -tab1-------------------------------
+            $scope.tab1Weekly=$scope.middleGraphTab1.weekly_graph.data;
+            $scope.tab1WeeklyGraph=areaChart();
+            for(var index=0;index< $scope.tab1Weekly.categories[0].data.length;index++){
+                $scope.tab1WeeklyGraph.data.push({
+                    label:$scope.tab1Weekly.xaxis.data[index].value,
+                    value:$scope.tab1Weekly.categories[0].data[index].value
+                })
+            }
+            //--------------monthly graph -tab1------------------------------
+            $scope.tab1monthly=$scope.middleGraphTab1.monthly_graph.data;
+            $scope.tab1MonthlyGraph=areaChart();
+            for(var index=0;index< $scope.tab1monthly.categories[0].data.length;index++){
+                $scope.tab1MonthlyGraph.data.push({
+                    label:$scope.tab1monthly.xaxis.data[index].value,
+                    value:$scope.tab1monthly.categories[0].data[index].value
+                })
+            }
+            $scope.tab1Graphs=[]
+            $scope.tab1Graphs.push({title:dailyGraphTitle,"graph": $scope.tab1DailyGraph});
+            $scope.tab1Graphs.push({title:weeklyGraphTitle,graph: $scope.tab1WeeklyGraph});
+            $scope.tab1Graphs.push( {title:monthlyGraphTitle,graph:$scope.tab1MonthlyGraph});
+
+*/
+
+
+
+
+//--------------- Tabulator Table (not used here) -----------------------------------------------
+app.directive("convertTable", function () { return {
+            link: function (scope, element, attrs) {
+                //############# column configuration for page 7 big table
+                $(element).tabulator(bigTableOptions)
+                $(element).tabulator("setData", attrs.convertTable);
+            }
+        }
+})
+
+//____________________-pyramidChartOptions_______________________________________________
+pyramidGraphColors=["#9BAEBC", "# E65065", "#CB145B"];
+
+var pyramidChartOptions = {
+  "chart": {"caption": "", "subcaption": "", "linethickness": "1", "showvalues": "0", "formatnumberscale": "0", "anchorradius": "2", "divlinecolor": "666666", "divlinealpha": "30", "divlineisdashed": "1", "labelstep": "2", "bgcolor": "FFFFFF", "showalternatehgridcolor": "0", "labelpadding": "10", "canvasborderthickness": "1", "legendiconscale": "1.5", "legendshadow": "0", "legendborderalpha": "0", "canvasborderalpha": "50", "numvdivlines": "5", "vdivlinealpha": "20", "showborder": "0", "showtooltip": "1", "paletteColors": "#46b8da,#993f6c,#cc0000", labelDisplay: "wrap", "showLabelsAtCenter": "1", "baseFontSize": "12", "baseFontColor": "#fff", "numberSuffix": "$", "plotToolText": "$label", "showToolTipShadow": "1", "toolTipBorderColor": "#FFFFFF", "plottooltext": "<div class='tooltip-custom'>$label</div>", "showLegend": "1" , "outCnvBaseFontColor": "#8D8D8D" , }
+  , "data": []
+  , "styles": {
+      "definition": [ {"name": "myToolTipFont", "type": "font", "font": "Arial", "size": "12", "color": "FF5904"} ]
+      ,"application": [{"toobject": "ToolTip", "styles": "myToolTipFont"}  ]
+      }
+}
+
+
+//-------------line graph caption  -----------------------------------------------------------------
+var lineGraphColors=["#C72C5E", "#DE3E58", "#A1B1C3"]
+var LINE_CAPTION="caption for line graph";
+var LINE_SUBCAPTION="subcaption for line graph"
+var lineChartOptions={
+  "chart": { "caption": "Daily Visits", "linethickness": "1", "showvalues": "0","formatnumberscale": "0", "anchorradius": "2", "divlinecolor": "666666", "divlinealpha": "30", "divlineisdashed": "1", "labelstep": "2", "bgcolor": "FFFFFF", "showalternatehgridcolor": "0", "labelpadding": "10", "canvasborderthickness": "1", "legendiconscale": "1.5", "legendshadow": "0", "legendborderalpha": "0", "canvasborderalpha": "50", "numvdivlines": "5", "vdivlinealpha": "20", "showborder": "0" }
+  ,"categories": [ {"category": [] } ]
+  , "dataset": []
+}
+
+
+
+
+//---------------------table 2 options--------------------------------------------------
+var table2options= {fitColumns: true,
+  columns: [{title: "brand"  , field: "name"}, {title: "percentage" , field: "pct"  , align: "center" ,formatter: "progress"},
+            {title: "percentage"  , field: "pct" , align: "center" , formatter: pctFormat}, {title: "count" , field: "count"},
+            {title: "nb" , field: "count"}], }
+
+function pctFormat(value, data, cell, row, options) {   return value + "%";  }; //plain text value
+
+
+//-------------------------- Topleft, texbox01  -----------------------------------------------
+var textbox_topleft_static={ "color": ["#CB6674","#3362BB","#CB6674"] }
+
+
+//-------------------------- Middle Graph -----------------------------------------------------
+var dailyGraphTitle=   "日";    var monthlyGraphTitle= "月"; var weeklyGraphTitle=  "週";
+function areaChart(){ return {
+       "chart": { "caption": "", "subcaption": "", "plotgradientcolor": "", "bgcolor": "FFFFFF",
+                  "showalternatehgridcolor": "0", "showplotborder": "0", "showvalues": "0", "labeldisplay": "WRAP",
+                  "divlinecolor": "CCCCCC", "showcanvasborder": "0", "canvasborderalpha": "0", "palettecolors": "990000",
+                  "yaxisvaluespadding": "10", "showborder": "0"
+                },
+       "data": []
+}}
+
+
+//------------------------- Bottom circular chart options-------------------------------------
+var circularchart_left_static={
+  "circularGraphColors": ["#CD0A59", "#E84F63", "#D3D3D3"],
+  "caption" :  "circular_graph1",
+  "chart": {"enableSmartLabels": "1", "chartTopMargin": "0", "chartRightMargin": "0", "chartBottomMargin": "0", "caption": "", "subCaption": "", "numberPrefix": "", "bgColor": "#ffffff", "showBorder": "0", "use3DLighting": "0", "showShadow": "0", "enableSmartLabels": "0", "startingAngle": "310", "showLabels": "0", "showValues": "1", "showPercentValues": "1", "showLegend": "1","legendShadow": "0", "legendPosition": "right", "legendBorderAlpha": "0", "defaultCenterLabel": "", "centerLabel": "", "centerLabelBold": "0", "showTooltip": "1", "decimals": "0", "captionFontSize": "14", "subcaptionFontSize": "14", "subcaptionFontBold": "0", "useDataPlotColorForLabels": "1", "legendlabel": "ddd"}
+, "data": undefined
+}
+
+
+var circularchart_right_static={
+  "circularGraphColors": ["#CD0A59", "#E84F63", "#D3D3D3"],
+  "caption" :  "circular_graph2",
+  "chart": {"enableSmartLabels": "1", "chartTopMargin": "0", "chartRightMargin": "0", "chartBottomMargin": "0", "caption": "", "subCaption": "", "numberPrefix": "", "bgColor": "#ffffff", "showBorder": "0", "use3DLighting": "0", "showShadow": "0", "enableSmartLabels": "0", "startingAngle": "310", "showLabels": "0", "showValues": "1", "showPercentValues": "1", "showLegend": "1","legendShadow": "0", "legendPosition": "right", "legendBorderAlpha": "0", "defaultCenterLabel": "", "centerLabel": "", "centerLabelBold": "0", "showTooltip": "1", "decimals": "0", "captionFontSize": "14", "subcaptionFontSize": "14", "subcaptionFontBold": "0", "useDataPlotColorForLabels": "1", "legendlabel": "ddd"}
+, "data": undefined
+}
+
+--->
+
+
+
+
+</html>
+
+{% endverbatim %}
+
+
